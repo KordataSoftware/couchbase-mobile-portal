@@ -712,11 +712,27 @@ When a permanent error occurs (i.e `404`: not found, `401`: unauthorized), the r
 	- `504`: Gateway Timeout
 	- `1001`: DNS resolution error
 
+## Handling Conflicts
+
+Starting in Couchbase Lite 2.0, it is possible to delegate the resolution of conflicts to the database (also known as automatic conflict resolution). There are 2 different `save` method signatures to specify how to resolve a conflict:
+
+- `save(document: MutableDocument)`: when concurrent writes to an individual record occur, the conflict is automatically resolved and only one non-conflicting document update is stored in the database. The Last-Write-Win (LWW) algorithm is used to pick the winning revision.
+- `save(document: MutableDocument, concurrencyControl: ConcurrencyControl)`: attempts to save the document with a concurrency control. The concurrency control parameter has two possible values:
+	- `none`: The last operation wins if there is a conflict.
+	- `optimistic`: The operation will fail if there is a conflict.
+
+Similarly to the save operation, the delete operation also has two method signatures to specify how to resolve a possible conflict:
+
+- `delete(document: Document)`: The last write will win if there is a conflict.
+- `delete(document: Document, concurrencyControl: ConcurrencyControl)`: attemps to delete the document with a concurrency control. The concurrency control parameter has two possible values:
+	- `none`: The last operation wins if there is a conflict.
+	- `optimistic`: The operation will fail if there is a conflict.
+
 ## Database Replicas
 
 Database replicas is available in the **Enterprise Edition** only ([https://www.couchbase.com/downloads](https://www.couchbase.com/downloads)). Starting in Couchbase Lite 2.0, replication between two local databases is now supported. It allows a Couchbase Lite replicator to store data on secondary storage that can then be ported to a different device. It would be especially useful in scenarios where a user's device is damaged and the data needs to be moved to a different device.
 
-### Certificate Pinning
+## Certificate Pinning
 
 Couchbase Lite supports certificate pinning. Certificate pinning is a technique that can be used by applications to "pin" a host to it's certificate. The certificate is typically delivered to the client by an out-of-band channel and bundled with the client. In this case, Couchbase Lite uses this embedded certificate to verify the trustworthiness of the server and no longer needs to rely on a trusted third party for that (commonly referred to as the Certificate Authority).
 
