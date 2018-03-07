@@ -42,13 +42,13 @@ cbl_features:
       Replication between two local databases is now supported. This feature can be used for local incremental backups for example.
     links:
       - name: swift
-        value: couchbase-lite/swift.html#starting-a-replication
+        value: couchbase-lite/swift.html#database-replicas
       - name: android
-        value: couchbase-lite/java.html#starting-a-replication
+        value: couchbase-lite/java.html#database-replicas
       - name: c#
-        value: couchbase-lite/csharp.html#starting-a-replication
+        value: couchbase-lite/csharp.html#database-replicas
       - name: objective-c
-        value: couchbase-lite/objc.html#starting-a-replication
+        value: couchbase-lite/objc.html#database-replicas
 sg_features:
   - title: No Conflicts Mode
     description: |
