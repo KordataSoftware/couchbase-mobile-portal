@@ -71,7 +71,9 @@ Just as before, the database will be created in a default location. Alternativel
 
 ### Migrating from 1.x Databases
 
-Databases that were created with Couchbase Mobile 1.2 or later can be read using the 2.0 API. Upon detecting it is a 1.x database file format, Couchbase Lite will automatically upgrade it to the new format used in 2.0. This feature is only available for the default storage type (i.e not for ForestDB databases). Additionally, the automatic migration feature does not support encrypted database. If the 1.x database is encrypted, you will first need to disable encryption using the Couchbase Lite 1.x SDK (see the [1.x Database Guide](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#step-2-enabling-encryption)).
+Databases that were created with Couchbase Mobile 1.2 or later can be read using the 2.0 API. Upon detecting it is a 1.x database file format, Couchbase Lite will automatically upgrade it to the new format used in 2.0. This feature is only available for the default storage type (i.e not for ForestDB databases). Additionally, the automatic migration feature does not support encrypted databases, so if the 1.x database is encrypted you will first need to disable encryption using the Couchbase Lite 1.x SDK (see the [1.x Database Guide](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#step-2-enabling-encryption)).
+
+The automatic upgrade functionality does not copy any conflicting revisions to the new database. The motivation for this functionality is related to the way conflicts are being handled in Couchbase Lite 2.0 (see [Handling Conflicts](index.html#handling-conflicts)).
 
 ### Finding a Database File
 
@@ -739,14 +741,14 @@ When a permanent error occurs (i.e `404`: not found, `401`: unauthorized), the r
 
 ## Handling Conflicts
 
-Starting in Couchbase Lite 2.0, it is possible to delegate the resolution of conflicts to the database (also known as automatic conflict resolution). There are 2 different `save` method signatures to specify how to resolve a conflict:
+Starting in Couchbase Lite 2.0, document conflicts must be resolved using automatic conflict resolution or in the application. This functionality aims to simplify the default behavior of conflict handling and save disk space (conflicting revisions will no longer be stored in the database). There are 2 different `save` method signatures to specify how to handle a possible conflict:
 
 - `save(document: MutableDocument)`: when concurrent writes to an individual record occur, the conflict is automatically resolved and only one non-conflicting document update is stored in the database. The Last-Write-Win (LWW) algorithm is used to pick the winning revision.
 - `save(document: MutableDocument, concurrencyControl: ConcurrencyControl)`: attempts to save the document with a concurrency control. The concurrency control parameter has two possible values:
 	- `lastWriteWins`: The last operation wins if there is a conflict.
 	- `failOnConflict`: The operation will fail if there is a conflict.
 
-Similarly to the save operation, the delete operation also has two method signatures to specify how to resolve a possible conflict:
+Similarly to the save operation, the delete operation also has two method signatures to specify how to handle a possible conflict:
 
 - `delete(document: Document)`: The last write will win if there is a conflict.
 - `delete(document: Document, concurrencyControl: ConcurrencyControl)`: attemps to delete the document with a concurrency control. The concurrency control parameter has two possible values:
