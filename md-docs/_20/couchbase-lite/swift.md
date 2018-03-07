@@ -696,8 +696,6 @@ As shown in the code snippet above, the URL scheme for remote database URLs has 
 
 Couchbase Lite 2.0 uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer's configuration (see [Load Balancers](https://developer.couchbase.com/documentation/mobile/1.5/guides/sync-gateway/nginx/index.html)).
 
-Starting in Couchbase Lite 2.0, replication between two local databases is now supported. This isn't often needed, but it can be very useful. For example, you can implement incremental backup by pushing your main database to a mirror on a backup disk.
-
 ### Troubleshooting
 
 As always, when there is a problem with replication, logging is your friend. The following example increases the log output for activity related to replication with Sync Gateway.
@@ -739,6 +737,19 @@ self.replication.addChangeListener { (change) in
     }
 }
 self.replication.start()
+```
+
+## Database Replicas
+
+Database replicas is available in the **Enterprise Edition** only ([https://www.couchbase.com/downloads](https://www.couchbase.com/downloads)). Starting in Couchbase Lite 2.0, replication between two local databases is now supported. It allows a Couchbase Lite replicator to store data on secondary storage that can then be ported to a different device. It would be especially useful in scenarios where a user's device is damaged and the data needs to be moved to a different device. Note that the code below won't compile if you're running the **Community Edition** of Couchbase Lite.
+
+```swift
+let targetDatabase = DatabaseEndpoint(database: database2)
+let config = ReplicatorConfiguration(database: database, target: targetDatabase)
+config.replicatorType = .push /* for a back-up to the target database */
+
+self.replicator = Replicator(config: config)
+self.replicator.start()
 ```
 
 ### Certificate Pinning
