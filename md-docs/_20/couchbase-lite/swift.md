@@ -64,7 +64,7 @@ Just as before, the database will be created in a default location. Alternativel
 
 Databases that were created with Couchbase Mobile 1.2 or later can be read using the 2.0 API. Upon detecting it is a 1.x database file format, Couchbase Lite will automatically upgrade it to the new format used in 2.0. This feature is only available for the default storage type (i.e not for ForestDB databases). Additionally, the automatic migration feature does not support encrypted databases, so if the 1.x database is encrypted you will first need to disable encryption using the Couchbase Lite 1.x SDK (see the [1.x Database Guide](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#step-2-enabling-encryption)).
 
-The automatic upgrade functionality does not copy any conflicting revisions to the new database. The motivation for this functionality is related to the way conflicts are being handled in Couchbase Lite 2.0 (see [Handling Conflicts](index.html#handling-conflicts)).
+The automatic upgrade functionality does not copy any conflicting revisions to the new database. The motivation for this functionality is related to the way conflicts are being handled in Couchbase Lite 2.0 (see [Handling Conflicts](swift.html#handling-conflicts)).
 
 ### Finding a Database File
 
