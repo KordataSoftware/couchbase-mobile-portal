@@ -58,21 +58,9 @@ var database = new Database("my-database");
 
 Just as before, the database will be created in a default location. Alternatively, the `Database(string name, DatabaseConfiguration config)` initializer can be used to provide specific options in the [`DatabaseConfiguration`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-net/db022/html/T_Couchbase_Lite_DatabaseConfiguration.htm) object such as the database directory, encryption key through the  object.
 
-###  Encryption
-
-Encryption is available in the **Enterprise Edition** only. The following example demonstrates how to create a database with an encryption key (or open an existing one). Note that this code won't compile if you're running the **Community Edition** of Couchbase Lite.
-
-```c#
-var dbConfig = new DatabaseConfiguration {
-    EncryptionKey = new EncryptionKey("secretpassword")
-};
-
-Database = new Database("my-database", dbConfig);
-```
-
 ### Migrating from 1.x Databases
 
-Databases that were created with Couchbase Mobile 1.2 or later can be read using the 2.0 API. Upon detecting it is a 1.x database file format, Couchbase Lite will automatically upgrade it to the new format used in 2.0. This feature is only available for the default storage type (i.e not for ForestDB databases). Additionally, the automatic migration feature does not support encrypted database. Database encryption is an **Enterprise Edition** feature. If the 1.x database is encrypted, you will first need to disable encryption using the Couchbase Lite 1.x SDK (see the [1.x Database Guide](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#step-2-enabling-encryption)).
+Databases that were created with Couchbase Mobile 1.2 or later can be read using the 2.0 API. Upon detecting it is a 1.x database file format, Couchbase Lite will automatically upgrade it to the new format used in 2.0. This feature is only available for the default storage type (i.e not for ForestDB databases). Additionally, the automatic migration feature does not support encrypted database. If the 1.x database is encrypted, you will first need to disable encryption using the Couchbase Lite 1.x SDK (see the [1.x Database Guide](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#step-2-enabling-encryption)).
 
 ### Finding a Database File
 
