@@ -1,9 +1,13 @@
 - title: What's new
   open: true
   path: whatsnew.html
-- title: CSharp mananger
+- title: Hidden Files For Redirects
   ishidden: true
-  path: guides/couchbase-lite/native-api/manager/csharp.html
+  items:
+    - title: CSharp mananger
+      path: guides/couchbase-lite/native-api/manager/csharp.html
+    - title: Creating and querying a View
+      path: guides/sync-gateway/views/index.html
 - title: Getting Started
   path: installation/index.html
   open: true
@@ -113,8 +117,6 @@
           path: guides/sync-gateway/nginx/index.html
         - title: Taking databases offline and online
           path: guides/sync-gateway/database-offline/index.html
-        - title: Creating and querying a View
-          path: guides/sync-gateway/views/index.html
         - title: OS Level Tuning
           path: guides/sync-gateway/os-level-tuning/index.html
         - title: Resolving Conflicts

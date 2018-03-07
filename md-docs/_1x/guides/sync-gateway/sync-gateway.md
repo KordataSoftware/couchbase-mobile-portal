@@ -2,6 +2,8 @@
 id: sync-gateway
 title: Sync Gateway
 permalink: guides/sync-gateway/index.html
+redirect_from:
+  - guides/sync-gateway/views/index.html
 ---
 
 Sync Gateway:

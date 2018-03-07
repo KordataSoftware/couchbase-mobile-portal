@@ -21,6 +21,8 @@
       path: references/couchbase-lite/release-notes/index.html
     - title: Technical notes
       path: guides/couchbase-lite/tech-notes/index.html
+    - title: Creating and querying a View
+      path: guides/sync-gateway/views/index.html
 - title: Couchbase Lite
   path: couchbase-lite/index.html
   open: true
@@ -65,8 +67,6 @@
           path: guides/sync-gateway/nginx/index.html
         - title: Taking databases offline and online
           path: guides/sync-gateway/database-offline/index.html
-        - title: Creating and querying a View
-          path: guides/sync-gateway/views/index.html
         - title: OS Level Tuning
           path: guides/sync-gateway/os-level-tuning/index.html
         - title: Resolving Conflicts
