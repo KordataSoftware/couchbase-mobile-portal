@@ -141,7 +141,7 @@ Wait for the web view to redirect to a URL whose host and path are the same as t
 
 Sync Gateway supports the OpenID Connect [Implicit Flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth). This flow has the key feature of allowing clients to obtain their own Open ID token and use it to authenticate against Sync Gateway. The implicit flow with Sync Gateway is as follows:
 
-1. The client obtains a **signed** Open ID token directly from an OpenID Connect provider. Note that only signed tokens are supported. To verify that the Open ID token being sent is indeed signed, you can use the [jwt.io Debugger](https://jwt.io/#debugger-io). In this debugger, you have the option to set the `alg` property to `RS256` or `HS256`. Both algorithm types are supported by Sync Gateway.
+1. The client obtains a **signed** Open ID token directly from an OpenID Connect provider. Note that only signed tokens are supported. To verify that the Open ID token being sent is indeed signed, you can use the [jwt.io Debugger](https://jwt.io/#debugger-io). In the algorithm dropdown, make sure to select `RS256` as the signing algorithm (other options such as `HS256` are not yet supported by Sync Gateway).
 2. The client includes the Open ID token as an `Authorization: Bearer <id_token>` header on requests made against the Sync Gateway REST API.
 3. Sync Gateway matches the token to a provider in its configuration file based on the issuer and audience in the token.
 4. Sync Gateway validates the token, based on the provider definition.
