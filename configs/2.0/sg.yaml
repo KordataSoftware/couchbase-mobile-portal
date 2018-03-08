@@ -586,8 +586,7 @@ properties:
             type: string
   replicator_compression:
     description: |
-      This sets the 'deflate' compression level to use when compressing messages sent via the WebSocket protocol, where 0 means no compression,
-1 means fastest (least) compression, and 9 means slowest (most) compression.
+      This sets the 'deflate' compression level to use when compressing messages sent via the WebSocket protocol, where 0 means no compression, 1 means fastest (least) compression, and 9 means slowest (most) compression.
     type: integer
     default: 6
   serverReadTimeout:
