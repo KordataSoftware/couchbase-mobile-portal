@@ -654,6 +654,8 @@ As shown in the code snippet above, the URL scheme for remote database URLs has 
 
 Couchbase Lite 2.0 uses WebSockets as the communication protocol to transmit data. Some load balancers are not configured for WebSocket connections by default (NGINX for example); so it might be necessary to explicitly enable them in the load balancer's configuration (see [Load Balancers](https://developer.couchbase.com/documentation/mobile/1.5/guides/sync-gateway/nginx/index.html)).
 
+By default, the WebSocket protocol uses compression to optimize over speed and bandwidth. The level of compression is set on Sync Gateway and can be tuned in the configuration file ([`replicator_compression`](../guides/sync-gateway/config-properties/index.html#2.0/replicator_compression)).
+
 ### Troubleshooting
 
 As always, when there is a problem with replication, logging is your friend. The following example increases the log output for activity related to replication with Sync Gateway.
