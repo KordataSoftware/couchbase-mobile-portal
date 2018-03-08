@@ -4,45 +4,17 @@ title: Sync Gateway
 permalink: installation/sync-gateway/index.html
 ---
 
-You can download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile) or download it directly to a Linux system by using the `wget`.
+Select the platform you wish to install Sync Gateway on:
+
+{% include install-tabs.html %}
+
+<h3 class="tab">Ubuntu</h3>
+
+Download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile) or using the `wget`.
 
 ```bash
 wget {{ site.sg_download_link }}{{ site.sg_package_name }}.deb
 ```
-
-All download links follow the naming convention:
-
-```bash
-couchbase-sync-gateway-community_<VERSION>-<BUILDNUM>_<ARCHITECTURE>.<EXT>
-```
-
-where
-
-- `VERSION` is the release version.
-- `BUILDNUM` is the specific build number.
-- `ARCHITECTURE` is the target architecture of the installer.
-- `EXT` is the file extension.
-
-## Requirements
-
-|Ubuntu|CentOS/RedHat|Debian|Windows|macOS|
-|:-----|:------------|:-----|:------|:----|
-|12, 14|5, 6, 7|8|Windows 8, Windows 10, Windows Server 2012|Yosemite, El Capitan|
-
-### Network configuration
-
-Sync Gateway uses specific ports for communication with the outside world, mostly Couchbase Lite databases replicating to and from Sync Gateway. The following table lists the ports used for different types of Sync Gateway network communication:
-
-|Port|Description|
-|:---|:----------|
-|4984|Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet.|
-|4985|Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks.|
-
-Once you have downloaded Sync Gateway on the distribution of your choice you are ready to install and start it as a service.
-
-## Installation
-
-### Ubuntu
 
 Install sync_gateway with the dpkg package manager e.g:
 
@@ -61,7 +33,13 @@ The config file and logs are located in `/home/sync_gateway`.
 
 > **Note:** You can also run the **sync_gateway** binary directly from the command line. The binary is installed at `/opt/couchbase-sync-gateway/bin/sync_gateway`.
 
-### Red Hat/CentOS
+<h3 class="tab">Red Hat/CentOS</h3>
+
+Download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile) or using the `wget`.
+
+```bash
+wget {{ site.sg_download_link }}{{ site.sg_package_name }}.rpm
+```
 
 Install sync_gateway with the rpm package manager e.g:
 
@@ -96,7 +74,13 @@ systemctl stop sync_gateway
 
 The config file and logs are located in `/home/sync_gateway`.
 
-### Debian
+<h3 class="tab">Debian</h3>
+
+Download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile) or using the `wget`.
+
+```bash
+wget {{ site.sg_download_link }}{{ site.sg_package_name }}.deb
+```
 
 Install sync_gateway with the dpkg package manager e.g:
 
@@ -113,23 +97,20 @@ systemctl stop sync_gateway
 
 The config file and logs are located in `/home/sync_gateway`.
 
-### Windows
+<h3 class="tab">Windows</h3>
 
-Install sync_gateway on Windows by running the .exe file from the desktop.
+Download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile). Open the installer and follow the instructions. If the installation was successful you will see the following.
 
-```bash
-{{ site.sg_package_name }}.exe
-```
+<img src="../img/windows-installation-complete.png" width="400" class="portrait" />
 
-When the installation is complete sync_gateway will be installed as a service but not running.
+Sync Gateway runs as a service (reachable on [http://localhost:4985/](http://localhost:4985/)). To stop/start the service, you can use the Services application (**Control Panel --> Admin Tools --> Services**).
 
-Use the **Control Panel --> Admin Tools --> Services** to stop/start the service.
+- The configuration file is located under **C:\Program Files\Couchbase\Sync Gateway\serviceconfig.json**.
+- Logs are located under **C:\Program Files\Couchbase\Sync Gateway\var\lib\couchbase\logs**.
 
-The config file and logs are located in ``.
+<h3 class="tab">macOS</h3>
 
-### macOS
-
-Download the **tar.gz** file using `wget` or `curl`.
+Download Sync Gateway from the [Couchbase downloads page](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile) or using the `wget`.
 
 ```bash
 wget {{ site.sg_download_link }}{{ site.sg_package_name }}.tar.gz
@@ -164,6 +145,23 @@ $ sudo launchctl unload /Library/LaunchDaemons/com.couchbase.mobile.sync_gateway
 ```
 
 The config file and logs are located in `/Users/sync_gateway`.
+
+### Requirements
+
+|Ubuntu|CentOS/RedHat|Debian|Windows|macOS|
+|:-----|:------------|:-----|:------|:----|
+|12, 14|5, 6, 7|8|Windows 8, Windows 10, Windows Server 2012|Yosemite, El Capitan|
+
+### Network configuration
+
+Sync Gateway uses specific ports for communication with the outside world, mostly Couchbase Lite databases replicating to and from Sync Gateway. The following table lists the ports used for different types of Sync Gateway network communication:
+
+|Port|Description|
+|:---|:----------|
+|4984|Public port. External HTTP port used for replication with Couchbase Lite databases and other applications accessing the REST API on the Internet.|
+|4985|Admin port. Internal HTTP port for unrestricted access to the database and to run administrative tasks.|
+
+Once you have downloaded Sync Gateway on the distribution of your choice you are ready to install and start it as a service.
 
 ### Walrus mode
 
