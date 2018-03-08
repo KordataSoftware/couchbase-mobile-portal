@@ -586,9 +586,10 @@ properties:
             type: string
   replicator_compression:
     description: |
-      TODO
+      This sets the 'deflate' compression level to use when compressing messages sent via the WebSocket protocol, where 0 means no compression,
+1 means fastest (least) compression, and 9 means slowest (most) compression.
     type: integer
-    default: TODO
+    default: 6
   serverReadTimeout:
     description: Maximum duration in seconds before timing out the read of an HTTP(S) request. This property only effects the HTTP connections on the Sync Gateway public and admin ports. Sync Gateway is written in the Go programming language, therefor the value set in the configuration file is passed to Go's server instance [https://golang.org/pkg/net/http/#Server](https://golang.org/pkg/net/http/#Server).
     type: integer
