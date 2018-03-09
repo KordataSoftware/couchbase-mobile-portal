@@ -949,6 +949,42 @@ paths:
           description: Bad request.  
         401:
           description: Authentication failed.  Unable to refresh token.
+  /{db}/_facebook:
+    parameters:
+      - $ref: '#/parameters/db'
+    post:
+      tags:
+        - auth
+      summary: User creation / authentication via Facebook
+      description: |
+        Uses the Facebook API to authenticate a facebook access token and create a user, 
+        and a session for said user so that they may replicate
+      parameters:
+        - in: body
+          name: body
+          description: Request body
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+                decription: The access token for the user to authenticate
+          responses:
+            200:
+              description: The request was successful
+              schema:
+                authentication_handlers:
+                  type: array
+                  description: List of authentication methods.
+                  items:
+                    type: string
+                ok:
+                  type: boolean
+                  description: Always true if the operation was successful.
+                userCtx:
+                  $ref: '#/definitions/UserContext'
+            401:
+              description: Authentication failed. Facebook verification server status 400
   /{db}/_revs_diff:
       parameters:
         - $ref: '#/parameters/db'
