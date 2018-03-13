@@ -133,7 +133,7 @@ Changes to the document are persisted to the database when the `saveDocument` me
 
 ### Typed Accessors
 
-The `Document` class now offers a set of [`property accessors`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-net/db022/html/T_Couchbase_Lite_DictionaryObject.htm) for various scalar types, including boolean, integers, floating-point and strings. These accessors take care of converting to/from JSON encoding, and make sure you get the type you're expecting: for example, `document.GetString(string key)` returns either a `String` or `null`, so you can't get an unexpected object class and crash trying to use it as a string. (Even if the property in the document has an incompatible type, the accessor returns `null`.)
+The `Document` class now offers a set of [`property accessors`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-net/db022/html/T_Couchbase_Lite_DictionaryObject.htm) for various scalar types, including boolean, integers, floating-point and strings. These accessors take care of converting to/from JSON encoding, and make sure you get the type you're expecting.
 
 In addition, as a convenience we offer `DateTimeOffset` accessors. Dates are a common data type, but JSON doesn't natively support them, so the convention is to store them as strings in ISO-8601 format. The following example sets the date on the `createdAt` property and reads it back using the `document.GetDate(string key)` accessor method.
 
@@ -141,6 +141,8 @@ In addition, as a convenience we offer `DateTimeOffset` accessors. Dates are a c
 newTask.SetDate("createdAt", DateTimeOffset.UtcNow());
 var date = newTask.GetDate("createdAt");
 ```
+
+If the property doesn't exist in the document it will return the default value for that getter method (0 for `getInt`, 0.0 for `getFloat` etc.). To check whether a given property exists in the document, you should use the [`Document.Contains(string key)`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-net/db022/html/M_Couchbase_Lite_Document_Contains.htm) method.
 
 ### Batch operations
 
