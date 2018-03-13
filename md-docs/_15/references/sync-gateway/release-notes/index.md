@@ -3,6 +3,12 @@ id: sg-release-notes
 title: SG release notes
 ---
 
+## Deprecation notices
+
+The following features are being deprecated and will be unsupported in an upcoming version (2.x) of Couchbase Mobile.
+
+- **Bucket shadowing** has been deprecated since 1.5 and will be unsupported in the upcoming version (2.x) of Couchbase Mobile. The recommended approach to perform operations on the bucket dedicated to Couchbase Mobile is to use the Sync Gateway REST API.
+
 ## New Features
 
 - **Shared bucket access**
