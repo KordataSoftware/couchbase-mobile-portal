@@ -3,9 +3,18 @@ id: sg-release-notes
 title: SG release notes
 ---
 
-## 2.0.0
+## Deprecation notices
 
-__Upgrading__
+The following features are being deprecated and will be unsupported in an upcoming version of Sync Gateway.
+
+- **Bucket shadowing** has been deprecated since 1.4 and will be unsupported in an upcoming version of Couchbase Mobile. The recommended approach to perform operations on the bucket dedicated to Couchbase Mobile is to use the Sync Gateway REST API.
+
+## New Features
+
+- No conflicts mode ([`databases.$db.allow\_conflicts`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-allow_conflicts))
+- Expiry value for local documents managed by Sync Gateway ([`databases.$db.local\_doc\_expiry\_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs))
+
+## Upgrading
 
 Starting in Sync Gateway 2.0, Sync Gateway’s design documents include the version number in the design document name. In this release for example, the design documents are named `_design/sync_gateway_2.0` and `_design/sync_housekeeping_2.0`.
 
@@ -32,11 +41,6 @@ Sync Gateway 2.0 will **not** automatically remove the previous design documents
 3. Clean up obsolete views:
 	- **Optional** Issue a call to `/_post_upgrade?preview=true` on any node to preview which design documents will be removed. To upgrade to 2.0, expect to see "sync_gateway" and "sync_housekeeping" listed.
 	- Issue a call to `/post_upgrade` to remove the obsolete design documents. The response should indicate that "sync_gateway" and "sync_housekeeping" were removed.
-
-## New Features
-
-- No conflicts mode ([`databases.$db.allow\_conflicts`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-allow_conflicts))
-- Expiry value for local documents managed by Sync Gateway ([`databases.$db.local\_doc\_expiry\_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs))
 
 __Performance Improvements__
 
