@@ -718,7 +718,7 @@ The following table lists the different activity levels in the API and the meani
 
 ### Handling Network Errors
 
-A running replication can be interrupted for a variety of reasons such as network errors or unauthorized access. In this case, the replication status will be updated with an `Error` which follows the standard HTTP error codes. The replication change event can be used to monitor the status of the replication. The following example monitors the replication for errors and logs the error code to the console.
+If an error occurs, the replication status will be updated with an `Error` which follows the standard HTTP error codes. The following example monitors the replication for errors and logs the error code to the console.
 
 ```objectivec
 [replicator addChangeListener:^(CBLReplicatorChange *change) {
@@ -727,6 +727,15 @@ A running replication can be interrupted for a variety of reasons such as networ
     }
 }];
 ```
+
+When a permanent error occurs (i.e `404`: not found, `401`: unauthorized), the replicator (continuous or one-shot) will stop permanently. If the error is temporary (i.e waiting for the network to recover), a continuous replication will retry to connect indefinitely and if the replication is one-shot it will retry for a limited number of times. The following error codes are considered temporary by the Couchbase Lite replicator and thus will trigger a connection retry.
+	- `408`: Request Timeout
+	- `429`: Too Many Requests
+	- `500`: Internal Server Error
+	- `502`: Bad Gateway
+	- `503`: Service Unavailable
+	- `504`: Gateway Timeout
+	- `1001`: DNS resolution error
 
 ## Database Replicas
 
