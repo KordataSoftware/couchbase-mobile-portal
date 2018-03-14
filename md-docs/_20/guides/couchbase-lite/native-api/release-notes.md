@@ -30,6 +30,7 @@ This release introduces many new APIs including N1QL queries, full-text search a
 
 ## Known Issues
 
+- [Database Encryption](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/database/index.html#story-h2-3) is not available in Couchbase Lite 2.0 but may be re-introduced in a later version of Couchbase Lite 2.x.
 - The [OpenID Connect](https://developer.couchbase.com/documentation/mobile/1.5/guides/authentication/openid/index.html) authenticator API has been removed but may be re-introduced in a later version of Couchbase Lite 2.x.
 - The [Listener](https://developer.couchbase.com/documentation/mobile/1.5/guides/couchbase-lite/native-api/peer-to-peer/index.html) component has been removed in Couchbase Lite 2.0. As a result, hybrid development frameworks such as Cordova and peer-to-peer replications are not supported in Couchbase Lite 2.0. Support for those features may be re-introduced in a later version of Couchbase Lite 2.x.
 
@@ -43,7 +44,6 @@ This release introduces many new APIs including N1QL queries, full-text search a
 
 The following features are available in the [Couchbase Lite Enterprise Edition](https://www.couchbase.com/downloads?family=mobile&edition=enterprise) only:
 
-- Database encryption
 - Database replicas
 
 <block class="all" />

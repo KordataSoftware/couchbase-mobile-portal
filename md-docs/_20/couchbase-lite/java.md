@@ -50,7 +50,7 @@ DatabaseConfiguration config = new DatabaseConfiguration(/* Android Context*/ co
 Database database = new Database("my-database", config);
 ```
 
-Just as before, the database will be created in a default location. Alternatively, the `Database(string name, DatabaseConfiguration config)` initializer can be used to provide specific options in the [`DatabaseConfiguration`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-java/db022/com/couchbase/lite/DatabaseConfiguration.html) object such as the database directory, encryption key through the  object.
+Just as before, the database will be created in a default location. Alternatively, the `Database(string name, DatabaseConfiguration config)` initializer can be used to provide specific options in the [`DatabaseConfiguration`](http://docs.couchbase.com/mobile/2.0/couchbase-lite-java/db022/com/couchbase/lite/DatabaseConfiguration.html) object such as the database directory.
 
 ### Migrating from 1.x Databases
 
