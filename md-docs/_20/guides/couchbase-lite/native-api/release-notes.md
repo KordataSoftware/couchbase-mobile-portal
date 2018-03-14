@@ -50,6 +50,19 @@ The following features are available in the [Couchbase Lite Enterprise Edition](
 
 ## Incremental API Changes
 
+### Developer build 23
+
+<block class="net" />
+
+- .NET Standard 1.4 -> .NET Standard 2.0 
+- Save API change to make behavior less confusing (based on feedback).  There are now two variants, one which will force the write to become current (default) and one which will return `false` and abort the save if there is a conflict
+- A mountain of bug fixes regarding replication.  .NET now passes through a wide scenario of 50+ functional scenarios.
+- Library is now split into two editions:  Community Edition and Enterprise Edition.  Each has its own respective license and you are required to accept the Enterprise Edition license to use (short summary:  You can use it all you like in development, but need to pay for production use).  
+- Encryption has been removed due to some uncertainty about the implementation
+- Xamarin platforms have been removed from GA for enterprise edition due to the unavailable bandwidth for testing, as well as .NET Core for Mac and Linux.  They are still present in Beta 2 though.
+
+<block class="all" />
+
 ### Developer build 22
 
 <block class="all" />
