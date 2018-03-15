@@ -44,7 +44,7 @@
 <block class="swift" />
 
 1. [Install Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-2. Add `github "couchbase/couchbase-lite-ios" "2.0DB022"` to your **Cartfile**.
+2. Add `github "couchbase/couchbase-lite-ios" "2.0DB023"` to your **Cartfile**.
 3. Run `carthage update --platform ios`.
 4. Drag **CouchbaseLiteSwift.framework** from **Carthage/Build/** to the Xcode navigator.
 5. Click on Project > General > Embedded Binary and add **CouchbaseLiteSwift.framework** to this section.
@@ -52,7 +52,7 @@
 <block class="objc" />
 
 1. [Install Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-2. Add `github "couchbase/couchbase-lite-ios" "2.0DB022"` to your Cartfile.
+2. Add `github "couchbase/couchbase-lite-ios" "2.0DB023"` to your Cartfile.
 3. Run `carthage update --platform ios`.
 4. Drag **CouchbaseLite.framework** from **Carthage/Build/** to the Xcode navigator.
 5. Click on Project > General > Embedded Binary and add **CouchbaseLite.framework** to this section.
@@ -69,7 +69,7 @@
     ```ruby
     target '<your target name>' do
       use_frameworks!
-      pod 'CouchbaseLiteSwift', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB022', :submodules => true
+      pod 'CouchbaseLiteSwift', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB023', :submodules => true
     end
     ```
 
@@ -87,7 +87,7 @@
     ```ruby
     target '<your target name>' do
       use_frameworks!
-      pod 'CouchbaseLite', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB022', :submodules => true
+      pod 'CouchbaseLite', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB023', :submodules => true
     end
     ```
 
@@ -122,6 +122,6 @@ Your app must call the relevant `Activate()` function inside of the class that i
 
 	```groovy
 	dependencies {
-		compile 'com.couchbase.lite:couchbase-lite-android:2.0.0-DB022'
+		compile 'com.couchbase.lite:couchbase-lite-android:2.0.0-DB023'
 	}
 	```

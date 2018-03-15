@@ -13,7 +13,7 @@
 <h3 class="tab">Carthage</h3>
 
 1. [Install Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-2. Add `github "couchbase/couchbase-lite-ios" "2.0DB022"` to your **Cartfile**.
+2. Add `github "couchbase/couchbase-lite-ios" "2.0DB023"` to your **Cartfile**.
 3. Run `carthage update --platform ios`.
 4. Drag **CouchbaseLiteSwift.framework** from **Carthage/Build/** to the Xcode navigator.
 5. Click on Project > General > Embedded Binary and add **CouchbaseLiteSwift.framework** to this section.
@@ -26,7 +26,7 @@
 	```ruby
 	target '<your target name>' do
 		use_frameworks!
-		pod 'CouchbaseLiteSwift', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB022', :submodules => true
+		pod 'CouchbaseLiteSwift', :git => 'https://github.com/couchbase/couchbase-lite-ios.git', :tag => '2.0DB023', :submodules => true
 	end
 	```
 
