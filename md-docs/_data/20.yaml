@@ -23,6 +23,8 @@
       path: guides/couchbase-lite/tech-notes/index.html
     - title: Creating and querying a View
       path: guides/sync-gateway/views/index.html
+    - title: Release Notes Archive
+      path: references/couchbase-lite/release-notes-archive/index.html
 - title: Couchbase Lite
   path: couchbase-lite/index.html
   open: true
