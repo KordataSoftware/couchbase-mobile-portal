@@ -728,6 +728,8 @@ paths:
       description: |
         This request creates a new document or creates a new revision of an existing document. It enables you to specify the identifier for a new document rather than letting the software create an identifier. If you want to create a new document and let the software create an identifier, use the POST /db request.
         If the document specified by doc does not exist, a new document is created and assigned the identifier specified in doc. If the document already exists, the document is updated with the JSON document in the message body and given a new revision.
+
+        The maximum size allowed for a document is 20MB.
       responses:
         200:
           description: The response is a JSON document that contains the following objects
@@ -998,6 +1000,8 @@ paths:
       summary: Create document
       description: |
         This request creates a new document in the specified database. You can either specify the document ID by including the _id in the request message body (the value must be a string), or let the software generate an ID.
+
+        The maximum size allowed for a document is 20MB.
       parameters:
         - in: body
           name: body
