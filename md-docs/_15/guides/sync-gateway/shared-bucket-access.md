@@ -79,9 +79,11 @@ The following tutorial demonstrates the extended attributes support introduced i
 As of Sync Gateway 1.5, the Bucket Shadowing feature is deprecated and no longer supported. The following steps outline a recommended method for migrating from Bucket Shadowing to the latest version with interoperability between Couchbase Server SDKs and Couchbase Mobile.
 
 1. Follow the recommendations in the [Couchbase Server documentation](https://developer.couchbase.com/documentation/server/current/install/upgrade-online.html) to upgrade all instances to 5.0.
-2. Update Couchbase Server SDK applications to read/write documents to the mobile bucket.
-3. Make sure that all documents are present in the mobile bucket, the Sync Function may have rejected some documents based on the access control rules for example. If you are not using a Sync Function you can ignore this verification step.
-4. Delete the shadow bucket from Couchbase Server.
-5. Perform an upgrade of Sync Gateway instances as [detailed above](../../whatsnew.html#upgrading). This upgrade will incur some application downtime.
-6. Monitor the Sync Gateway logs upon start-up.
-7. Replications with mobile clients (i.e Couchbase Lite) should now resume.
+2. Create a new bucket on Couchbase Server (**bucket 2**).
+3. Install Sync Gateway 1.5 on a separate node with shared access enabled and connect it to the new bucket (**bucket 2**).
+4. Setup a [push replication](running-replications/index.html) from the Sync Gateway instance used for Bucket Shadowing to the Sync Gateway 1.5 instance.
+5. Once the replication has completed, test your application is performing as expected.
+6. Update the load balancer to direct incoming traffic to the Sync Gateway 1.5 instance when you are ready to upgrade.
+7. Delete the first bucket (**bucket 1**).
+
+<img class="portrait" style="width: 450px;" src="img/bucket-shadowing-migration.png" width="400"/>
