@@ -238,8 +238,19 @@ properties:
             description: Couchbase Server (or Walrus) URL. The default is walrus.
           sync:
             type: string
-            description: Sync function, which defines which users can read, update, or delete which documents. The default is a default sync function. For more information, see the section Sync function API.
-            default: function(doc, oldDoc) {channel(doc.username, doc.channels)};
+            description: |
+              The sync function is a JavaScript function whose source code is stored in the Sync Gateway's database configuration file. Every time a new document, revision or deletion is added to a database, the sync function is called and given a chance to examine the document (see [Sync Function Guide](../../../guides/sync-gateway/sync-function-api-guide/index.html)).
+
+              If you don't supply a sync function, Sync Gateway uses the following default sync function:
+
+              ```javascript
+              function (doc, oldDoc) {
+                 channel(doc.channels);
+              }
+              ```
+
+              In plain English: by default, a document will be assigned to the channels listed in its channels property (whose value must be a string or an array of strings.) More subtly, since there is no validation, any user can change any document. For this reason, the default sync function is really only useful for experimentation and development.
+            default: function(doc, oldDoc) {channel(doc.channels);}
           username:
             type: string
             description: Bucket username for authenticating to Couchbase Server. There is no default.
