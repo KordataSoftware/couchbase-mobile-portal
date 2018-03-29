@@ -187,6 +187,55 @@ role ("ed", null);  // no-op
 
 > **Note:** Roles, like users, have to be explicitly created by an administrator. So unlike channels, which come into existence simply by being named, you can't create new roles with a `role()` call. Nonexistent roles don't cause an error, but have no effect on the user's access privileges. You can create a role after the fact; as soon as a role is created, any pre-existing references to it take effect.
 
+## Document Conflicts
+
+If a document is in conflict there will be multiple current revisions. The default, "winning" one is the one whose channel assignments and access grants take effect.
+
+## Handling deletions
+
+Validation checks often need to treat deletions specially, because a deletion is just a revision with a `"_deleted": true` property and usually nothing else. Many types of validations won't work on a deletion because of the missing properties — for example, a check for a required property, or a check that a property value doesn't change. You'll need to skip such checks if `doc._deleted` is true.
+
+## Example
+
+Here's an example of a complete, useful sync function that properly validates and authorizes both new and updated documents. The requirements are:
+
+- Only users with the role `editor` may create or delete documents.
+- Every document has an immutable `creator` property containing the name of the user who created it.
+- Only users named in the document's (required, non-empty) `writers` property may make changes to a document, including deleting it.
+- Every document must also have a `title` and a `channels` property.
+
+	```javascript
+	function (doc, oldDoc) {
+			if (doc._deleted) {
+					// Only editors with write access can delete documents:
+					requireRole("role:editor");
+					requireUser(oldDoc.writers);
+					// Skip other validation because a deletion has no other properties:
+					return;
+			}
+			// Required properties:
+			if (!doc.title || !doc.creator || !doc.channels || !doc.writers) {
+					throw({forbidden: "Missing required properties"});
+			} else if (doc.writers.length == 0) {
+					throw({forbidden: "No writers"});
+			}
+			if (oldDoc == null) {
+					// Only editors can create documents:
+					requireRole("role:editor");
+					// The 'creator' property must match the user creating the document:
+					requireUser(doc.creator)
+			} else {
+					// Only users in the existing doc's writers list can change a document:
+					requireUser(oldDoc.writers);
+					// The "creator" property is immutable:
+					if (doc.creator != oldDoc.creator) {
+							throw({forbidden: "Can't change creator"});
+					}
+			}
+			// Finally, assign the document to the channels in the list:
+			channel(doc.channels);
+	}
+	```
 
 ## Changing the sync function
 
