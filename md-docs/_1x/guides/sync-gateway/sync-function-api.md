@@ -187,6 +187,25 @@ role ("ed", null);  // no-op
 
 > **Note:** Roles, like users, have to be explicitly created by an administrator. So unlike channels, which come into existence simply by being named, you can't create new roles with a `role()` call. Nonexistent roles don't cause an error, but have no effect on the user's access privileges. You can create a role after the fact; as soon as a role is created, any pre-existing references to it take effect.
 
+## Expiry
+
+### expiry (value)
+
+Calling `expiry(value)` from within the sync function will set the expiry value (TTL) on the document. When the expiry value is reached, the document will be purged from the database.
+
+```javascript
+expiry("2018-07-06T17:00:00+01:00")
+```
+
+Under the hood, the expiration time is set and managed on the Couchbase Server document (TTL is not supported for databases in walrus mode). The value can be specified in two ways:
+
+ - **ISO-8601 format:** for example the 6th of July 2016 at 17:00 in the BST timezone would be `2016-07-06T17:00:00+01:00`;
+ - **as a numeric Couchbase Server expiry value:** Couchbase Server expiries are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET [`/{db}/{doc}`](../../../references/sync-gateway/rest-api/index.html#/document/get__db___doc_) when `show_exp=true` is included in the querystring.
+
+As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database.
+
+If [shared bucket access](../shared-bucket-access.html) is enabled (introduced in Sync Gateway 1.5), the behaviour of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the **active** revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server's metadata purge interval is reached.
+
 ## Document Conflicts
 
 If a document is in conflict there will be multiple current revisions. The default, "winning" one is the one whose channel assignments and access grants take effect.
