@@ -49,6 +49,18 @@ cbl_features:
         value: couchbase-lite/csharp.html#database-replicas
       - name: objective-c
         value: couchbase-lite/objc.html#database-replicas
+  - title: Automatic Conflict Resolution
+    description: |
+      In Couchbase Lite 2.0, document conflicts are automatically resolved. This functionality aims to simplify the default behavior of conflict handling and save disk space.
+    links:
+      - name: swift
+        value: couchbase-lite/swift.html#handling-conflicts
+      - name: android
+        value: couchbase-lite/java.html#handling-conflicts
+      - name: c#
+        value: couchbase-lite/csharp.html#handling-conflicts
+      - name: objective-c
+        value: couchbase-lite/objc.html#handling-conflicts
 other:
   - title: Travel Sample
     description: |
