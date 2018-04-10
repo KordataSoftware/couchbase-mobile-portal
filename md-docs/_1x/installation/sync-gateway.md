@@ -150,7 +150,7 @@ The config file and logs are located in `/Users/sync_gateway`.
 
 |Ubuntu|CentOS/RedHat|Debian|Windows|macOS|
 |:-----|:------------|:-----|:------|:----|
-|12, 14|5, 6, 7|8|Windows 8, Windows 10, Windows Server 2012|Yosemite, El Capitan|
+|12, 14, 16|5, 6, 7|8|Windows 8, Windows 10, Windows Server 2012|Yosemite, El Capitan|
 
 ### Network configuration
 
