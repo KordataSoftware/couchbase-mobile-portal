@@ -72,6 +72,7 @@ __Enhancements__
 - [__#3015__](https://github.com/couchbase/sync_gateway/issues/3015) Set document expiry via Sync Function
 - [__#3123__](https://github.com/couchbase/sync_gateway/issues/3123) Log _sync:seq on startup
 - [__#3136__](https://github.com/couchbase/sync_gateway/issues/3136) Inter-document compression in BLIP replicator
+- [__#3105__](https://github.com/couchbase/sync_gateway/issues/3105) Set document expiry via Sync Function
 
 __Bugs__
 
