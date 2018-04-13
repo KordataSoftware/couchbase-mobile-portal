@@ -15,11 +15,11 @@ The following features are being deprecated and will be unsupported in an upcomi
 
 Sync Gateway 2.0 can be run in "no conflicts mode". When running in this mode, Sync Gateway will reject any updates that would otherwise create a conflict.  When using Couchbase Lite 2.0, these conflicts can be automatically detected and resolved by the client.
 
-Details on how to configure this mode, along with additional information, is included at ([`databases.$db.allow\_conflicts`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-allow_conflicts)).
+Details on how to configure this mode, along with additional information, is included at ([`databases.$db.allow_conflicts`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-allow_conflicts)).
 
 ### Data Lifecycle Management
 
-An expiry value can now be set for Couchbase Lite replication checkpoints (and local documents more generally), allowing users to configure how long these are retained.  By default they will be retained for 90 days, but this can be customized using  ([`databases.$db.local\_doc\_expiry\_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs)).
+An expiry value can now be set for Couchbase Lite replication checkpoints (and local documents more generally), allowing users to configure how long these are retained.  By default they will be retained for 90 days, but this can be customized using  ([`databases.$db.local_doc_expiry_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs)).
 
 Document expiry can now be set using the Sync Function.  A new built-in function, (expiry()](../../../guides//sync-gateway/sync-function-api-guide/index.html#expiry)) can be used to set the Couchbase Server expiry for the document.
 
