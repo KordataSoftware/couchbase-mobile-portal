@@ -19,9 +19,9 @@ Details on how to configure this mode, along with additional information, is inc
 
 ### Data Lifecycle Management
 
-An expiry value can now be set for Couchbase Lite replication checkpoints (and local documents more generally), allowing users to configure how long these are retained.  By default they will be retained for 90 days, but this can be customized using  ([`databases.$db.local_doc_expiry_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs)).
+An expiry value can now be set for Couchbase Lite replication checkpoints (and local documents more generally), allowing users to configure how long these are retained. By default they will be retained for 90 days, but this can be customized using  ([`databases.$db.local_doc_expiry_secs`](../../../guides/sync-gateway/config-properties/index.html#2.0/databases-foo_db-local_doc_expiry_secs)).
 
-Document expiry can now be set using the Sync Function.  A new built-in function, (expiry()](../../../guides//sync-gateway/sync-function-api-guide/index.html#expiry)) can be used to set the Couchbase Server expiry for the document.
+Document expiry can now be set using the Sync Function. A new built-in function, ([`expiry()`](../../../guides//sync-gateway/sync-function-api-guide/index.html#expiry)) can be used to set the Couchbase Server expiry for the document.
 
 ## Upgrading
 
