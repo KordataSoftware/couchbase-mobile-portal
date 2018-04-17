@@ -14,6 +14,13 @@ This guide covers various aspects to consider when using a Load Balancer in a Co
 - A reverse proxy can distribute the load from incoming requests to several Sync Gateway instances.
 - A reverse proxy may rewrite the URL of each incoming request in order to match the relevant internal location of the requested resource. For Sync Gateway the reverse proxy may map the Internet facing port 80 to the standard Sync Gateway public REST API port 4984.
 
+## WebSocket Connection
+
+To keep a WebSocket connection open, the replicator sends a WebSocket PING message (also
+known as heartbeat) every 300 seconds (5 minutes). The keep alive timeout value of the
+load balancer must be configured to a higher value than the heartbeat interval. For
+example, 360 seconds. The following section demonstrates how to do that with NGINX.
+
 ## NGINX
 
 Connect to the server running Sync Gateway and install the nginx server:
