@@ -7,10 +7,6 @@
 
 Create or open an existing Xcode project and install Couchbase Lite using one of the following methods.
 
-{% include install-tabs.html %}
-
-{% include_relative installation/swift.md %}
-
 ### Starter code
 
 Open **ViewController.swift** in Xcode and copy [the following](https://github.com/couchbaselabs/couchbase-mobile-portal/blob/master/md-docs/_20/example.swift) code in the `viewDidLoad` method. This snippet demonstrates how to run basic CRUD operations, a simple Query and running bi-directional replications with Sync Gateway.
