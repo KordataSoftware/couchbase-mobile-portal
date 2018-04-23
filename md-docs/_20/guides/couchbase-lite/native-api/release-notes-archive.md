@@ -4,6 +4,50 @@ title: Release notes
 permalink: references/couchbase-lite/release-notes-archive/index.html
 ---
 
+## Incremental API Changes
+
+### Beta 2 (Developer build 23)
+
+- The Document `save` API has changed based on user feedback. There are now two variants, one which will force the write to become current (default) and one which will return `false` and abort the save if there is a conflict.
+- Database encryption has been removed.
+
+<block class="net" />
+
+- .NET Standard 1.4 -> .NET Standard 2.0
+- A mountain of bug fixes regarding replication. .NET now passes through a wide scenario of 50+ functional scenarios.
+- Library is now split into two editions:  Community Edition and Enterprise Edition.  Each has its own respective license and you are required to accept the Enterprise Edition license to use (short summary:  You can use it all you like in development, but need to pay for production use).
+- Xamarin platforms have been removed from GA for enterprise edition due to the unavailable bandwidth for testing, as well as .NET Core for Mac and Linux.  They are still present in Beta 2 though.
+
+<block class="all" />
+
+### Beta 1 (Developer build 22)
+
+<block class="all" />
+
+- The new replication protocol is enabled by default in Sync Gateway 2.0.
+- The target URI scheme has changed from `blip://` (`blips://`) to `ws://` (`wss://`) respectively.
+
+<block class="net" />
+
+- More API changes to conform to internal spec (in other words, to have as close to the same signatures as Java and Swift as possible).  The final review has been completed and there are no more anticipated changes.  See [Issue 941](https://github.com/couchbase/couchbase-lite-net/issues/941) for a list of most of the changes
+
+<block class="objc swift" />
+
+- API Updates:
+    - Expression type safe API; new literal value based expression.
+    - Removed CBLFullTextIndexOptions and moved all of CBLFullTextIndexOptions's properties into CBLFullTextIndex.
+    - Renamed Query and Index factory class to QueryBuilder and IndexBuilder respectively.
+    - Cleaned up Swift API function labels.
+- Bug fixes and performance improvement.
+
+<block class="java" />
+
+- API Updates:
+    - Expression type safe API; new literal value based expression.
+    - Renamed Query and Index factory class to QueryBuilder and IndexBuilder respectively.
+    - Cleaned up Swift API function labels.
+- Bug fixes and performance improvement.
+
 <block class="all" />
 
 ### Developer build 21
