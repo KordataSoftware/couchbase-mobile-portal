@@ -3,7 +3,7 @@ layout: whatsnew
 cbl_features:
   - title: N1QL for Couchbase Lite
     description: |
-      Couchbase Lite 2.0 introduces a new Query API with semantics based on Couchbase Server's N1QL query language.
+      Couchbase Lite 2.0 introduces a new Query API with semantics based on Couchbase's N1QL query language.
     links:
       - name: swift
         value: couchbase-lite/swift.html#query
@@ -39,7 +39,7 @@ cbl_features:
         value: couchbase-lite/objc.html#full-text-search
   - title: Database Replicas
     description: |
-      Replication between two local databases is now supported. This feature can be used for local incremental backups for example.
+      Replication between two local databases is now supported. This feature can be used for data recovery on device.
     links:
       - name: swift
         value: couchbase-lite/swift.html#database-replicas
@@ -51,7 +51,7 @@ cbl_features:
         value: couchbase-lite/objc.html#database-replicas
   - title: Automatic Conflict Resolution
     description: |
-      In Couchbase Lite 2.0, document conflicts are automatically resolved. This functionality aims to simplify the default behavior of conflict handling and save disk space.
+      In Couchbase Lite 2.0, document conflicts are automatically resolved. This functionality simplifies conflict management.
     links:
       - name: swift
         value: couchbase-lite/swift.html#handling-conflicts
@@ -64,7 +64,7 @@ cbl_features:
 other:
   - title: Travel Sample
     description: |
-      This application synchronizes documents with Sync Gateway 1.5 and Couchbase Server 5.0. Shared bucket access is enabled to allow web and mobile clients to perform the same operations on the bucket.
+      This application synchronizes documents with Sync Gateway 2.0 and Couchbase Server 5.0 (or above). Shared bucket access is enabled to allow mobile clients and Couchbase Server SDKs to perform operations on the bucket.
     links:
       - name: Start building
         value: 'http://docs.couchbase.com/tutorials/travel-sample/'
