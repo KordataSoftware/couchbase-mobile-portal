@@ -93,8 +93,6 @@
           items:
             - title: Accelerator
               path: guides/sync-gateway/accelerator.html
-            - title: Resolving Conflicts
-              path: guides/sync-gateway/resolving-conflicts/index.html
     - title: Authentication
       path: guides/authentication/index.html
       items:
@@ -246,6 +244,8 @@
           path: guides/sync-gateway/database-offline/index.html
         - title: OS Level Tuning
           path: guides/sync-gateway/os-level-tuning/index.html
+        - title: Resolving Conflicts
+          path: guides/sync-gateway/resolving-conflicts/index.html
         - title: Integrating External Stores
           path: guides/sync-gateway/integrating-external-stores/index.html
         - title: Running replications
