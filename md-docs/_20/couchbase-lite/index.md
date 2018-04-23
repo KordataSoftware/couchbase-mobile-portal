@@ -19,11 +19,84 @@ ids:
   - full-text-search
   - replication
 redirect_from:
+  - installation/index.html
+  - installation/ios/index.html
+  - installation/android/index.html
+  - installation/net/index.html
+  - installation/xamarin/index.html
+  - installation/java/index.html
+  - installation/phonegap/index.html
+  - training/index.html
+  - training/design/data-modeling/index.html
+  - training/design/security/index.html
+  - training/develop/create-database/index.html
+  - training/develop/using-the-database/index.html
+  - training/develop/adding-synchronization/index.html
+  - training/develop/adding-security/index.html
+  - training/develop/integration/index.html
+  - training/deploy/install/index.html
+  - training/deploy/upgrade/index.html
+  - training/deploy/scale/index.html
+  - guides/index.html
+  - guides/couchbase-lite/native-api/data-modeling/index.html
   - guides/couchbase-lite/index.html
+  - guides/couchbase-lite/native-api/index.html
+  - guides/couchbase-lite/native-api/manager/index.html
   - guides/couchbase-lite/native-api/database/index.html
   - guides/couchbase-lite/native-api/document/index.html
+  - guides/couchbase-lite/native-api/revision/index.html
   - guides/couchbase-lite/native-api/attachment/index.html
+  - guides/couchbase-lite/native-api/view/index.html
   - guides/couchbase-lite/native-api/query/index.html
   - guides/couchbase-lite/native-api/full-text-search/index.html
   - guides/couchbase-lite/native-api/replication/index.html
+  - guides/couchbase-lite/native-api/peer-to-peer/index.html
+  - guides/couchbase-lite/native-api/model/index.html
+  - guides/couchbase-lite/tech-notes/index.html
+  - guides/couchbase-lite/tech-notes/cbl-encryption/index.html
+  - guides/authentication/index.html
+  - guides/authentication/basic-authentication/index.html
+  - guides/authentication/openid/index.html
+  - guides/authentication/openid/configuration-options/index.html
+  - guides/authentication/openid/advanced-topics/index.html
+  - guides/authentication/openid/google/index.html
+  - guides/authentication/openid/active-directory/index.html
+  - guides/authentication/custom-authentication/index.html
+  - guides/authentication/static-providers/index.html
+  - references/index.html
+  - references/couchbase-lite/index.html
+  - references/couchbase-lite/couchbase-lite/index.html
+  - references/couchbase-lite/couchbase-lite/manager/index.html
+  - references/couchbase-lite/couchbase-lite/manager/manager/index.html
+  - references/couchbase-lite/couchbase-lite/manager/manager-options/index.html
+  - references/couchbase-lite/couchbase-lite/manager/database-options/index.html
+  - references/couchbase-lite/couchbase-lite/database/index.html
+  - references/couchbase-lite/couchbase-lite/database/database/index.html
+  - references/couchbase-lite/couchbase-lite/database/validation-context/index.html
+  - references/couchbase-lite/couchbase-lite/document/index.html
+  - references/couchbase-lite/couchbase-lite/document/document/index.html
+  - references/couchbase-lite/couchbase-lite/document/document-change/index.html
+  - references/couchbase-lite/couchbase-lite/revision/index.html
+  - references/couchbase-lite/couchbase-lite/revision/revision/index.html
+  - references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html
+  - references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html
+  - references/couchbase-lite/couchbase-lite/attachment/index.html
+  - references/couchbase-lite/couchbase-lite/attachment/attachment/index.html
+  - references/couchbase-lite/couchbase-lite/view/index.html
+  - references/couchbase-lite/couchbase-lite/view/view/index.html
+  - references/couchbase-lite/couchbase-lite/view/view-compiler/index.html
+  - references/couchbase-lite/couchbase-lite/query/index.html
+  - references/couchbase-lite/couchbase-lite/query/query/index.html
+  - references/couchbase-lite/couchbase-lite/query/live-query/index.html
+  - references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html
+  - references/couchbase-lite/couchbase-lite/query/query-row/index.html
+  - references/couchbase-lite/couchbase-lite/replication/index.html
+  - references/couchbase-lite/couchbase-lite/replication/replication/index.html
+  - references/couchbase-lite/couchbase-lite/replication/authenticator/index.html
+  - references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html
+  - references/couchbase-lite/rest-api/index.html
+  - references/couchbase-lite/release-notes/index.html
+  - references/couchbase-lite/release-notes/iOS/index.html
+  - references/couchbase-lite/release-notes/Java/index.html
+  - references/couchbase-lite/release-notes/Dot-Net/index.html
 ---
