@@ -54,7 +54,37 @@ properties:
           allow_conflicts:
             type: boolean
             description: |
-              Setting to `false` will cause Sync Gateway to reject any attempt to write conflicting revisions (returning a `409` HTTP status code). It will be up to the client to resolve the conflict. Restarting Sync Gateway with this property enabled will not automatically result in disk space savings (compaction on a document won't occur until a document is updated).
+              Starting in 2.0, Sync Gateway has the ability to run in "no conflicts mode". When running in this mode, Sync Gateway will reject any updates that would otherwise create a conflict.
+
+              There are two main benefits to using this mode:
+
+              - It avoids revision trees from bloating in size, where unresolved conflicts prevent the revision tree from being pruned effectively.
+              - It avoids replication issues due to unanticipated conflicts in the rev tree.
+
+              To use the "no conflicts" mode, set the property `allow_conflicts` to `false` in Sync Gateway’s database configuration.
+
+              ```javascript
+              {
+                 "databases": {
+                    "default": {
+                      "server": "http://localhost:8091",
+                      "bucket": "default",
+                      "username":"default",
+                      "password": "password",
+                      "allow_conflicts":false
+                    }
+                 }
+              }
+              ```
+
+              ### Functional behaviour
+
+              The following behaviour will be observed when `allow_conflicts` is set to `false`.
+
+              - When `allow_conflicts=false`, new branches cannot be created in the revision tree. Any write operation that would create a branch in the revision tree will be rejected with a `409 Conflict` error.
+              - Existing branched documents (existing conflicts) do not get automatically resolved up when `allow_conflicts=false` is set - `allow_conflicts` only applies to new writes. Existing conflicts will need to be resolved in the usual way.
+              - For existing conflicts, only tombstone revisions can be added to non-winning, non-tombstoned branches. Any other attempted updates to non-winning branches will be rejected as a conflict
+              - When `allow_conflicts=false`, the restrictions on the `revs_limit` property are removed. The `revs_limit` property can be set as low as 1 when `allow_conflicts` is set to false.
             default: 'true'
           allow_empty_password:
             type: boolean
