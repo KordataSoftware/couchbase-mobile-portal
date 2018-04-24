@@ -30,7 +30,8 @@ Later, to bring the database online, you can use the `POST /{db}/_online` Admin 
 
 ### Offline state triggers
 
-Sync Gateway will take a database offline automatically if specific conditions occur. Specifically, if Sync Gateway detects that the DCP feed or TAP feed for a database has been lost, then Sync Gateway takes the database offline automatically, so that the problem can be investigated. When the cause is known and has been corrected, you can use an Admin REST API request to bring the database back onine.
+Sync Gateway will take a database offline automatically if specific conditions occur. Specifically, if Sync Gateway detects that the DCP feed or TAP feed for a database has been lost, then Sync Gateway takes the database offline automatically, so that the problem can be investigated. When the cause is known and has been corrected, you can use an Admin REST API request to bring the
+ database back online.
 
 {% if site.version == '1.4' %}
 
