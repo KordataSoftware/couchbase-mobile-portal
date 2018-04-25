@@ -29,8 +29,8 @@ You can run Sync Gateway behind a reverse proxy, such as NGINX, which supports H
 Alternatively, Sync Gateway can be [configured](../configuring-ssl/index.html) to only allow secure HTTPS connections, if you want to support both HTTP and HTTPS connections you will need to run two separate instances of Sync Gateway.
 
 **Database Encryption**
-		
-[Database encryption](../../couchbase-lite/native-api/database/index.html#database-encryption) is available on the local database. Couchbase Lite uses SQLCipher; an open source extension to SQLite that provides transparent encryption of database files. The encryption specification is 256-bit AES.
+
+Database Encryption is not currently supported in 2.0. This feature will be available in the next version of Couchbase Lite.
 
 ## Managing Tombstones
 
