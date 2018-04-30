@@ -19,9 +19,12 @@ other:
     links:
       - name: Learn more
         value: 'https://github.com/couchbaselabs/couchbase-lite-ios-api-playground'
-  - title: TODO
+  - title: Getting Started with Couchbase Lite 2.0 as a standalone data store in your iOS App 
     description: |
-      TODO
+      This tutorial will walk you through a very basic example of how you can use Couchbase Lite 2.0 as a standalone, embedded data store within your iOS App. 
+You will learn the fundamentals of
+       - Database Operations
+       - Document CRUD Operations
     links:
       - name: Learn more
         value: 'https://google.com'
