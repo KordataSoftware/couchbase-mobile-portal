@@ -91,6 +91,8 @@
                   path: guides/couchbase-lite/tech-notes/cbl-encryption/index.html
         - title: Sync Gateway
           items:
+            - title: Bucket Shadowing
+              path: guides/sync-gateway/bucket-shadowing/index.html
             - title: Accelerator
               path: guides/sync-gateway/accelerator.html
     - title: Authentication
@@ -256,8 +258,6 @@
           path: guides/sync-gateway/sgcollect-info/index.html
         - title: Configuring SSL
           path: guides/sync-gateway/configuring-ssl/index.html
-        - title: Bucket Shadowing
-          path: guides/sync-gateway/bucket-shadowing/index.html
     - title: API References
       items:
         - title: Public REST API
