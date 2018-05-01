@@ -54,7 +54,7 @@ layout: docs
     {% endfor %}
   </div>
   {% if page.other %}
-    <h2>Example & Release Notes</h2>
+    <h2>Samples</h2>
   {% endif %}
   <div class="box-container">
     {% for feature in page.other %}
@@ -66,6 +66,7 @@ layout: docs
       {% endfor %}
     </div>
     {% endfor %}
+    {% if page.release_notes %}
     <div class="box">
       <h2>Release Notes</h2>
       <p>
@@ -106,5 +107,6 @@ layout: docs
         </li>
       </ul>
     </div>
+    {% endif %}
   </div>
 </section>

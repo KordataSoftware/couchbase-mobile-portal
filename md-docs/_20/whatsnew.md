@@ -68,4 +68,5 @@ other:
     links:
       - name: Start building
         value: 'http://docs.couchbase.com/tutorials/travel-sample/'
+release_notes: true
 ---
