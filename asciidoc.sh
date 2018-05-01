@@ -13,7 +13,20 @@ if [[ ! -z ${2} ]]; then
 		jekyll build --destination "../${TMP}" --config "_config.yml","_config.${1}.yml"
 fi
 cd ..
-java -jar site/gtor/saxon9.jar -xi -l:on -s:site/src/site-hippo.xml -xsl:site/gtor/hippo.xslt output-directory="${TMP}/"
+
+# Build with Antora
+cd ../docs-site
+bash commands.sh antora-dev
+
+# Copy output (and overwrite)
+cp build/site/couchbase-lite-ios/2.0/swift.html ../couchbase-mobile-portal/tmp/couchbase-lite/swift.html
+cp build/site/couchbase-lite-ios/2.0/objc.html ../couchbase-mobile-portal/tmp/couchbase-lite/objc.html
+cp build/site/couchbase-lite-net/2.0/csharp.html ../couchbase-mobile-portal/tmp/couchbase-lite/csharp.html
+cp build/site/couchbase-lite-android/2.0/java.html ../couchbase-mobile-portal/tmp/couchbase-lite/java.html
+cd ../couchbase-mobile-portal
+
+# Replace version number (for testing)
+# sed -i -e 's/2.0/1.4/g' tmp/index.html
 
 if [[ ! -z ${2} ]]; then
 	echo "Zipping..."
@@ -28,6 +41,7 @@ if [[ ! -z ${2} ]]; then
 
 	API_KEY="${HIPPO_API_KEY}"
 	SITE_URL="https://developer.couchbase.com/restservices/documentation/"
+	# SITE_URL="https://www.couchbaseinc.acct.us.onehippo.com/developers/restservices/documentation/"
 	allErrors=""
 
 	echo "Processing ingestion folder"
