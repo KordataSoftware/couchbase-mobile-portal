@@ -4,13 +4,9 @@ title: REST API Client
 permalink: guides/sync-gateway/rest-api-client/index.html
 ---
 
-Whether you're developing a web application getting data from the Sync Gateway API or a cross-platform application that uses the Couchbase Lite Listener you will almost certainly need an HTTP library to consume those REST APIs. The documentation for the Couchbase Lite and Sync Gateway REST API is using Swagger. In addition to being a great toolkit for writing REST API documentation, Swagger can also generate HTTP libraries. This guide will walk you through how to start using those libraries in the following scenarios:
+Whether you're developing a web application getting data from the Sync Gateway API or integrating it with another system you will almost certainly need an HTTP library to consume the Public and Admin Sync Gateway REST APIs. The documentation for the Sync Gateway REST APIs is using Swagger which is a great toolkit for writing REST API documentation, and also to generate HTTP libraries. This guide will walk you through how to start using those libraries to display documents stored in Sync Gateway on a web page
 
-- Web development: to display documents stored in Sync Gateway on a web page
-- Server-side development: to allow user sign up via an App Server
-- Hybrid development: to consume and persist data to Couchbase Lite using the Listener component
-
-The first and second sections will use the same Sync Gateway instance seeded with a few documents. Follow the steps below to get Sync Gateway up and running.
+Follow the steps below to get Sync Gateway up and running.
 
 1. [Download Sync Gateway](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile)
 2. In a new working directory, open a new file called `sync-gateway-config.json` with the following
@@ -43,11 +39,11 @@ The first and second sections will use the same Sync Gateway instance seeded wit
 
 4. Insert a few documents using the POST `/{db}/_bulk_docs` endpoint
 
-  ```bash
-  curl -X POST http://localhost:4985/todo/_bulk_docs \
-        -H "Content-Type: application/json" \
-        -d '{"docs": [{"task": "avocados", "type": "task"}, {"task": "oranges", "type": "task"}, {"task": "tomatoes", "type": "task"}]}'
-  ```
+	```bash
+	curl -X POST http://localhost:4985/todo/_bulk_docs \
+				-H "Content-Type: application/json" \
+				-d '{"docs": [{"task": "avocados", "type": "task"}, {"task": "oranges", "type": "task"}, {"task": "tomatoes", "type": "task"}]}'
+	```
 
 ## A Simple Web Application
 
