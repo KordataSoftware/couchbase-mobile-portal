@@ -39,6 +39,11 @@ defaults:
       type: '20'
     values:
       layout: docs
+  - scope:
+      path: ''
+      type: '21'
+    values:
+      layout: docs
 
 collections:
   'all':
