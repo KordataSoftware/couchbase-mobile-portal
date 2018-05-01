@@ -64,6 +64,11 @@ properties:
             type: string
             description: Bucket name on Couchbase Server or a Walrus bucket. The default is the database name.
             default: the database name
+          bucket_op_timeout_ms:
+            type: integer
+            description: |
+              Configures how long Sync Gateway should wait for a bucket operation to complete before timing out and trying again. The value can be increased in scenarios where there is a heavy load on Couchbase Server and operations are likely to take more than 2.5 seconds to complete. The default value is 2500 milliseconds.
+            default: 2500
           import_docs:
             type: boolean
             description: |
