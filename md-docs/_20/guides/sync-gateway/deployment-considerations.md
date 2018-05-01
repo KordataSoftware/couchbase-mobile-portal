@@ -16,11 +16,11 @@ To access the Admin REST API from an entirely different network or from a remote
 
 **Authorization**
 
-In addition to the Admin REST API, a user can be assigned to a role with additional privileges. The role and the user assigned to it can be created in the configuration file. Then, the Sync Function's [requireRole()](../sync-function-api-guide/index.html#requirerolerolename) method can be used to allow certain operations only if the user has that role. The [adding security](../../../training/develop/adding-security/index.html#write-permissions) tutorial shows an example of this pattern.
+In addition to the Admin REST API, a user can be assigned to a role with additional privileges. The role and the user assigned to it can be created in the configuration file. Then, the Sync Function's [requireRole()](../sync-function-api-guide/index.html#requirerolerolename) method can be used to allow certain operations only if the user has that role.
 
 **Data Model Validation**
 
-In a NoSQL database, it is the application's responsibility to ensure that the documents are created in accordance with the data model adopted throughout the system. As an additional check, the Sync Function's [throw()](../sync-function-api-guide/index.html#throw) method can be used to reject documents that do not follow the pre-defined data model. The [adding security](../../../training/develop/adding-security/index.html?language=ios#validation) tutorial shows an example of this pattern.
+In a NoSQL database, it is the application's responsibility to ensure that the documents are created in accordance with the data model adopted throughout the system. As an additional check, the Sync Function's [throw()](../sync-function-api-guide/index.html#throw) method can be used to reject documents that do not follow the pre-defined data model.
 
 **HTTPS**
 
