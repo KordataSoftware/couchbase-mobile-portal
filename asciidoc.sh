@@ -23,6 +23,9 @@ cp build/site/couchbase-lite-ios/2.0/swift.html ../couchbase-mobile-portal/tmp/c
 cp build/site/couchbase-lite-ios/2.0/objc.html ../couchbase-mobile-portal/tmp/couchbase-lite/objc.html
 cp build/site/couchbase-lite-net/2.0/csharp.html ../couchbase-mobile-portal/tmp/couchbase-lite/csharp.html
 cp build/site/couchbase-lite-android/2.0/java.html ../couchbase-mobile-portal/tmp/couchbase-lite/java.html
+cp build/site/userprofile-couchbase-mobile/current/userprofile/userprofile_basic.html ../couchbase-mobile-portal/tmp/userprofile_basic.html
+mkdir ../couchbase-mobile-portal/tmp/_images/
+cp -R build/site/userprofile-couchbase-mobile/current/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
 cd ../couchbase-mobile-portal
 
 # Replace version number (for testing)
