@@ -200,6 +200,12 @@
                   path: references/couchbase-lite/release-notes/Java/index.html
                 - title: .NET
                   path: references/couchbase-lite/release-notes/Dot-Net/index.html
+    - title: Tutorials
+      open: true
+      items:
+        - title: User Profile
+          ishidden: true
+          path: userprofile_basic.html
 - title: Couchbase Lite
   path: couchbase-lite/index.html
   open: true
@@ -267,8 +273,4 @@
     - title: Release notes
       path: references/sync-gateway/release-notes/index.html
 - title: Samples
-  open: true
   path: samples.html
-  items:
-    - title: User Profile
-      path: userprofile_basic.html

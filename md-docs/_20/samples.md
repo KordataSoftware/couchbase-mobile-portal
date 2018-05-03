@@ -19,13 +19,10 @@ other:
     links:
       - name: Learn more
         value: 'https://github.com/couchbaselabs/couchbase-lite-ios-api-playground'
-  - title: Getting Started with Couchbase Lite 2.0 as a standalone data store in your iOS App 
+  - title: 'User Profile Sample: Fundamentals'
     description: |
-      This tutorial will walk you through a very basic example of how you can use Couchbase Lite 2.0 as a standalone, embedded data store within your iOS App. 
-You will learn the fundamentals of
-       - Database Operations
-       - Document CRUD Operations
+      This tutorial will walk you through a very basic example of how you can use Couchbase Lite 2.0 as a standalone, embedded data store within your iOS App.  You will learn the fundamentals of Database Operations and Document CRUD Operations.
     links:
       - name: Learn more
-        value: 'https://google.com'
+        value: './userprofile_basic.html'
 ---
