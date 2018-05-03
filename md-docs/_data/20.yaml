@@ -267,4 +267,8 @@
     - title: Release notes
       path: references/sync-gateway/release-notes/index.html
 - title: Samples
+  open: true
   path: samples.html
+  items:
+    - title: User Profile
+      path: userprofile_basic.html
