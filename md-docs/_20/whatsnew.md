@@ -1,5 +1,6 @@
 ---
 layout: whatsnew
+landing: true
 cbl_features:
   - title: N1QL for Couchbase Lite
     description: |
@@ -62,11 +63,11 @@ cbl_features:
       - name: objective-c
         value: couchbase-lite/objc.html#handling-conflicts
 other:
-  - title: Travel Sample
+  - title: Samples
     description: |
-      This application synchronizes documents with Sync Gateway 2.0 and Couchbase Server 5.0 (or above). Shared bucket access is enabled to allow mobile clients and Couchbase Server SDKs to perform operations on the bucket.
+      Study sample code to learn how to adopt and implement Couchbase Lite APIs in your application. Each sample code project is a buildable, executable source example of how to accomplish a task.
     links:
-      - name: Start building
-        value: 'http://docs.couchbase.com/tutorials/travel-sample/'
+      - name: Learn more
+        value: 'samples.html'
 release_notes: true
 ---

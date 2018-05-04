@@ -53,8 +53,8 @@ layout: docs
     </div>
     {% endfor %}
   </div>
-  {% if page.other %}
-    <h2>Samples</h2>
+  {% if page.landing %}
+    <h2>Other resources</h2>
   {% endif %}
   <div class="box-container">
     {% for feature in page.other %}
@@ -68,7 +68,7 @@ layout: docs
     {% endfor %}
     {% if page.release_notes %}
     <div class="box">
-      <h2>Release Notes</h2>
+      <h3>Release Notes</h3>
       <p>
         This release contains a number of bug fixes and enhancements for Sync Gateway and Couchbase Lite.
       </p>
@@ -100,7 +100,7 @@ layout: docs
         {% endif %}
 
       </ul>
-      <h4>Sync Gateway - {{site.sg_version }} Beta</h4>
+      <h4>Sync Gateway - {{site.sg_version }}</h4>
       <ul>
         <li>
           <a href="references/sync-gateway/release-notes/index.html">Sync Gateway</a>
