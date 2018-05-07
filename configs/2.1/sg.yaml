@@ -72,11 +72,11 @@ properties:
           import_docs:
             type: boolean
             description: |
-              If set to `true`, causes the Sync Gateway to scan the bucket on startup looking for documents that have no `_sync` metadata, and adding that metadata. You only want to have this on when you do the first import, because it will slow down the startup of the Sync Gateway. You also only want to run a single Sync Gateway while in this mode, otherwise they'll step on each other's toes trying to generate the `_sync` metadata at the same time.
-              
-              In Sync Gateway 1.5, the behaviour of this property has changed to work in tandem with the [enable_shared_bucket_access](#1.5/databases-foo_db-enable_shared_bucket_access) property. When **shared bucket access** is enabled, setting this property to continuous (`"import_docs": "continuous"`) indicates that this Sync Gateway node should perform import processing. If **shared bucket access** is not enabled, Sync Gateway continues to support the previously existing import functionality.
-              
-              In a deployment with **shared bucket access** enabled and [Sync Gateway Accelerator nodes](../accelerator.html), this property is not required because the import process is always shared across Sync Gateway Accelerator.
+              This property works in conjunction with the [enable_shared_bucket_access](#1.5/databases-foo_db-enable_shared_bucket_access) property. When **shared bucket access** is enabled, setting this property to true (`"import_docs": true`) indicates that this Sync Gateway node should perform import processing. 
+
+	      NOTE: in Sync Gateway version 2.0 and older, there was a "Legacy Import" mode that was not related to Shared Bucket Access.  The legacy import has been removed in as of 2.1.
+
+              In a deployment with **shared bucket access** enabled and [Sync Gateway Accelerator nodes](../accelerator.html), this property is not required because the import process is always shared across Sync Gateway Accelerator nodes.
             default: false
           channel_index:
             type: object
