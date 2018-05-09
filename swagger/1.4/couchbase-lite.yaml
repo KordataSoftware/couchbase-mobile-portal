@@ -1380,6 +1380,14 @@ definitions:
               reduce:
                 type: string
                 description: Inline JavaScript definition for the reduce function
+      filters:
+        type: object
+        description: Filter functions definition
+        properties:
+          my_filter_name:
+            type: string
+            description: |
+              Filters are special design document functions that allow the changes feed to emit only specific documents that pass filter rules. They can be used in replications to send only a subset of the source database's content to the target database. The following example filters out documents that are not of type `foo`: `"function(doc, req) { if (doc.type && doc.type == \"foo\") { return true; } else { return false; } }"`.
   QueryRow:
     type: object
     properties:
