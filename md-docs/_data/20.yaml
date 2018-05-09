@@ -206,6 +206,9 @@
         - title: User Profile
           ishidden: true
           path: userprofile_basic.html
+        - title: User Query
+          ishidden: true
+          path: userprofile_query.html
 - title: Couchbase Lite
   path: couchbase-lite/index.html
   open: true

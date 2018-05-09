@@ -25,4 +25,10 @@ other:
     links:
       - name: Learn more
         value: './userprofile_basic.html'
+  - title: 'User Profile Sample: Prebuilt Database & Query Introduction'
+    description: |
+      This tutorial will walk you through a simple app that will demonstrate how to use a pre-built Couchbase Lite database . In addition, we will look at a sample Query using the new Query API to retrieve records from the local database.
+    links:
+      - name: Learn more
+        value: './userprofile_query.html'
 ---
