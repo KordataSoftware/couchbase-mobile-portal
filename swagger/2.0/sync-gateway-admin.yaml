@@ -281,7 +281,8 @@ parameters:
             type: object
             $ref: '#/definitions/Document'
         new_edits:
-          description: Indicates whether to assign new revision identifiers to new edits.
+          description: |
+            Setting this to false indicates that the request body is an already-existing revision that should be directly inserted into the database, instead of a modification to apply to the current document. This mode is used by the Couchbase Lite replicator so it can create conflicting revisions if there is already another revision at that position in the revision tree. This option must be used in conjunction with the `_revisions` property in the request body.
           type: boolean
           default: true
   batch:
