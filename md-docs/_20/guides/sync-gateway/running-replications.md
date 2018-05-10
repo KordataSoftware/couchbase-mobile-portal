@@ -23,6 +23,7 @@ Limitations:
 
 - Can only replicates SG databases that are hosted on recent versions of Sync Gateway (after commit 50d30eb3d on March
  7, 2014)
+- In deployments with multiple Sync Gateway nodes, only *one* of the Sync Gateways should be configured for replications. If multiple Sync Gateways are configured for replications, it could substantially increase the amount of duplicate work, and therefore should be avoided. The limitation is that the system is not guaranteed to be Highly Available: if the Sync Gateway that is chosen to drive the replication goes down or is otherwise removed from the system, then the replications will stop.
 
 ## Running replications via the REST API
 
