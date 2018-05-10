@@ -2,66 +2,18 @@
 layout: whatsnew
 landing: true
 cbl_features:
-  - title: N1QL for Couchbase Lite
+  - title: Database Encryption
     description: |
-      Couchbase Lite 2.0 introduces a new Query API with semantics based on Couchbase's N1QL query language.
+      Couchbase Lite 2.1 introduces the ability to encrypt the database on the device. This is an Enterprise Edition functionality.
     links:
       - name: swift
-        value: couchbase-lite/swift.html#query
+        value: couchbase-lite/swift.html#database-encryption
       - name: android
-        value: couchbase-lite/java.html#query
+        value: couchbase-lite/java.html#database-encryption
       - name: c#
-        value: couchbase-lite/csharp.html#query
+        value: couchbase-lite/csharp.html#database-encryption
       - name: objective-c
-        value: couchbase-lite/objc.html#query
-  - title: WebSocket replication protocol
-    description: |
-      Couchbase Lite 2.0 uses a new replication protocol based on WebSockets. This protocol is designed to be faster and more efficient.
-    links:
-      - name: swift
-        value: couchbase-lite/swift.html#replication
-      - name: android
-        value: couchbase-lite/java.html#replication
-      - name: c#
-        value: couchbase-lite/csharp.html#replication
-      - name: objective-c
-        value: couchbase-lite/objc.html#replication
-  - title: Full-Text Search
-    description: |
-      This release includes the ability to run Full-Text Search queries on documents stored in the local database.
-    links:
-      - name: swift
-        value: couchbase-lite/swift.html#full-text-search
-      - name: android
-        value: couchbase-lite/java.html#full-text-search
-      - name: c#
-        value: couchbase-lite/csharp.html#full-text-search
-      - name: objective-c
-        value: couchbase-lite/objc.html#full-text-search
-  - title: Database Replicas
-    description: |
-      Replication between two local databases is now supported. This feature can be used for data recovery on device.
-    links:
-      - name: swift
-        value: couchbase-lite/swift.html#database-replicas
-      - name: android
-        value: couchbase-lite/java.html#database-replicas
-      - name: c#
-        value: couchbase-lite/csharp.html#database-replicas
-      - name: objective-c
-        value: couchbase-lite/objc.html#database-replicas
-  - title: Automatic Conflict Resolution
-    description: |
-      In Couchbase Lite 2.0, document conflicts are automatically resolved. This functionality simplifies conflict management.
-    links:
-      - name: swift
-        value: couchbase-lite/swift.html#handling-conflicts
-      - name: android
-        value: couchbase-lite/java.html#handling-conflicts
-      - name: c#
-        value: couchbase-lite/csharp.html#handling-conflicts
-      - name: objective-c
-        value: couchbase-lite/objc.html#handling-conflicts
+        value: couchbase-lite/objc.html#database-encryption
   - title: Release Notes
     description: |
       This release contains a number of bug fixes and enhancements for Couchbase Lite. Find out more in the release notes.
@@ -69,6 +21,18 @@ cbl_features:
       - name: Release notes >
         value: references/couchbase-lite/release-notes/index.html
 sg_features:
+  - title: Extensive Logging Configuration
+    description: |
+      The Sync Gateway logging configuration has been revamped to include 4 different logging levels and configurations for each one.
+    links:
+      - name: Learn more >
+        value: couchbase-lite/swift.html#database-encryption
+  - title: Migration from Views to GSI
+    description: |
+      Sync Gateway now relies on GSI and N1QL to perform internal tasks such as building indexes and running queries.
+    links:
+      - name: Learn more >
+        value: couchbase-lite/swift.html#database-encryption
   - title: Release Notes
     description: |
       This release contains a number of bug fixes and enhancements for Sync Gateway. Find out more in the release notes.
