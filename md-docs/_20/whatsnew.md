@@ -26,13 +26,13 @@ sg_features:
       The Sync Gateway logging configuration has been revamped to include 4 different logging levels and configurations for each one.
     links:
       - name: Learn more >
-        value: couchbase-lite/swift.html#database-encryption
+        value: references/sync-gateway/release-notes/index.html#continuous-logging
   - title: Migration from Views to GSI
     description: |
       Sync Gateway now relies on GSI and N1QL to perform internal tasks such as building indexes and running queries.
     links:
       - name: Learn more >
-        value: couchbase-lite/swift.html#database-encryption
+        value: references/sync-gateway/release-notes/index.html#views-to-gsi-n1ql
   - title: Release Notes
     description: |
       This release contains a number of bug fixes and enhancements for Sync Gateway. Find out more in the release notes.
