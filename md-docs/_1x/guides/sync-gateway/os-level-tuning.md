@@ -103,9 +103,15 @@ The following settings will reduce the amount of time that dead peer connections
 
 ```bash
 net.ipv4.tcp_keepalive_time = 600
-net.ipv4.tcp_keepalive_intvl = 10
-net.ipv4.tcp_keepalive_probes = 9
+net.ipv4.tcp_keepalive_intvl = 60
+net.ipv4.tcp_keepalive_probes = 20
 ```
+
+This translates to:
+
+1. The keepalive routines wait initially for 10 minutes (600 secs) before sending the first keepalive probe
+1. Resend the probe every minute (60 seconds).
+1. If no ACK response is received for 20 consecutive times, the connection is marked as broken. 
 
 To reduce the amount of time even further, you can reduce the `tcp_retries2` value. Add the following line to your `/etc/sysctl.conf` file:
 
@@ -118,6 +124,8 @@ To activate the changes and persist them across reboots, run:
 ```bash
 $ sysctl -p
 ```
+
+See [Using TCP keepalive under Linux](http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html) for more details on setting these parameters.
 
 ### References
 
