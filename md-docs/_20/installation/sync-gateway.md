@@ -175,7 +175,7 @@ administrator credentials.
 - Provide a bucket name, for example **staging**, and leave the other options to their defaults.
 - Next, we must create an RBAC user with specific privileges for Sync Gateway to connect to Couchbase Server. Open the **Security** tab and click the **Add User** button.
 		<img src="../img/create-user.png" class=center-image />
-- In the pop-up window, provide a **Username**, **Password** and enable the **Bucket Full Access** role for the bucket of your choice.
+- In the pop-up window, provide a **Username**, **Password** and enable the **Admin** role.
 		<img src="../img/user-settings.png" class=center-image />
 - If you're installing Couchbase Server on the cloud, make sure that network permissions (or firewall settings) allow incoming connections to Couchbase Server ports. In a typical mobile deployment on premise or in the cloud (AWS, RedHat etc), the following ports must be opened on the host for Couchbase Server to operate correctly: 8091, 8092, 8093, 8094, 11207, 11210, 11211, 18091, 18092, 18093. You must verify that any firewall configuration allows communication on the specified ports. If this is not done, the Couchbase Server node can experience difficulty joining a cluster. You can refer to the [Couchbase Server Network Configuration](/documentation/server/current/install/install-ports.html) guide to see the full list of available ports and their associated services.
 
@@ -195,7 +195,7 @@ The following steps explain how to connect Sync Gateway to the Couchbase Server 
 				"username": "sync_gateway",
 				"password": "secretpassword",
 				"enable_shared_bucket_access": true,
-				"import_docs": "continuous"
+				"import_docs": "continuous",
 				"users": { "GUEST": { "disabled": false, "admin_channels": ["*"] } },
 				"sync": `function (doc, oldDoc) {
 					if (doc.sdk) {
