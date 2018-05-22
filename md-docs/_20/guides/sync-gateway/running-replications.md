@@ -223,3 +223,5 @@ When an active task is cancelled, the response returns the stats of the replicat
 XDCR (cross data centre replication) is the Couchbase Server API to replicate between Couchbase Server clusters. Both XDCR and SG-Replicate can be used to keep clusters in different data centres in sync. However, SG-Replicate was designed specifically for a Couchbase Mobile deployment. The diagram below describes the notable differences between SG-Replicate and XDCR.
 
 ![](../img/xdcr-sg-replicate.png)
+
+> **Note:** Sync Gateway is not compatible with XDCR in Active - Active mode (also known as bi-direction XDCR). If you intend to use XDCR between clusters that use Sync Gateway, make sure that XDCR is configured to replicate documents one-way only (Active - Passive).
