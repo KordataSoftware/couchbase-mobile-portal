@@ -31,4 +31,10 @@ other:
     links:
       - name: Learn more
         value: './userprofile_query.html'
+  - title: 'User Profile Sample: Data Sync Fundamentals'
+    description: |
+      This tutorial will introduce you to data sync/replication across Couchbase Lite apps using the Sync Gateway. We will walk through Sync Gateway configuration and the core Sync Function API.
+    links:
+      - name: Learn more
+        value: './userprofile_sync.html'
 ---

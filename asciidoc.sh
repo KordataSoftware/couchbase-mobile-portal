@@ -25,9 +25,11 @@ cp build/site/couchbase-lite-net/2.0/csharp.html ../couchbase-mobile-portal/tmp/
 cp build/site/couchbase-lite-android/2.0/java.html ../couchbase-mobile-portal/tmp/couchbase-lite/java.html
 cp build/site/userprofile-couchbase-mobile/standalone/userprofile/userprofile_basic.html ../couchbase-mobile-portal/tmp/userprofile_basic.html
 cp build/site/userprofile-couchbase-mobile/query/userprofile/userprofile_query.html ../couchbase-mobile-portal/tmp/userprofile_query.html
+cp build/site/userprofile-couchbase-mobile/sync/userprofile/userprofile_sync.html ../couchbase-mobile-portal/tmp/userprofile_sync.html
 mkdir ../couchbase-mobile-portal/tmp/_images/
 cp -R build/site/userprofile-couchbase-mobile/standalone/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
 cp -R build/site/userprofile-couchbase-mobile/query/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
+cp -R build/site/userprofile-couchbase-mobile/sync/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
 cd ../couchbase-mobile-portal
 
 # Replace version number (for testing)
