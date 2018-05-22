@@ -78,6 +78,12 @@ properties:
       
               **Note:** Prior to Shared Bucket Access being introduced, `import_docs` could be used for one-time imports. This functionality is now superseded by the Shared Bucket Access functionality.
             default: false
+          cacertpath:
+            type: string
+            description: |
+              Relative or absolute path to the root CA certificate to verify the certificate chain and hostname of the Couchbase Server cluster.
+
+              This property is optional for X.509 authentication. If it isn't provided, Sync Gateway will accept any certificate provided by Couchbase Server.
           channel_index:
             type: object
             properties:
@@ -119,6 +125,10 @@ properties:
                 type: integer
                 description: Time (seconds) to keep entries in cache beyond the minimum retained.
                 default: 60
+          certpath:
+            type: string
+            description: |
+              Relative or absolute path to the client's certificate to authenticate against Couchbase Server 5.5 or higher. The private key must be specified with the `databases.$db.keypath` property.
           enable_shared_bucket_access:
             type: boolean
             description: |
@@ -237,6 +247,10 @@ properties:
               }
               ```
             default: function(doc) {return false;}
+          keypath:
+            type: string
+            description: |
+              Relative or absolute path to the client's private key to authenticate against Couchbase Server 5.5 or higher. The client certificate must be specified with the `databases.$db.certpath` property.
           local_doc_expiry_secs:
             type: integer
             description: |

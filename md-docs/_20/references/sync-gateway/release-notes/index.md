@@ -20,6 +20,16 @@ Up until now, Sync Gateway has been using views for a variety of functionality, 
 - [`databases.$db.use_views`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-use_views)
 - [`databases.$db.num_index_replicas`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-num_index_replicas)
 
+### X.509 Authentication against Couchbase Server
+
+Sync Gateway adds the ability to use x.509 certificates to authenticate against Couchbase Server 5.5 or higher. Certificate based authentication provides an additional layer of security; it relies on a certificate authority, CA, to validate identities and issue certificates. The Couchbase Server documentation provides [more detail](https://developer.couchbase.com/documentation/server/current/security/security-certs-auth.html) regarding this functionality. To enable certificate based authentication on Sync Gateway, paths to the client certificate, private key and root CA must be set in the configuration file:
+
+- [`databases.$db.certpath`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-certpath)
+- [`databases.$db.keypath`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-keypath)
+- [`databases.$db.cacertpath`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-cacertpath)
+
+x.509 certificates provide an alternative method of authentication to the existing password-based authentication method. If the **username**/**password** properties are also specified in the configuration file then Sync Gateway will use password-based authentication and also include the client certificate in the TLS handshake.
+
 ### Continuous Logging
 
 Continuous logging is a new feature in Sync Gateway 2.1 that allows the console log output to be separated from log files collected by Couchbase Support.
