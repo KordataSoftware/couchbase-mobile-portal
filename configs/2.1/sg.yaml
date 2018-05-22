@@ -242,6 +242,11 @@ properties:
             description: |
               Starting in Sync Gateway 2.0, it is possible to set an expiry value for local documents managed on Sync Gateway. This property default to 90 days if not specified. Local documents are used by the Couchbase Lite replicator to track up to which sequence number a given client has synchronized and where it should resume the next time it connects to Sync Gateway. Clients that don't replicate within the expiry window will be forced to restart their replication from the beginning (sequence zero). This property is being introduced to prevent the accumulation of obsolete replication checkpoint documents in the Couchbase Server bucket.
             default: 90
+          num_index_replicas:
+            type: integer
+            description: |
+              Determines the number of index replicas used when creating the core Sync Gateway indexes.
+            default: 1
           oidc:
             type: object
             description: OIDC providers.
@@ -449,6 +454,11 @@ properties:
                   disabled:
                     type: boolean
                     description: Whether this user account is disabled.
+          use_views:
+            type: string
+            description: |
+              Use views instead of N1QL for indexing and queries.
+            default: 'false'
   facebook:
     description: Configuration for Facebook Login authentication.
     type: object
@@ -489,62 +499,159 @@ properties:
     description: The logging object.
     type: object
     properties:
-      default:
+      log_file_path:
+        description: Absolute or relative path on the filesystem to the log file. A relative path is from the directory that contains the Sync Gateway executable file.
+        type: string
+      redaction_level:
+        description: |
+          Optionally, log files can be redacted. This means that user-data, considered to be private, is removed. Such data includes:
+            - Key/value pairs in JSON documents
+            - Usernames
+            - Query-fields that reference key/value pairs and/or usernames
+            - Names and email addresses retrieved during product registration
+            - Extended attributes
+          This redaction of user-data is referred to as partial redaction. To enable it, the value must be `"partial"` in the configuration file:
+          ```json
+          {
+            "logging": {
+              "redaction_level": "partial"
+            }
+          }
+          ```
+        type: string
+        default: 'none'
+      console:
+        description: Settings for the console output logging.
         type: object
         properties:
-          logFilePath:
-            description: Absolute or relative path on the filesystem to the log file. A relative path is from the directory that contains the Sync Gateway executable file.
+          log_level:
+            description: The level of logging. Log levels accumulate as you read down the table (i.e log entries at WARN will also be included in the INFO and DEBUG logs).
             type: string
-            default: 'stderr'
-          logKeys:
+            default: 'info'
+          log_keys:
             description: |
-              Comma-separated list of log keys to enable for diagnostic logging. Use ["*"] to enable logging for all log keys.
-              
+              List of log keys to enabwle for diagnostic logging. Use ["*"] to enable logging for all log keys.
+              - *: Wildcard log key. Enables all log keys if set.
               - Access: Anytime an access() call is made in the sync function.
               - Attach: Attachment processing.
               - Auth: Authentication.
               - Bucket: Sync Gateway interactions with the bucket (verbose logging).
               - Cache: Interactions with Sync Gateway's in-memory channel cache.
               - Changes: Processing of _changes requests.
+              - ChannelIndex
+              - ChannelStorage
               - CRUD: Updates made by Sync Gateway to documents.
               - DCP: DCP-feed processing (verbose logging).
+              - DIndex
               - Events: Event processing (webhooks).
               - Feed: Server-feed processing.
-              - HTTP: All requests made to the Sync Gateway REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner). HTTP+ provides more verbose HTTP logging.
+              - gocb
+              - Heartbeat
+              - HTTP: All requests made to the Sync Gateway REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner).
+              - HTTP+: More verbose HTTP information. Logs response status codes and response times.
+              - Import: This logging key was introduced in Sync Gateway 1.5 to help troubleshoot the import process of a document (this is the Sync Gateway process to make a document that was added through N1QL or the Server SDKs mobile-aware). This log key can be useful to troubleshoot why a given document was not successfully imported.
+              - Index
+              - Migrate
+              - OIDC
               - Replicate: Log messages related to replications between Sync Gateways (using sg-replicate). This tag cannot be used for replications initiated by Couchbase Lite.
-              - Import+: This logging key was introduced in Sync Gateway 1.5 to help troubleshoot the import process of a document (this is the Sync Gateway process to make a document that was added through N1QL or the Server SDKs mobile-aware). This log key can be useful to troubleshoot why a given document was not successfully imported.
-              - Sync: Activity which relates to synchronization between Couchbase Lite and Sync Gateway (`Sync+` and `Sync++` can be used for additional logging output).
-            type: string
-            default: '["HTTP"]'
-          logLevel:
-            description: |
-              The level of logging.
-              
-              - debug: 'Print all debug messages. With this level of logging, logs are usually voluminous. This log level is usually disabled in production.'
-              - info: 'Pint all information messages.'
-              - error: 'Print all errors. If an application is running smoothly it should not generate any error level logs.'
-              - panic: 'Logs a message, then panics.'
-              - fatal: 'Logs a message, then calls os.Exit(1).'
-            type: string
-            default: '["info"]'
+              - Sequences
+              - Shadow
+              - Sync: Activity which relates to synchronization between Couchbase Lite and Sync Gateway
+              - SyncMsg: Can be used for additional Sync logging output
+              - WS: Websocket replication log messages
+              - WSFrame: Can be used for additional WS logging output
+            type: array
+            items:
+              type: string
+          color_enabled:
+            description: Use ANSI color codes in the console output. Always disabled on Windows.
+            type: boolean
+            default: false
+      default:
+        type: string
+        description: |
+          Logging configuration. This property is being **deprecated** in Sync Gateway 2.1 and replaced with 4 different log levels.
+
+          See the [`logging.$level`](index.html#2.1/logging-$level) property for more detail.
+        default: ''
+        deprecated: true
+      $level:
+        description: |
+          The level of logging as a key. Log levels accumulate as you read down the table (i.e log entries at WARN will also be included in the INFO and DEBUG logs).
+
+          |Level|Description|Minimum max_age|Log File Name|
+          |:---|:---|:---|:---|
+          |ERROR|Critical error messages.|180 days|sg_error.log|
+          |WARN|Something is wrong but SG can still service requests|90 days|sg_warn.log|
+          |INFO|Important diagnostics for support and customers|3 days|sg_info.log|
+          |DEBUG|Lower level development analysis|1 day|sg_debug.log|
+
+          Each log level takes a dictionary as value and various properties can set for each log level. For example:
+
+          ```javascript
+          "logging": {
+              "log_file_path": "/home/sync_gateway/logs", // Where to put log files
+              "console": {
+                  "log_level": "info",  // What level to output to console - [error|warn|info|debug|none]
+                  "log_keys": ["HTTP"], // What log keys to output to console (comma separated)
+                  "color_enabled": true
+              },
+              "error": {
+                  "enabled": true,
+                  "rotation": {
+                      "max_size": 100,    // Threshold in megabytes to rotate logs
+                      "max_age": 360,     // Maximum days to retain log files (Min: 180)
+                      "localtime": false // Use local computer's time on backup timestamps (false=UTC)
+                  }
+              },
+              "warn": {
+                  "enabled": true,
+                  "rotation": {
+                      "max_size": 100,
+                      "max_age": 180,     // (Minimum: 90)
+                      "localtime": false
+                  }
+              },
+              "info": {
+                  "enabled": true,
+                  "rotation": {
+                      "max_size": 100,
+                      "max_age": 6,     // (Minimum: 3)
+                      "localtime": false
+                  }
+              },
+              "debug": {
+                  "enabled": false,
+                  "rotation": {
+                      "max_size": 100,
+                      "max_age": 2,     // (Minimum: 1)
+                      "localtime": false
+                  }
+              }
+          }
+
+          ```
+        type: object
+        properties:
+          enabled:
+            description: Whether to enable this log level. The debug level is *disabled* by default.
+            default: true
+            type: boolean
           rotation:
             description: The log file may be rotated by defining a "rotation" sub document. See details in the table below.
             type: object
             properties:
-              maxsize:
+              max_size:
                 type: integer
                 description: The maximum size in MB of the log file before it gets rotated.
                 default: 100
-              maxage:
+              max_age:
                 type: integer
-                description: The maximum number of days to retain old log files.
-              maxbackups:
-                type: integer
-                description: The maximum number of old log files to retain.
+                description: The maximum number of days to retain old log files. This can't be set below the minimum allowed value for the given level.
               localtime:
                 type: boolean
-                description: If true, it uses the computer's local time to format the backup timestamp.
-                default: 'UTC'
+                description: If true, it uses the computer's local time to format the backup timestamp. False uses UTC.
+                default: false
   maxCouchbaseConnections:
     description: Maximum number of sockets to open to a Couchbase Server node.
     type: integer

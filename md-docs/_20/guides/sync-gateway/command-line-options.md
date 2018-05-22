@@ -27,6 +27,7 @@ Following are the command-line options that you can specify when starting Sync G
 |`‑adminInterface`|`127.0.0.1:4985`|Port or TCP network address (IP address and the port) that the Admin REST API listens on.|
 |`-bucket`|`sync_gateway`|Name of the Couchbase Server bucket.|
 |`-dbname`|`sync_gateway`|Name of the Couchbase Server database to serve through the Public REST API.|
+|`-defaultLogFilePath`|none|Path to log files, as a fallback default value when `logFilePath` is not specified. This option is generally used in service scripts.|
 |`-help`|none|Lists the available options and exits.|
 |`-interface`|`:4984`|Port or TCP network address (IP address and the port) that the Public REST API listens on.|
 |`-log`|`HTTP`|Comma-separated list of log keywords to enable. The log keyword `HTTP` is enabled by default, which means that HTTP requests and error responses are always logged. Omitting `HTTP` from your list does not disable HTTP logging. HTTP logging can be disabled through the Admin API.|

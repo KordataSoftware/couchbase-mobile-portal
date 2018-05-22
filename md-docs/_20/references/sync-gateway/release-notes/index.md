@@ -13,6 +13,41 @@ The following features are being deprecated and will be unsupported in an upcomi
 
 ## New Features
 
+### Views to GSI (N1QL)
+
+Up until now, Sync Gateway has been using views for a variety of functionality, including authentication and replication. Starting in 2.1, Sync Gateway now relies on GSI and N1QL to perform those tasks. This change is enabled by default and there are 2 properties in the configuration file which can be adjusted:
+
+- [`databases.$db.use_views`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-use_views)
+- [`databases.$db.num_index_replicas`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-num_index_replicas)
+
+### Continuous logging
+
+The logging configuration has changed to allow for 4 log levels to be configured. Each log level and its parameters are described in the [`logging.$level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-$level) property reference.
+
+The previous logging configuration (`logging.default`) is being deprecated.
+
+### Log redaction
+
+Log files can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
+
 ### Bucket operation timeout
 
 The [`databases.$db.bucket_op_timeout_ms`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-bucket_op_timeout_ms) property to override the default timeout used by Sync Gateway to query Couchbase Server. It's generally not necessary to change this property unless there is a particularly heavy load on Couchbase Server which would increase the response time.
+
+### Support for IPv6
+
+Sync Gateway now officially supports IPv6.
+
+## Upgrading
+
+The upgrade from views to GSI (N1QL) happens automatically when starting a Sync Gateway 2.1 node in a cluster that was previously using views.
+
+Installation will follow the same approach implemented in 2.0 for view changes. On startup, Sync Gateway will check for the existence of the GSI indexes, and only attempt to create them if they do not already exist. As part of the existence check, Sync Gateway will also check if [`databases.$db.num_index_replicas`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-num_index_replicas) for the existing indexes matches the value specified in the configuration file. If not, Sync Gateway will drop and recreate the index. Then, Sync Gateway will wait until indexes are available before starting to serve requests.
+
+Sync Gateway 2.1 will **not** automatically remove the previously used design documents. Removal of the obsolete design documents is done via a call to the new  [`/{db}/_post_upgrade`](../admin-rest-api/index.html#/server/post__post_upgrade) endpoint in Sync Gateway’s Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed. To summarize, the steps to perform an upgrade to Sync Gateway 2.1 are:
+
+1. Upgrade one node in the cluster to 2.1, and wait for it to be reachable via the REST API (for example at [http://localhost:4985/](http://localhost:4985/)).
+2. Upgrade the rest of the nodes in the cluster.
+3. Clean up obsolete views:
+	- **Optional** Issue a call to `/_post_upgrade?preview=true` on any node to preview which design documents will be removed. To upgrade to 2.1, expect to see "sync_gateway" and "sync_housekeeping" listed.
+	- Issue a call to `/post_upgrade` to remove the obsolete design documents. The response should indicate that "sync_gateway" and "sync_housekeeping" were removed.
