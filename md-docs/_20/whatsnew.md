@@ -21,9 +21,9 @@ cbl_features:
       - name: Release notes >
         value: references/couchbase-lite/release-notes/index.html
 sg_features:
-  - title: Extensive Logging Configuration
+  - title: Continuous Logging
     description: |
-      The Sync Gateway logging configuration has been revamped to include 4 different logging levels and configurations for each one.
+      The Sync Gateway logging configuration has been revamped to add 4 new log outputs, each one independently configurable.
     links:
       - name: Learn more >
         value: references/sync-gateway/release-notes/index.html#continuous-logging
