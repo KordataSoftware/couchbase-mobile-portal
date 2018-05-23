@@ -393,6 +393,41 @@ parameters:
       Verbosity of the logging. The default value is 1 which is regular logging. level=2 enables warnings and 
       panics logging and level=3 will log panics only.
     type: integer
+  sgcollect_info:
+    in: body
+    name: sgcollect_info
+    description: Options that can be specified to use in an sgcollect_info run
+    schema:
+      type: object
+      properties:
+        redact_level:
+          type: string
+          description: Can be set to `none` or `partial` for redaction of collected logs.
+          default: none
+        redact_salt:
+          type: string
+          description: If set, use this salt when redacting logs.
+          required: false
+        output_dir:
+          type: string
+          description: Where to store the collected zip.
+          default: sgcollect_info location (e.g. `/opt/couchbase-sync-gateway/tools`)
+        upload:
+          type: boolean
+          description: Whether to upload the collected logs.
+          default: false
+        upload_host:
+          type: string
+          description: s3 URL for upload.
+          default: https://s3.amazonaws.com/cb-customers
+        customer:
+          type: string
+          description: Customer name to use when uploading logs.
+          required: true if upload is set
+        ticket:
+          type: string
+          description: Zendesk ticket number to use when uploading logs.
+          required: false
   name:
     in: path
     name: name
@@ -1149,6 +1184,39 @@ paths:
       responses:
         201:
           description: The operation was successful
+  /_sgcollect_info:
+    get:
+      tags:
+        - server
+      summary: Gets the status of sgcollect_info
+      description: |
+        Will return information about whether sgcollect_info is currently running or not.
+      responses:
+        200:
+          schema:
+            $ref: '#/definitions/SGCollectInfoStats'
+    post:
+      tags:
+        - server
+      summary: Trigger sgcollect_info
+      description: |
+        Starting in Sync Gateway 2.1, sgcollect_info can be triggered using ths endpoint.
+      parameters:
+        - $ref: '#/parameters/sgcollect_info'
+      responses:
+        200:
+          description: The request was successful.
+    delete:
+      tags:
+        - server
+      summary: Stops any currently running sgcollect_info
+      description: |
+        sgcollect_info can be cancelled using ths endpoint.
+      parameters:
+        - $ref: '#/parameters/sgcollect_info'
+      responses:
+        200:
+          description: The request was successful.
   /_post_upgrade:
     post:
       tags:
@@ -1832,6 +1900,12 @@ definitions:
         type: string
       fields:
         type: string
+  SGCollectInfoStats:
+    type: objects
+    properties:
+      status:
+        type: string
+        description: The current status of sgcollect_info
   ExpVars:
    type: object
    properties:

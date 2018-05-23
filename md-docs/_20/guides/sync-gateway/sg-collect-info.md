@@ -91,3 +91,7 @@ Collect Sync Gateway diagnostics and upload them to the Couchbase Support AWS S3
   --ticket=123
   /tmp/sgcollect_info.zip
 ```
+
+## REST Endpoint
+
+`sgcollect_info` can now be run from the Admin REST API as of Sync Gateway 2.1 using the [`/_sgcollect_info`](../admin-rest-api/index.html?v=2.1#/server/post__sgcollect_info) endpoint.
