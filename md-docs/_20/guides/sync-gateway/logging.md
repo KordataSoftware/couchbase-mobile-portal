@@ -8,12 +8,12 @@ Continuous logging is a new feature in Sync Gateway 2.1 that allows the console 
 
 This allows system administrators running Sync Gateway to tweak log level, and log keys for the console output to suit their needs, whilst maintaining the level of logging required by Couchbase Support for investigation of issues.
 
-# Console Log output
+## Console Log output
 
 The console output of Sync Gateway can be filtered down via log level and log keys, and you can tweak this as much as you like without impacting Support's ability to analyze the log files described in [Log File Outputs](#log-file-outputs).
 There is an additional option to color log output based on log level if `logging.console.color_enabled` is set to `true` (Linux/MacOS only).
 
-## Log Levels
+### Log Levels
 
 The console log output can be configured with the following log levels, ordered from least verbose, to most:
 
@@ -28,7 +28,7 @@ Also note that log levels are additive, so if you enable `info` level, `warn` an
 |   `debug` | `[DBG]`     | Displays verbose output that might be useful when debugging            |
 |   `trace` | `[TRC]`     | Displays extremely verbose output that might be useful when debugging  |
 
-## Log Keys
+### Log Keys
 
 Log keys are used to provide finer-grained control over what is logged. By default, only `HTTP` is enabled.
 
@@ -58,7 +58,7 @@ Log keys are used to provide finer-grained control over what is logged. By defau
 | `WS`        |                                                                                                                                                                                                                                                                                                        |
 | `WSFrame`   |                                                                                                                                                                                                                                                                                                        |
 
-## Console Output redirection
+### Console Output redirection
 
 The log files described below are intended for Couchbase Support, and users are urged not to rely on these.
 
@@ -72,7 +72,7 @@ For example:
     logcollector my_sg_logs.txt
 
 
-# Log File Outputs
+## Log File Outputs
 
 These are 4 log files split by log level, with a guaranteed retention period for each.
 The log files can be collected with [SGCollect Info](../../../guides/sync-gateway/sgcollect-info/index.html), and can be analyzed by Couchbase Support for diagnosing issues in Sync Gateway.
@@ -88,12 +88,12 @@ As described above, it is recommended to use [Console Output redirection](#conso
  
 Each log level and its parameters are described in the [`logging.$level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-$level) property reference.
 
-## Log File Rotation
+### Log File Rotation
 
 These four log files will be rotated once each exceeds a threshold size, defined by `max_size` in megabytes.
 Once rotated, the log files will be compressed with gzip, to reduce the disk space taken up by older logs.
 These old logs will then be cleaned up once the age exceeds `max_age` in days.
 
-# Log Redaction
+## Log Redaction
 
 All log outputs can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
