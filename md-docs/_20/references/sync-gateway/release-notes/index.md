@@ -45,13 +45,13 @@ If the view request exceeds the default timeout of 75s (which would be expected 
 14:26:44.072-08:00 Views ready for bucket default.
 ```
 
-Sync Gateway 2.0 will **not** automatically remove the previous design documents. Removal of the obsolete design documents is done via a call to the new  [`/{db}/_post_upgrade`](../admin-rest-api/index.html#/server/post__post_upgrade) endpoint in Sync Gateway’s Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed. To summarize, the steps to perform an upgrade to Sync Gateway 2.0 are:
+Sync Gateway 2.0 will **not** automatically remove the previous design documents. Removal of the obsolete design documents is done via a call to the new  [`/_post_upgrade`](../admin-rest-api/index.html#/server/post__post_upgrade) endpoint in Sync Gateway’s Admin REST API. This endpoint can be run in preview mode (`?preview=true`) to see which design documents would be removed. To summarize, the steps to perform an upgrade to Sync Gateway 2.0 are:
 
 1. Upgrade one node in the cluster to 2.0, and wait for it to be reachable via the REST API (for example at [http://localhost:4985/](http://localhost:4985/)).
 2. Upgrade the rest of the nodes in the cluster.
 3. Clean up obsolete views:
 	- **Optional** Issue a call to `/_post_upgrade?preview=true` on any node to preview which design documents will be removed. To upgrade to 2.0, expect to see "sync_gateway" and "sync_housekeeping" listed.
-	- Issue a call to `/post_upgrade` to remove the obsolete design documents. The response should indicate that "sync_gateway" and "sync_housekeeping" were removed.
+	- Issue a call to `/_post_upgrade` to remove the obsolete design documents. The response should indicate that "sync\_gateway" and "sync\_housekeeping" were removed.
 
 ## GitHub issues
 
