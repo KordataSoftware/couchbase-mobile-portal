@@ -22,13 +22,16 @@ Up until now, Sync Gateway has been using views for a variety of functionality, 
 
 ### Continuous logging
 
-The logging configuration has changed to allow for 4 log levels to be configured. Each log level and its parameters are described in the [`logging.$level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-$level) property reference.
+Continuous logging is a new feature in Sync Gateway 2.1 that allows the console log output to be separated from log files collected by Couchbase Support.
 
-The previous logging configuration (`logging.default`) is being deprecated.
+This allows system administrators running Sync Gateway to tweak log level, and log keys for the console output to suit their needs, whilst maintaining the level of logging required by Couchbase Support for investigation of issues.
+
+The previous logging configuration (`logging.default`) is being deprecated, and Sync Gateway 2.1 will display warnings on startup of what is required to update your configuration.
+Detailed information about continuous logging can be found in the [Logging guide](../../../guides/sync-gateway/logging/index.html).
 
 ### Log redaction
 
-Log files can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
+All log outputs can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
 
 ### Bucket operation timeout
 
