@@ -14,7 +14,9 @@ The console output of Sync Gateway can be filtered down via log levels and log k
 
 ### Log Levels
 
-The console log output can be configured with the following log levels, ordered from least verbose, to most. Note that log levels are additive, so if you enable `info` level, `warn` and `error` logs are also enabled.
+The console log output can be configured with the following log levels, ordered from least verbose, to most.
+Note that log levels are additive, so if you enable `info` level, `warn` and `error` logs are also enabled.
+By default, the log level is set to `info`.
 
 | Log Level | Appearance  | Description                                                            |
 | ---------:|:----------- | ---------------------------------------------------------------------- |
@@ -29,13 +31,15 @@ Log levels can be set in the configuration file (see the [`logging.$level`](../.
 
 ### Log Keys
 
-Log keys are used to provide finer-grained control over what is logged. By default, only `HTTP` is enabled.
+Log keys are used to provide finer-grained control over what is logged.
+By default, only `HTTP` is enabled.
 
 All log keys and descriptions are described in the [`logging.console.log_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-console-log_keys) property reference.
 
 ### Console Output Color
 
 There is an option to color log output based on log level if [`logging.console.color_enabled`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-console-color_enabled) is set to `true`.
+Note: this setting is always disabled on Windows for compatibility reasons.
 
 ### Console Output Redirection
 
@@ -75,4 +79,5 @@ These old logs will then be cleaned up once the age exceeds `max_age` in days.
 
 ## Log Redaction
 
-All log outputs can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
+All log outputs can be redacted, this means that user-data, considered to be private, is removed.
+This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
