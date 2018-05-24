@@ -212,6 +212,9 @@
         - title: User Sync
           ishidden: true
           path: userprofile_sync.html
+        - title: RecyclerView Live Query
+          ishidden: true
+          path: livequery_recyclerview.html
 - title: Couchbase Lite
   path: couchbase-lite/index.html
   open: true

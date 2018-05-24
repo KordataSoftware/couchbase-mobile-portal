@@ -26,10 +26,12 @@ cp build/site/couchbase-lite-android/${3}/java.html ../couchbase-mobile-portal/t
 cp build/site/userprofile-couchbase-mobile/standalone/userprofile/userprofile_basic.html ../couchbase-mobile-portal/tmp/userprofile_basic.html
 cp build/site/userprofile-couchbase-mobile/query/userprofile/userprofile_query.html ../couchbase-mobile-portal/tmp/userprofile_query.html
 cp build/site/userprofile-couchbase-mobile/sync/userprofile/userprofile_sync.html ../couchbase-mobile-portal/tmp/userprofile_sync.html
+cp build/site/universitylister-android/current/livequery_recyclerview.html ../couchbase-mobile-portal/tmp/livequery_recyclerview.html
 mkdir ../couchbase-mobile-portal/tmp/_images/
 cp -R build/site/userprofile-couchbase-mobile/standalone/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
 cp -R build/site/userprofile-couchbase-mobile/query/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
 cp -R build/site/userprofile-couchbase-mobile/sync/userprofile/_images/ ../couchbase-mobile-portal/tmp/_images/
+cp -R build/site/universitylister-android/current/_images/ ../couchbase-mobile-portal/tmp/_images/
 cd ../couchbase-mobile-portal
 
 # Replace version number (for testing)

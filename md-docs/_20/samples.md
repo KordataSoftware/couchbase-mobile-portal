@@ -37,4 +37,10 @@ other:
     links:
       - name: Learn more
         value: './userprofile_sync.html'
+  - title: University Lister – Using Couchbase Lite with RecyclerViews
+    description: |
+      This tutorial will walk you through a simple example of how you can use Couchbase Lite 2.0 as a standalone, embedded data store within your Android App. Specifically, you will learn the basics of Database CRUD and Query API and specifically how to use Couchbase Lite as a data source for your RecyclerViews.
+    links:
+      - name: Learn more
+        value: livequery_recyclerview.html
 ---
