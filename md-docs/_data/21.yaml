@@ -234,6 +234,8 @@
           path: guides/sync-gateway/sync-function-api-guide/index.html
         - title: Shared Bucket Access
           path: guides/sync-gateway/shared-bucket-access.html
+        - title: Logging
+          path: guides/sync-gateway/logging/index.html
         - title: Webhooks and changes feed
           path: guides/sync-gateway/server-integration/index.html
         - title: Deployment considerations
