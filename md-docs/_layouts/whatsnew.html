@@ -66,47 +66,5 @@ layout: docs
       {% endfor %}
     </div>
     {% endfor %}
-    {% if page.release_notes %}
-    <div class="box">
-      <h3>Release Notes</h3>
-      <p>
-        This release contains a number of bug fixes and enhancements for Sync Gateway and Couchbase Lite.
-      </p>
-      <h4>Couchbase Lite</h4>
-      <ul>
-        {% if site.version == '2.0' or site.version == '2.1' %}
-        <li>
-          <a href="references/couchbase-lite/release-notes/index.html?language=swift">Swift</a>
-        </li>
-        <li>
-          <a href="references/couchbase-lite/release-notes/index.html?language=objc">Objective-C</a>
-        </li>
-        <li>
-          <a href="references/couchbase-lite/release-notes/index.html?language=java">Android</a>
-        </li>
-        <li>
-          <a href="references/couchbase-lite/release-notes/index.html?language=csharp">.NET</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
-        </li>
-        <li>
-          <a href="references/couchbase-lite/release-notes/Java/index.html">Android</a>
-        </li>
-        <li>
-          <a href="references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
-        </li>
-        {% endif %}
-
-      </ul>
-      <h4>Sync Gateway</h4>
-      <ul>
-        <li>
-          <a href="references/sync-gateway/release-notes/index.html">Sync Gateway</a>
-        </li>
-      </ul>
-    </div>
-    {% endif %}
   </div>
 </section>

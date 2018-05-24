@@ -62,6 +62,19 @@ cbl_features:
         value: couchbase-lite/csharp.html#handling-conflicts
       - name: objective-c
         value: couchbase-lite/objc.html#handling-conflicts
+  - title: Release Notes
+    description: |
+      This release contains a number of bug fixes and enhancements for Couchbase Lite. Find out more in the release notes.
+    links:
+      - name: Release notes >
+        value: references/couchbase-lite/release-notes/index.html
+sg_features:
+  - title: Release Notes
+    description: |
+      This release contains a number of bug fixes and enhancements for Sync Gateway. Find out more in the release notes.
+    links:
+      - name: Release Notes >
+        value: references/sync-gateway/release-notes/index.html
 other:
   - title: Samples
     description: |
@@ -69,5 +82,4 @@ other:
     links:
       - name: Learn more
         value: 'samples.html'
-release_notes: true
 ---
