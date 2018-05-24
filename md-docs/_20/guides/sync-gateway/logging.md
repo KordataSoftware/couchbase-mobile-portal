@@ -6,18 +6,15 @@ permalink: guides/sync-gateway/logging/index.html
 
 Continuous logging is a new feature in Sync Gateway 2.1 that allows the console log output to be separated from log files collected by Couchbase Support.
 
-This allows system administrators running Sync Gateway to tweak log level, and log keys for the console output to suit their needs, whilst maintaining the level of logging required by Couchbase Support for investigation of issues.
+This allows system administrators running Sync Gateway to tweak the log level, and log keys for the console output to suit their needs, whilst maintaining the level of logging required by Couchbase Support for investigation of issues.
 
-## Console Log output
+## Console Log Output
 
-The console output of Sync Gateway can be filtered down via log level and log keys, and you can tweak this as much as you like without impacting Support's ability to analyze the log files described in [Log File Outputs](#log-file-outputs).
-There is an additional option to color log output based on log level if `logging.console.color_enabled` is set to `true` (Linux/MacOS only).
+The console output of Sync Gateway can be filtered down via log levels and log keys, and you can tweak this as much as you like without impacting Support's ability to analyze the log files described in [Log File Outputs](index.html#log-file-outputs).
 
 ### Log Levels
 
-The console log output can be configured with the following log levels, ordered from least verbose, to most:
-
-Also note that log levels are additive, so if you enable `info` level, `warn` and `error` logs are also enabled.
+The console log output can be configured with the following log levels, ordered from least verbose, to most. Note that log levels are additive, so if you enable `info` level, `warn` and `error` logs are also enabled.
 
 | Log Level | Appearance  | Description                                                            |
 | ---------:|:----------- | ---------------------------------------------------------------------- |
@@ -28,37 +25,19 @@ Also note that log levels are additive, so if you enable `info` level, `warn` an
 |   `debug` | `[DBG]`     | Displays verbose output that might be useful when debugging            |
 |   `trace` | `[TRC]`     | Displays extremely verbose output that might be useful when debugging  |
 
+Log levels can be set in the configuration file (see the [`logging.$level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-$level) reference).
+
 ### Log Keys
 
 Log keys are used to provide finer-grained control over what is logged. By default, only `HTTP` is enabled.
 
-| Log Key     | Description                                                                                                                                                                                                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `*`         | Enables all log keys                                                                                                                                                                                                                                                                                   |
-| `Admin`     | Admin processes in Sync Gateway                                                                                                                                                                                                                                                                        |
-| `Accel`     | Sync Gateway Accelerator                                                                                                                                                                                                                                                                               |
-| `Access`    | Anytime an `access()` call is made in the sync function                                                                                                                                                                                                                                                |
-| `Auth`      | Authentication                                                                                                                                                                                                                                                                                         |
-| `Bucket`    | Sync Gateway interactions with the bucket (`trace` level only)                                                                                                                                                                                                                                         |
-| `Cache`     | Interactions with Sync Gateway's in-memory channel cache                                                                                                                                                                                                                                               |
-| `Changes`   | Processing of _changes requests                                                                                                                                                                                                                                                                        |
-| `CRUD`      | Updates made by Sync Gateway to documents                                                                                                                                                                                                                                                              |
-| `DCP`       | DCP-feed processing                                                                                                                                                                                                                                                                                    |
-| `Events`    | Event processing (webhooks)                                                                                                                                                                                                                                                                            |
-| `gocb`      |                                                                                                                                                                                                                                                                                                        |
-| `HTTP`      | All requests made to the Sync Gateway REST APIs                                                                                                                                                                                                                                                        |
-| `HTTP+`     | Additional information about HTTP requests (response times, status codes)                                                                                                                                                                                                                              |
-| `Import`    | Introduced in Sync Gateway 1.5 to help troubleshoot the import process of a document (this is the Sync Gateway process to make a document that was added through N1QL or the Server SDKs mobile-aware). This log key can be useful to troubleshoot why a given document was not successfully imported. |
-| `Migrate`   |                                                                                                                                                                                                                                                                                                        |
-| `Query`     |                                                                                                                                                                                                                                                                                                        |
-| `Replicate` | Log messages related to replications between Sync Gateways (using sg-replicate). This tag cannot be used for replications initiated by Couchbase Lite                                                                                                                                                  |
-| `Shadow`    |                                                                                                                                                                                                                                                                                                        |
-| `Sync`      | Activity which relates to synchronization between Couchbase Lite and Sync Gateway                                                                                                                                                                                                                      |
-| `SyncMsg`   | Additional information about Sync                                                                                                                                                                                                                                                                      |
-| `WS`        |                                                                                                                                                                                                                                                                                                        |
-| `WSFrame`   |                                                                                                                                                                                                                                                                                                        |
+All log keys and descriptions are described in the [`logging.console.log_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-console-log_keys) property reference.
 
-### Console Output redirection
+### Console Output Color
+
+There is an option to color log output based on log level if [`logging.console.color_enabled`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-console-color_enabled) is set to `true`.
+
+### Console Output Redirection
 
 The log files described below are intended for Couchbase Support, and users are urged not to rely on these.
 
@@ -76,7 +55,7 @@ For example:
 
 These are 4 log files split by log level, with a guaranteed retention period for each.
 The log files can be collected with [SGCollect Info](../../../guides/sync-gateway/sgcollect-info/index.html), and can be analyzed by Couchbase Support for diagnosing issues in Sync Gateway.
-As described above, it is recommended to use [Console Output redirection](#console-output-redirection) if you require special handling of log files from Sync Gateway, as these files are intended for Couchbase Support.
+As described above, it is recommended to use [Console Output redirection](index.html#console-output-redirection) if you require special handling of log files from Sync Gateway, as these files are intended for Couchbase Support.
 
 | Log File       | Default `enabled` | Default `max_age` | Minimum `max_age` |
 | --------------:| ----------------- | -----------------:| -----------------:|
