@@ -530,43 +530,53 @@ properties:
             default: 'info'
           log_keys:
             description: |
-              List of log keys to enabwle for diagnostic logging. Use ["*"] to enable logging for all log keys.
+              List of log keys to enable for diagnostic logging. Example:
+
+              ```json
+              {
+                "logging": {
+                  "console": {
+                    "log_keys": ["HTTP", "CRUD", "Import"]
+                  }
+                }
+              }
+              ```
+
+              Available log key values include:
+
+              - `Admin`: Admin processes in Sync Gateway.
+              - `Accel`: Sync Gateway Accelerator.
+              - `Access`: Anytime an `access()` call is made in the sync function.
+              - `Attach`: Attachment processing.
+              - `Auth`: Authentication.
+              - `Bucket`: Sync Gateway interactions with the bucket (`trace` level only).
+              - `Cache`: Interactions with Sync Gateway's in-memory channel cache.
+              - `Changes`: Processing of `/{db}/_changes` requests.
+              - `CRUD`: Updates made by Sync Gateway to documents.
+              - `DCP`: DCP-feed processing.
+              - `Events`: Event processing (webhooks).
+              - `gocb`
+              - `HTTP`: All requests made to the Sync Gateway REST APIs.
+              - `HTTP+`: Additional information about HTTP requests (response times, status codes).
+              - `Import`: Introduced in Sync Gateway 1.5 to help troubleshoot the import process of a document (this is the Sync Gateway process to make a document that was added through N1QL or the Server SDKs mobile-aware). This log key can be useful to troubleshoot why a given document was not successfully imported.
+              - `Migrate`
+              - `Query`
+              - `Replicate`: Log messages related to replications between Sync Gateways (using sg-replicate). This tag cannot be used for replications initiated by Couchbase Lite.
+              - `Shadow`
+              - `Sync`: Activity which relates to synchronization between Couchbase Lite and Sync Gateway
+              - `SyncMsg`: Can be used for additional Sync logging output
+              - `WS`: Websocket replication log messages
+              - `WSFrame`: Can be used for additional WS logging output
               - *: Wildcard log key. Enables all log keys if set.
-              - Access: Anytime an access() call is made in the sync function.
-              - Attach: Attachment processing.
-              - Auth: Authentication.
-              - Bucket: Sync Gateway interactions with the bucket (verbose logging).
-              - Cache: Interactions with Sync Gateway's in-memory channel cache.
-              - Changes: Processing of _changes requests.
-              - ChannelIndex
-              - ChannelStorage
-              - CRUD: Updates made by Sync Gateway to documents.
-              - DCP: DCP-feed processing (verbose logging).
-              - DIndex
-              - Events: Event processing (webhooks).
-              - Feed: Server-feed processing.
-              - gocb
-              - Heartbeat
-              - HTTP: All requests made to the Sync Gateway REST APIs (Sync and Admin). Note that the log keyword HTTP is always enabled, which means that HTTP requests and error responses are always logged (in a non-verbose manner).
-              - HTTP+: More verbose HTTP information. Logs response status codes and response times.
-              - Import: This logging key was introduced in Sync Gateway 1.5 to help troubleshoot the import process of a document (this is the Sync Gateway process to make a document that was added through N1QL or the Server SDKs mobile-aware). This log key can be useful to troubleshoot why a given document was not successfully imported.
-              - Index
-              - Migrate
-              - OIDC
-              - Replicate: Log messages related to replications between Sync Gateways (using sg-replicate). This tag cannot be used for replications initiated by Couchbase Lite.
-              - Sequences
-              - Shadow
-              - Sync: Activity which relates to synchronization between Couchbase Lite and Sync Gateway
-              - SyncMsg: Can be used for additional Sync logging output
-              - WS: Websocket replication log messages
-              - WSFrame: Can be used for additional WS logging output
+
             type: array
             items:
               type: string
+            default: '["HTTP"]'
           color_enabled:
-            description: Use ANSI color codes in the console output. Always disabled on Windows.
+            description: Use ANSI color codes in the console output (Linux/MacOS only).
             type: boolean
-            default: false
+            default: 'false'
       default:
         type: string
         description: |
@@ -635,7 +645,6 @@ properties:
         properties:
           enabled:
             description: Whether to enable this log level. The debug level is *disabled* by default.
-            default: true
             type: boolean
           rotation:
             description: The log file may be rotated by defining a "rotation" sub document. See details in the table below.
