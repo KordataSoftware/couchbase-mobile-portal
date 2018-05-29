@@ -241,6 +241,8 @@
           path: guides/sync-gateway/config-properties/index.html
         - title: Command line options
           path: guides/sync-gateway/command-line-options/index.html
+        - title: Authentication
+          path: guides/sync-gateway/authentication.html
         - title: Authorizing Users
           path: guides/sync-gateway/authorizing-users/index.html
         - title: Data Routing
