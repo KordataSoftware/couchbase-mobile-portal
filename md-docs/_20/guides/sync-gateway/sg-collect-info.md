@@ -4,9 +4,9 @@ title: SG Collect Info
 permalink: guides/sync-gateway/sgcollect-info/index.html
 ---
 
-With this release comes a new command line utility called `sgcollect_info` that provides us with detailed statistics for a specific node. Run `sgcollect_info` on each node individually, not on all simultaneously.
+`sgcollect_info` is command line utility that provides detailed statistics for a specific Sync Gateway node. This tool must be run on each node individually, not on all simultaneously.
 
-Outputs:
+`sgcollect_info` outputs the following statistics in a zip file:
 
 1. Logs
 1. Configuration 
@@ -14,26 +14,37 @@ Outputs:
 1. System Level OS stats
 1. Golang profile output (runtime memory and cpu profiling info)
 
-## Installing Optional Dependencies
+## CLI command and parameters
 
-`sgcollect_info` will be able to collect more information if the following tools are installed:
+To see the CLI command line parameters, run:
 
-* [Golang](https://golang.org/doc/install) -- this should be the same version that Sync Gateway was built with.
+```bash
+./sgcollect_info --help
+```
 
-| SG Version | Go build version |
-|:------------|:----|
-| 1.3.0 | 1.5.3 |
-| 1.3.1 | 1.6.3 |
+## Examples
 
-If go is not installed, sgcollect_info will print the following error message, you can ignore this message and there is no need to report it.
+Collect Sync Gateway diagnostics and save locally:
 
-`Exception during compression: [Error 2] The system cannot find the file specified
-IMPORTANT:
-  Compression using gozip failed.
-  Falling back to python implementation.
-  Please let us know about this and provide console output.`
+```bash
+./sgcollect_info /tmp/sgcollect_info.zip
+```
 
-* [Graphviz](http://www.graphviz.org/Download..php) -- this is used to render PDFs of the [go pprof](https://golang.org/pkg/net/http/pprof/) output.
+Collect Sync Gateway diagnostics and upload them to the Couchbase Support AWS S3 bucket:
+
+```bash
+./sgcollect_info \
+  --sync-gateway-config=/path/to/config.json \
+  --sync-gateway-executable=/usr/bin/sync_gateway \
+  --upload-host=s3.amazonaws.com/cb-customers \
+  --customer=Acme \
+  --ticket=123
+  /tmp/sgcollect_info.zip
+```
+
+## REST Endpoint
+
+`sgcollect_info` can now be run from the Admin REST API as of Sync Gateway 2.1 using the [`/_sgcollect_info`](../../../references/sync-gateway/admin-rest-api/index.html?v=2.1#/server/post__sgcollect_info) endpoint.
 
 ## Zipfile contents
 
@@ -62,36 +73,23 @@ The tool creates the following log files in the ouput file.
 |`sync_gateway`|The Sync Gateway binary executable|
 |`pprof_http_*.log`|The pprof output that collects directly via an http client rather than using go tool, in case Go is not installed|
 
+## Installing Optional Dependencies
 
-## CLI command and parameters
+`sgcollect_info` will be able to collect more information if the following tools are installed:
 
-To see the CLI command line parameters, run:
+* [Golang](https://golang.org/doc/install) -- this should be the same version that Sync Gateway was built with.
 
-```bash
-./sgcollect_info --help
-```
+| SG Version | Go build version |
+|:------------|:----|
+| 1.3.0 | 1.5.3 |
+| 1.3.1 | 1.6.3 |
 
-## Examples
+If go is not installed, sgcollect_info will print the following error message, you can ignore this message and there is no need to report it.
 
+`Exception during compression: [Error 2] The system cannot find the file specified
+IMPORTANT:
+  Compression using gozip failed.
+  Falling back to python implementation.
+  Please let us know about this and provide console output.`
 
-Collect Sync Gateway diagnostics and save locally:
-
-```bash
-./sgcollect_info /tmp/sgcollect_info.zip
-```
-
-Collect Sync Gateway diagnostics and upload them to the Couchbase Support AWS S3 bucket:
-
-```bash
-./sgcollect_info \
-  --sync-gateway-config=/path/to/config.json \
-  --sync-gateway-executable=/usr/bin/sync_gateway \
-  --upload-host=s3.amazonaws.com/cb-customers \
-  --customer=Acme \
-  --ticket=123
-  /tmp/sgcollect_info.zip
-```
-
-## REST Endpoint
-
-`sgcollect_info` can now be run from the Admin REST API as of Sync Gateway 2.1 using the [`/_sgcollect_info`](../admin-rest-api/index.html?v=2.1#/server/post__sgcollect_info) endpoint.
+* [Graphviz](http://www.graphviz.org/Download..php) -- this is used to render PDFs of the [go pprof](https://golang.org/pkg/net/http/pprof/) output.

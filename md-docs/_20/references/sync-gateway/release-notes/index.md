@@ -5,7 +5,7 @@ redirect_from:
   - guides/sync-gateway/bucket-shadowing/index.html
 ---
 
-## Deprecation notices
+## Deprecation Notices
 
 The following features are being deprecated and will be unsupported in an upcoming version of Sync Gateway.
 
@@ -20,7 +20,7 @@ Up until now, Sync Gateway has been using views for a variety of functionality, 
 - [`databases.$db.use_views`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-use_views)
 - [`databases.$db.num_index_replicas`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-num_index_replicas)
 
-### Continuous logging
+### Continuous Logging
 
 Continuous logging is a new feature in Sync Gateway 2.1 that allows the console log output to be separated from log files collected by Couchbase Support.
 
@@ -29,7 +29,7 @@ This allows system administrators running Sync Gateway to tweak log level, and l
 The previous logging configuration (`logging.default`) is being deprecated, and Sync Gateway 2.1 will display warnings on startup of what is required to update your configuration.
 Detailed information about continuous logging can be found in the [Logging guide](../../../guides/sync-gateway/logging/index.html).
 
-### Log redaction
+### Log Redaction
 
 All log outputs can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
 
