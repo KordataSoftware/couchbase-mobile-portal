@@ -17,6 +17,7 @@ GEM
   specs:
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    asciidoctor (1.5.7.1)
     colorator (1.1.0)
     crass (1.0.3)
     em-websocket (0.5.1)
@@ -37,6 +38,9 @@ GEM
       pathutil (~> 0.9)
       rouge (>= 1.7, < 3)
       safe_yaml (~> 1.0)
+    jekyll-asciidoc (2.1.0)
+      asciidoctor (>= 1.5.0)
+      jekyll (>= 2.3.0)
     jekyll-livereload (0.2.2)
       em-websocket (~> 0.5)
       jekyll (~> 3.0)
@@ -82,10 +86,11 @@ PLATFORMS
 DEPENDENCIES
   couchbase-theme!
   jekyll
+  jekyll-asciidoc
   jekyll-livereload
   jekyll-redirect-from!
   redcarpet
   sanitize
 
 BUNDLED WITH
-   1.14.2
+   1.16.1

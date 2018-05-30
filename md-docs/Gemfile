@@ -10,4 +10,5 @@ gem "jekyll-redirect-from", :git => "git://github.com/jamiltz/jekyll-redirect-fr
 
 group :jekyll_plugins do
     gem 'jekyll-livereload'
+    gem 'jekyll-asciidoc'
 end

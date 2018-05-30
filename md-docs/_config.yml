@@ -75,3 +75,4 @@ theme: couchbase-theme
 
 plugins:
   - jekyll-redirect-from
+  - jekyll-asciidoc
