@@ -33,6 +33,35 @@ Detailed information about continuous logging can be found in the [Logging guide
 
 All log outputs can be redacted, this means that user-data, considered to be private, is removed. This feature is optional and can be enabled in the configuration with the [`logging.redaction_level`](../../../guides/sync-gateway/config-properties/index.html#2.1/logging-redaction_level) property.
 
+### sgcollect_info
+
+#### Continuous logging
+
+[sgcollect_info](../../../guides/sync-gateway/sgcollect-info/index.html) has been updated to read the [continuous logging](index.html#continuous-logging) feature introduced in 2.1, and collect the four levelled files (**sg_error.log**, **sg_warn.log**, **sg_info.log** and **sg_debug.log**).
+
+These new log files are rotated and compressed by Sync Gateway, so `sgcollect_info` decompresses these rotated logs, and concatenates them back into a single file upon collection.
+
+For example, if you have **sg_debug.log**, and **sg_debug-2018-04-23T16-57-13.218.log.gz** and then run `sgcollect_info` as normal, both of these files get put into a **sg_debug.log** file inside the zip output folder.
+
+#### Log Redaction
+
+`sgcollect_info` now supports [log redaction](index.html#log-redaction) post-processing. In order to utilise this, Sync Gateway needs to be run with the `logging.redaction_level` property set to "partial".
+
+Two new command line options have been added to `sgcollect_info`:
+
+- `--log-redaction-level=REDACT_LEVEL`: redaction level for the logs collected, `none` and `partial` supported. Defaults to `none`.
+
+	When `--log-redaction-level` is set to partial, two zip files are produced, and tagged contents in the redacted one should be hashed in the same way as `cbcollect_info`:
+
+	```bash
+	$ ./sgcollect_info --log-redaction-level=partial sgout.zip
+	...
+	Zipfile built: sgout-redacted.zip
+	Zipfile built: sgout.zip
+	```
+
+- `--log-redaction-salt=SALT_VALUE`: salt used in the hashing of tagged data when enabling redaction. Defaults to a random uuid.
+
 ### Bucket operation timeout
 
 The [`databases.$db.bucket_op_timeout_ms`](../../../guides/sync-gateway/config-properties/index.html#2.1/databases-foo_db-bucket_op_timeout_ms) property to override the default timeout used by Sync Gateway to query Couchbase Server. It's generally not necessary to change this property unless there is a particularly heavy load on Couchbase Server which would increase the response time.
