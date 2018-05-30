@@ -11,8 +11,6 @@ Sync Gateway supports serving SSL. To enable SSL, you need to add two properties
 
 If both properties are present, the server will respond to SSL (and only SSL) over both the public and admin ports.
 
-[//]: # (If you don't want to go this route, you can of course instead run the gateway behind another HTTP server that has SSL enabled, configured to forward requests to the gateway. Apache and Nginx are commonly used to do this; the details are beyond the scope of this document.)
-
 ## How to create an SSL certificate
 
 Certificates are a complex topic. There are basically two routes you can go: request a certificate from a Certificate Authority (CA), or create your own "self-signed" certificate.
@@ -64,6 +62,3 @@ Then just add the `"SSLCert"` and `"SSLKey"` properties to your Sync Gateway con
 ```
 
 Start Sync Gateway and access the public port over `https` on [https://localhost:4984](https://localhost:4984).
-
-[//]: # (TODO: Is certificate pinning supported on all platforms?)
-[//]: # (## Certificate Pinning The most secure way for your client app to connect to your server is for it to embed a copy of the X.509 certificate file (but not the private key!) At runtime it then loads the cert into memory and instructs the Couchbase Lite replicator to accept only that cert, via the `setAnchorCerts` method. This ensures that your app can only connect to your own server: even if an attacker were able to forge a CA-signed cert for your domain, its cert will have a different public key, so the replicator will reject it. Cert pinning is most useful with self-signed certs, because without it the app has no way to trust that it's connected to your own server and not some other server masquerading as it. But it also improves security when used with a CA cert, because CAs can sometimes be hacked or tricked into issuing bogus certificates, in which case an attacker could create a fake certificate with your server's hostname and use it (in conjunction with DNS spoofing) to masquerade as your server. So far this type of attack has only been used against very high-profile sites, but better safe than sorry!)
