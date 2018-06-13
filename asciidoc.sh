@@ -19,10 +19,10 @@ cd ../docs-site
 bash commands.sh antora-dev
 
 # Copy output (and overwrite)
-cp build/site/couchbase-lite-ios/${3}/swift.html ../couchbase-mobile-portal/tmp/couchbase-lite/swift.html
-cp build/site/couchbase-lite-ios/${3}/objc.html ../couchbase-mobile-portal/tmp/couchbase-lite/objc.html
-cp build/site/couchbase-lite-net/${3}/csharp.html ../couchbase-mobile-portal/tmp/couchbase-lite/csharp.html
-cp build/site/couchbase-lite-android/${3}/java.html ../couchbase-mobile-portal/tmp/couchbase-lite/java.html
+cp build/site/couchbase-lite/${3}/swift.html ../couchbase-mobile-portal/tmp/couchbase-lite/swift.html
+cp build/site/couchbase-lite/${3}/objc.html ../couchbase-mobile-portal/tmp/couchbase-lite/objc.html
+cp build/site/couchbase-lite/${3}/csharp.html ../couchbase-mobile-portal/tmp/couchbase-lite/csharp.html
+cp build/site/couchbase-lite/${3}/java.html ../couchbase-mobile-portal/tmp/couchbase-lite/java.html
 cp build/site/userprofile-couchbase-mobile/standalone/userprofile/userprofile_basic.html ../couchbase-mobile-portal/tmp/userprofile_basic.html
 cp build/site/userprofile-couchbase-mobile/query/userprofile/userprofile_query.html ../couchbase-mobile-portal/tmp/userprofile_query.html
 cp build/site/userprofile-couchbase-mobile/sync/userprofile/userprofile_sync.html ../couchbase-mobile-portal/tmp/userprofile_sync.html
