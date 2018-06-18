@@ -23,3 +23,5 @@ swagger/definitions/index.yaml
 swagger/paths/index.yaml
 
 live-assets/
+
+migration-scripts/
