@@ -151,4 +151,4 @@ You can configure your application for Google SignIn by following [this guide](h
 
 ### Authorization Code Flow
 
-Whilst Sync Gateway supports [Authorization Code Flow](), there is considerable work involved to implement the **Authorization Code Flow** on the client side. Couchbase Lite 1.x has an API to hide this complexity called `OpenIDConnectAuthenticator` but since it is not available in the 2.0 API we recommend to use the **Implicit Flow**.
+Whilst Sync Gateway supports [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth), there is considerable work involved to implement the **Authorization Code Flow** on the client side. Couchbase Lite 1.x has an API to hide this complexity called `OpenIDConnectAuthenticator` but since it is not available in the 2.0 API we recommend to use the **Implicit Flow**.
