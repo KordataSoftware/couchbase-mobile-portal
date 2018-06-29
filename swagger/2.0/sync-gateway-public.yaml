@@ -143,7 +143,14 @@ parameters:
   feed:
     in: query
     name: feed
-    description: Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.
+    description: |
+      Default is 'normal'. Specifies type of change feed. Valid values are:
+
+      - normal,
+      - continuous,
+      - longpoll,
+      - websocket.
+
     type: string
     default: 'normal'
   group:
