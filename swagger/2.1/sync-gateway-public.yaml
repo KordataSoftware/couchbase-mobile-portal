@@ -143,7 +143,7 @@ parameters:
   feed:
     in: query
     name: feed
-    description: Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.
+    description: Specifies the change feed type. Valid values are `normal`, `continuous`, `longpoll` and `websocket`. Read more about this querystring option in the [changes feed guide](../../../guides/sync-gateway/server-integration/index.html#changes-worker-pattern).
     type: string
     default: 'normal'
   group:
@@ -333,7 +333,7 @@ parameters:
           items:
             type: string
         feed:
-          description: Default is 'normal'. Specifies type of change feed. Valid values are normal, continuous, longpoll, websocket.
+          description: Specifies the change feed type. Valid values are `normal`, `continuous`, `longpoll` and `websocket`. Read more about this property in the [changes feed guide](../../../guides/sync-gateway/server-integration/index.html#changes-worker-pattern).
           type: string
           default: 'normal'
         since:
