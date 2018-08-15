@@ -259,7 +259,7 @@ properties:
           num_index_replicas:
             type: integer
             description: |
-              Determines the number of index replicas used when creating the core Sync Gateway indexes.
+              Determines the number of index replicas used when creating the core Sync Gateway indexes. This property is only applicable if `databases.$db.use_views` is set to `false` (default value).
             default: 1
           oidc:
             type: object
@@ -471,7 +471,7 @@ properties:
           use_views:
             type: string
             description: |
-              Use views instead of N1QL for indexing and queries.
+              If set to `true`, Sync Gateway will use views instead of GSI for system functions like authentication and replication.
             default: 'false'
   facebook:
     description: Configuration for Facebook Login authentication.
