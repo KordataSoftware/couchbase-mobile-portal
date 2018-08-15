@@ -396,7 +396,7 @@ parameters:
   sgcollect_info:
     in: body
     name: sgcollect_info
-    description: Options that can be specified to use in an sgcollect_info run
+    description: Options that can be specified to use in an sgcollect_info run.
     schema:
       type: object
       properties:
@@ -407,7 +407,6 @@ parameters:
         redact_salt:
           type: string
           description: If set, use this salt when redacting logs.
-          required: false
         output_dir:
           type: string
           description: Where to store the collected zip.
@@ -415,7 +414,6 @@ parameters:
         upload:
           type: boolean
           description: Whether to upload the collected logs.
-          default: false
         upload_host:
           type: string
           description: s3 URL for upload.
@@ -423,11 +421,9 @@ parameters:
         customer:
           type: string
           description: Customer name to use when uploading logs.
-          required: true if upload is set
         ticket:
           type: string
           description: Zendesk ticket number to use when uploading logs.
-          required: false
   name:
     in: path
     name: name
