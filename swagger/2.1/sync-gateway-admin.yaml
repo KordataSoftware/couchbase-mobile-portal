@@ -1902,7 +1902,7 @@ definitions:
       fields:
         type: string
   SGCollectInfoStats:
-    type: objects
+    type: object
     properties:
       status:
         type: string
