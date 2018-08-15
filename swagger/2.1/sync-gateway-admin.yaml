@@ -1193,6 +1193,7 @@ paths:
         Will return information about whether sgcollect_info is currently running or not.
       responses:
         200:
+          description: The request was successful.
           schema:
             $ref: '#/definitions/SGCollectInfoStats'
     post:
