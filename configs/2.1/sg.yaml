@@ -524,7 +524,9 @@ properties:
             - Query-fields that reference key/value pairs and/or usernames
             - Names and email addresses retrieved during product registration
             - Extended attributes
+
           This redaction of user-data is referred to as partial redaction. To enable it, the value must be `"partial"` in the configuration file:
+
           ```json
           {
             "logging": {
@@ -532,6 +534,7 @@ properties:
             }
           }
           ```
+          
         type: string
         default: 'none'
       console:
