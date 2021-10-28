@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="description" content="A high-level introduction to the component parts of the Couchbase Mobile product." />
+  <meta name="version" content="1.4" />
+  <meta name="product" content="mobile" />
+  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/webfiles/1498186094252/images/icons/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/webfiles/1498186094252/images/icons/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--    _____________________________
+  _______/ Support for legacy browsers \_______________________________________-->
+  <!--[if lte IE 8]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/html5shiv.js" />
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/respond.js" />
+  <![endif]-->
+  <!--[if IE 9]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/classList.js" />
+  <![endif]-->
+  <!--_________________________________________________________________________-->
+  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/jquery-migrate.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/slick.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/isotope.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/imagesloaded.min.js"></script>
+
+  <meta name="apple-mobile-web-app-title" content="Couchbase">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="1gPO0RaMzKyZJFpS-iyIEnPsWDztwZH0R3vG1VpSwvM" />
+
+  <!-- LOCAL CSS Libs -->
+  <link rel="stylesheet" href="https://developer.couchbase.com/webfiles/1498186094252/css/styles.css">
+
+  <!-- Default canonical comes from the URL -->
+  <link rel="canonical" href="http://developer.couchbase.com"/>
+  <title>Couchbase</title>
+  <link rel="stylesheet" href="https://developer.couchbase.com/binaries/content/assets/css/overrides.css">
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0"
+          width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<script>
+  var overrideJsPath = "/binaries/content/assets/js/overrides.js";
+  $.ajax({
+    url: overrideJsPath,
+    type: 'HEAD',
+    error: function () {
+    },
+    success: function () {
+      // file exists
+      $.getScript(overrideJsPath);
+    }
+  });
+</script>
+<!--    ________________
+_______/ INCLUDE HEADER - BODY - FOOTER \____________________________________________________-->
+<!-- begin - include ref= -->
+<nav class="aux">
+  <div>
+  </div>
+</nav>
+<!-- Beginning of site.../jsp/base/header.jsp -->
+<header id="global-header" class="global-header dev-portal">
+  <div class="layout-wrapper">
+    <div class="global-header__logo">
+      <a href='http://www.couchbase.com'>Couchbase</a>
+      <a href='index.html'>Developer</a>
+
+    </div>
+
+    <a data-modules="navigation,globalheadersearch"></a>
+    <nav role="navigation" id="primary-navigation" class="primary-navigation">
+      <button aria-controls="primary-navigation__wrapper"
+              aria-pressed="false"
+              class="primary-navigation__toggler"
+              type="button">
+
+        <span>Menu</span>
+      </button>
+      <div id="primary-navigation__wrapper"
+           class="primary-navigation__wrapper"
+           aria-expanded="false">
+
+        <ul class="primary-navigation__items">
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/documentation/server/current/introduction/intro.html">Server</a>
+          </li>
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/mobile">Mobile</a>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/community">Community</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/open-source-projects">Open Source Projects</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/contribute">Contribute</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://www.couchbase.com/nosql-resources/events">Events</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/experts-and-champions">Experts &amp; Champions</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://forums.couchbase.com/">Forums</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://blog.couchbase.com">Blogs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/support">Support</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/guides-and-references">Site Map</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-1">Couchbase Server</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-2">Couchbase Mobile</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-3">SDKs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-5">Connectors</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/documentation-archive">Documentation Archive</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <form id="global-header-search"
+              autocomplete="off"
+              class="global-header-search global-header-search--js"
+              action="https://developer.couchbase.com/search"
+              aria-expanded="false">
+          <ul><!--
+            ---><li>
+            <label for="global-header-search__query">
+              Search query
+            </label>
+            <input
+                    type="search"
+                    placeholder="Search"
+                    name="q"
+                    value=""
+                    id="global-header-search__query">
+          </li><!--
+                ---><li>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </li><!--
+        ---></ul>
+          <button aria-controls="global-header-search__items"
+                  aria-pressed="false"
+                  class="global-header-search__toggler"
+                  type="button">
+            <span>Search</span>
+          </button><!--
+        --->
+
+          <div style="display: none" about="custom-search-fields">
+
+            <input type="hidden"
+                   name="cx"
+                   value="017928787631531434501:3e7lwhjxsom" />
+            <input type="hidden"
+                   name="cof"
+                   value="FORID:11" />
+            <input type="hidden"
+                   name="safe"
+                   value="off" />
+            <input type="hidden"
+                   name="form_build_id"
+                   value="form-RrbKDUhO3kB2MiqBdZHIQI9L4LFE7c3L_s87N2B9BZo" />
+            <input type="hidden"
+                   name="form_id"
+                   value="google_cse_results_searchbox_form" />
+            <input type="hidden"
+                   name="siteurl"
+                   value='developer.couchbase.com' />
+
+          </div>
+        </form>
+      </div>
+    </nav>
+    <a class="global-header__download-button" href="https://developer.couchbase.com/downloads">
+      Download
+    </a>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="wrapper">
+    <main id="global-content" class="global-content" role="main">
+
+  <div id="page-template-attributes" data-template-id="" data-template-class="learn-support-sec article-tpl"></div>
+
+  <!-- LEFTNAV and ARTICLE -->
+  <section class="tpl-body">
+    <div class="wrapper">
+      <div class="cols">
+        <aside class="col one-fifth section-nav left-rail">
+          <nav role="navigation" aria-label="Secondary" style="width: 100%;">
+            <div class="toc collapsible" style="display: block;">
+              
+
+
+
+<!-- Used in the left nav to find the relative URL -->
+
+
+
+
+<nav style="width: 100%;" role="navigation" aria-label="Secondary" class="toc collapsible">
+  <ul class="main collapsed">
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../whatsnew.html">What's new</a>
+        
+      
+      
+      </li>
+    
+      <li class=" ishidden">
+      
+        <a href="#" class="static">Hidden Files For Redirects</a>
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../guides/sync-gateway/views/index.html">Creating and querying a View</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../installation/index.html">Getting Started</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/ios/index.html">iOS/tvOS/macOS</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/android/index.html">Android</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/net/index.html">.NET</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/xamarin/index.html">Xamarin</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/java/index.html">Java</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/phonegap/index.html">PhoneGap</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../installation/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class=" ">
+      
+        
+          <a href="../../training/index.html">Tutorial</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Design</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/design/data-modeling/index.html">Data Modeling</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/design/security/index.html">Access Control</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Develop</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/develop/create-database/index.html">Create a Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/develop/using-the-database/index.html">Using the Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/develop/adding-synchronization/index.html">Adding Sync</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/develop/adding-security/index.html">Adding Security</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/develop/integration/index.html">Integration</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Deploy</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/deploy/install/index.html">Install</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/deploy/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../training/deploy/scale/index.html">Scale</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../guides/index.html">Guides</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../guides/couchbase-lite/native-api/data-modeling/index.html">Data Modeling</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../guides/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/couchbase-lite/native-api/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/manager/index.html">Manager</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/database/index.html">Database</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/document/index.html">Document</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/revision/index.html">Revision</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/view/index.html">View</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/query/index.html">Query</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/replication/index.html">Replication</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/peer-to-peer/index.html">Peer-to-peer</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/native-api/model/index.html">Model (iOS only)</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/couchbase-lite/tech-notes/index.html">Technical Notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/couchbase-lite/tech-notes/cbl-encryption/index.html">Encrypting Databases</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../guides/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/config-properties/index.html">Configuration file</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/command-line-options/index.html">Command line options</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/authorizing-users/index.html">Authorizing Users</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/channels/index.html">Data Routing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/sync-function-api-guide/index.html">Sync Function API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/server-integration/index.html">Webhooks and changes feed</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/deployment/index.html">Deployment considerations</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/nginx/index.html">Load Balancer</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/database-offline/index.html">Taking databases offline and online</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/os-level-tuning/index.html">OS Level Tuning</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/resolving-conflicts/index.html">Resolving Conflicts</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/integrating-external-stores/index.html">Integrating External Stores</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/running-replications/index.html">Running replications</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/rest-api-client/index.html">REST API Client</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/sgcollect-info/index.html">SGCollect Info</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/configuring-ssl/index.html">Configuring SSL</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/bucket-shadowing/index.html">Bucket Shadowing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/sync-gateway/accelerator.html">Accelerator</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../guides/authentication/index.html">Authentication</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/authentication/basic-authentication/index.html">Basic Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/authentication/openid/index.html">OpenID Connect</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/authentication/openid/configuration-options/index.html">Configuration Options</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/authentication/openid/advanced-topics/index.html">Advanced Topics</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/authentication/openid/google/index.html">How-To: Google</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../guides/authentication/openid/active-directory/index.html">How-To: Active Directory</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/authentication/custom-authentication/index.html">Custom Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../guides/authentication/static-providers/index.html">Static Providers</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../references/index.html">API References</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../references/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/couchbase-lite/couchbase-lite/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/manager/index.html">Manager</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/manager/manager/index.html">Manager</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/manager/manager-options/index.html">ManagerOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/manager/database-options/index.html">DatabaseOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/database/index.html">Database</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/database/database/index.html">Database</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/database/validation-context/index.html">ValidationContext</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/document/index.html">Document</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/document/document/index.html">Document</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/document/document-change/index.html">Document Change</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/revision/index.html">Revision</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/revision/revision/index.html">Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html">Saved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html">Unsaved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/attachment/attachment/index.html">Attachment</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/view/index.html">View</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/view/view/index.html">View</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/view/view-compiler/index.html">View Compiler</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/query/index.html">Query</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/query/query/index.html">Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/query/live-query/index.html">Live Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html">QueryEnumerator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/query/query-row/index.html">QueryRow</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/couchbase-lite/replication/index.html">Replication</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/replication/replication/index.html">Replication</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/replication/authenticator/index.html">Authenticator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html">AuthenticatorFactory</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/couchbase-lite/rest-api/index.html">REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/couchbase-lite/release-notes/index.html">Release notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/release-notes/Java/index.html">Java</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a class="selected" href="../../references/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/sync-gateway/rest-api/index.html">Public REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/sync-gateway/admin-rest-api/index.html">Admin REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../references/sync-gateway/release-notes/index.html">Release notes</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+  </ul>
+</nav>
+            </div>
+          </nav>
+        </aside>
+        <div class="col four-fifths article">
+          <div class="story">
+            <div class="body">
+              
+              
+              
+              <!-- Do not import the overridden styles on swagger ui pages -->
+              
+              <link rel="stylesheet" type="text/css" href="https://couchbase-docs.s3.amazonaws.com/mobile/assets/styles.css">
+              
+              
+              
+              <a class="edit-page-link" href="https://github.com/couchbaselabs/couchbase-mobile-portal/tree/master/md-docs/_1x/references/sync-gateway/index.md" target="_blank">Edit on GitHub</a>
+              
+
+              <div class="inner-content">
+                <!-- Style API ref links -->
+                <style>
+                  a > code {
+                    text-decoration: underline;
+                    color: #0099e5;
+                    background: #f5f7f7;
+                    border-radius: 5px;
+                    padding: 3px 6px;
+                    margin: 0 1px;
+                  }
+                </style>
+                <!-- Platform tabs -->
+                <!-- TODO: Make visible when ready to show multi-platform training -->
+                <div class="toggler">
+                  <style>
+                    .toggler a {
+                      display: inline-block;
+                      padding: 3px 20px;
+                      margin: 2px;
+                      border: 1px solid #00739c;
+                      border-radius: 3px;
+                      text-decoration: none !important;
+                    }
+                    .display-platform-ios .toggler .button-ios,
+                    .display-platform-android .toggler .button-android,
+                    .display-platform-rn .toggler .button-rn,
+                    .display-platform-wpf .toggler .button-wpf,
+                    .display-platform-csharp .toggler .button-csharp,
+                    .display-platform-xam .toggler .button-xam,
+                    .display-platform-swift .toggler .button-swift,
+                    .display-platform-objc .toggler .button-objc,
+                    .display-platform-java .toggler .button-java {
+                      background-color: #00739c;
+                      color: white;
+                    }
+
+                    block { display: none; }
+
+                    .display-platform-ios .ios,
+                    .display-platform-android .android,
+                    .display-platform-rn .rn,
+                    .display-platform-net .net,
+                    .display-platform-csharp .csharp,
+                    .display-platform-wpf .wpf,
+                    .display-platform-xam .xam,
+                    .display-platform-all .all,
+                    .display-platform-swift .swift,
+                    .display-platform-objc .objc,
+                    .display-platform-java .java {
+                      display: block;
+                    }
+                    .inner-content .inline:not(.tab-nav) {
+                      display: none;
+                    }
+                    /* Must change the display mode for striped method names.
+                       This works with the StripingTag Jekyll plugin. */
+                    .display-platform-ios .ios.inline,
+                    .display-platform-android .android.inline,
+                    .display-platform-net .net.inline,
+                    .display-platform-csharp .csharp.inline,
+                    .display-platform-swift .swift.inline,
+                    .display-platform-objc .objc.inline,
+                    .display-platform-java .java.inline {
+                      display: inline;
+                    }
+                  </style>
+                  <div id="platform-tabs" class="hide">
+                    <span>Platform:</span>
+                    
+                    <a href="javascript:void(0);" class="button-ios" onclick="display('platform', 'ios')">iOS</a>
+                    <a href="javascript:void(0);" class="button-android" onclick="display('platform', 'android')">Android</a>
+                    <a href="javascript:void(0);" class="button-wpf" onclick="display('platform', 'wpf')">WPF</a>
+                    
+                  </div>
+                </div>
+                <!-- SDK buttons -->
+                <div id="swagger-libs" style="display: none;">
+                  <span>Sync Gateway Public REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'public')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'public')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'public')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'public')">Python</a>
+                  <br>
+                  <span>Sync Gateway Admin REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'admin')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'admin')">Python</a>
+                  <br>
+                  <span>Couchbase Lite REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'lite')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'lite')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('swift', 'lite')">Swift</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'lite')">Python</a>
+                </div>
+                <!-- Markdown content -->
+                <p>API References and release notes can be found under this section:</p>
+
+<ul>
+<li><a href="rest-api/index.html">Public REST API</a></li>
+<li><a href="admin-rest-api/index.html">Admin REST API</a></li>
+<li><a href="release-notes/index.html">Release notes</a></li>
+</ul>
+
+                <!-- Logic to make all links open in a new tab -->
+                <script>
+                  var links = document.links;
+
+                  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+                    if (['button-swift', 'button-objc', 'button-csharp', 'button-java', 'button-ios', 'button-android', 'button-wpf'].indexOf(links[i].className) == -1) {
+                      if (links[i].hostname != window.location.hostname) {
+                        links[i].target = '_blank';
+                      }
+                    }
+                  }
+                </script>
+                <!-- Logic for platform tabs -->
+                <script>
+                  // Only show on Develop pages
+                  var blocksv1 = document.getElementsByClassName('ios');
+                  var blocksv2 = document.getElementsByClassName('swift');
+                  if ((blocksv1.length > 0 && blocksv1[0].tagName == 'BLOCK') || (blocksv2.length > 0 && blocksv2[0].tagName == 'BLOCK')) {
+                    var platformTabs = document.getElementById('platform-tabs');
+                    platformTabs.className = "show";
+                  }
+                  // Convert <div>...<span><block /></span>...</div>
+                  // Into <div>...<block />...</div>
+                  var blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      var span = blocks[i].parentNode;
+                      var container = span.parentNode;
+                      container.insertBefore(block, span);
+                      container.removeChild(span);
+                    }
+                  }
+                  // Convert <div>...<block />content<block />...</div>
+                  // Into <div>...<block>content</block><block />...</div>
+                  blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      while (block.nextSibling && block.nextSibling.tagName !== 'BLOCK') {
+                        block.appendChild(block.nextSibling);
+                      }
+                    }
+                  }
+                  function display(type, value, isFirstPageLoad) {
+                    deleteCookie('mobile-lang');
+                    setCookie('mobile-lang', value, 365);
+                    if (!isFirstPageLoad) {
+                      var newurl = UpdateQueryString('language', value);
+                      window.history.pushState({path: newurl}, '', newurl);
+                    }
+                    // Place the display-platform-* class on div.inner-content
+                    var container = document.getElementsByClassName('inner-content')[0];
+                    container.className = 'inner-content display-' + type + '-' + value;
+                    if (value == 'wpf' || value == 'csharp' || value == 'xam') {
+                      container.className += ' display-platform-net';
+                    }
+                    container.className += ' display-platform-all';
+                    return false;
+                  }
+
+                  // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+                  // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+                  var foundHash = false;
+                  var language = getParameterByName('language');
+                  if (['ios', 'android', 'csharp', 'swift', 'objc', 'wpf', 'java'].indexOf(language) > -1) {
+                    foundHash = true;
+                    display('platform', language, true);
+                  }
+
+                  if (!foundHash) {
+                    var cookie_lang = getCookie('mobile-lang');
+                    if (document.getElementsByClassName(cookie_lang).length > 0) {
+                      display('platform', cookie_lang, true);
+                    } else {
+                      if (document.getElementsByClassName('swift').length > 0) {
+                        display('platform', 'swift', true);
+                      } else if (document.getElementsByClassName('ios').length > 0) {
+                        display('platform', 'ios', true);
+                      }
+                    }
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) {
+                      url = window.location.href;
+                    }
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                  function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                  }
+                  function deleteCookie(cname) {
+                    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+                  function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                      }
+                    }
+                    return "";
+                  }
+                  function UpdateQueryString(key, value, url) {
+                    if (!url) url = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+                      hash;
+
+                    if (re.test(url)) {
+                      if (typeof value !== 'undefined' && value !== null)
+                        return url.replace(re, '$1' + key + "=" + value + '$2$3');
+                      else {
+                        hash = url.split('#');
+                        url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                    }
+                    else {
+                      if (typeof value !== 'undefined' && value !== null) {
+                        var separator = url.indexOf('?') !== -1 ? '&' : '?';
+                        hash = url.split('#');
+                        url = hash[0] + separator + key + '=' + value;
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                      else
+                        return url;
+                    }
+                  }
+                </script>
+                <!-- Segment.io analytics -->
+                <script type="text/javascript">
+                  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+                    analytics.load("8mPwsJfsKAal6r62qS9ubBQqjWwYly4M");
+                    analytics.page()
+                  }}();
+                </script>
+                <script>
+                  var starterProject = document.getElementById('project');
+                  analytics.trackLink(starterProject, 'Download project', {
+                    category: 'Training',
+                    label: 'Swift'
+                  });
+                </script>
+                <!-- SDK buttons (shown only if show_true=true in the SDK) -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+                <script>
+
+                  if (getParameterByName("show_swagger_libs") || getParameterByName("swagger")) {
+                    var swagger_libs_el = document.getElementById('swagger-libs');
+                    swagger_libs_el.style.display = 'block';
+                  }
+
+                  function getSDK(lang, spec) {
+                    var url = null;
+                    switch(spec) {
+                      case 'public':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-public/spec.json';
+                        break;
+                      case 'admin':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-admin/spec.json';
+                        break;
+                      case 'lite':
+                        url = 'http://developer.couchbase.com/mobile/swagger/couchbase-lite/spec.json';
+                        break;
+                    }
+                    fetch(url)
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        var options = {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({spec: res})
+                        };
+                        return fetch('http://generator.swagger.io/api/gen/clients/' + lang, options)
+                      })
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        window.location = res.link;
+                      });
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                </script>
+              </div>
+
+              <script>
+                /**
+                 * HACK: To keep the code tabs while using markdown. Insert <div class="tab"></div> in the markdown and this script
+                 * finds and replaces all instances with a tab bar.
+                 */
+                var tab_bar_html = "</div><a href='javascript:setLanguage(\"swift\")' class=\"tab stripe-active swift\">Swift</a> <a href='javascript:setLanguage(\"objective-c\")' class=\"tab stripe-active objective-c selected\">Objective-C</a> <a href='javascript:setLanguage(\"android\")' class=\"tab stripe-active android\">Android</a> <a href='javascript:setLanguage(\"java\")' class=\"tab stripe-active java\">Java</a> <a href='javascript:setLanguage(\"c\")' class=\"tab stripe-active c\">C#</a>"
+                var tab_bars = document.getElementsByClassName('tabs');
+                var i = tab_bars.length - 1;
+                while (i >= 0) {
+                  var parent = tab_bars.item(i).parentNode;
+                  var element = document.createElement('div');
+                  element.className = 'tab-bar';
+                  element.innerHTML = tab_bar_html;
+                  parent.replaceChild(element, tab_bars.item(i));
+                  i--;
+                }
+
+                /**
+                 * HACK: To keep the markdown tables styles after ingestion we need to wrap the ouput in <div class="table"></div>
+                 */
+                var tables = document.getElementsByTagName("table");
+                var j = tables.length - 1;
+                while (j >= 0) {
+                  var parent = tables.item(j).parentNode;
+                  var table = tables.item(j);
+                  var wrapper = document.createElement('div');
+                  wrapper.className = 'table';
+                  wrapper.style.padding = 0;
+                  parent.insertBefore(wrapper, table);
+                  wrapper.appendChild(table);
+                  j--;
+                }
+              </script>
+              <script>
+                /**
+                 * Hack to not open some list titles
+                 */
+                (function() {
+                  var els = document.getElementsByClassName('static');
+                  for (var i = 0; i < els.length; i++) {
+                    (function() {
+                      var el = els[i];
+                      el.onclick = function () {
+                        var icon = el.previousSibling;
+                        var iconClasses = icon.className;
+                        if (iconClasses == 'icon') {
+                          icon.className = 'icon close';
+                        } else {
+                          icon.className = 'icon';
+                        }
+                        var list = el.nextSibling;
+                        var displayProp = list.style.display;
+                        if (displayProp == 'block') {
+                          list.style.display = 'none';
+                        } else {
+                          list.style.display = 'block';
+                        }
+                      }
+                    })()
+                  }
+                })()
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+</main>
+  </div>
+</div>
+
+<!-- Require_js bootstrap for app-specific JS module support -->
+<!-- data-main attribute tells require.js to load
+scripts/main.js after require.js loads. -->
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/require.js"></script>
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/prism.js"></script>
+<script rel="main" type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/main.js" ></script>
+<!-- leave the main attribute, it is used to help main.js determine -->
+<!-- the domain-relative path to the base script (main.js) -->
+
+</body>
+
+</html>

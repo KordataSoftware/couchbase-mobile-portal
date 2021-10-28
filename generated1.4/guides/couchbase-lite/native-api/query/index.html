@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="description" content="A high-level introduction to the component parts of the Couchbase Mobile product." />
+  <meta name="version" content="1.4" />
+  <meta name="product" content="mobile" />
+  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/webfiles/1498186094252/images/icons/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/webfiles/1498186094252/images/icons/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--    _____________________________
+  _______/ Support for legacy browsers \_______________________________________-->
+  <!--[if lte IE 8]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/html5shiv.js" />
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/respond.js" />
+  <![endif]-->
+  <!--[if IE 9]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/classList.js" />
+  <![endif]-->
+  <!--_________________________________________________________________________-->
+  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/jquery-migrate.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/slick.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/isotope.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/imagesloaded.min.js"></script>
+
+  <meta name="apple-mobile-web-app-title" content="Couchbase">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="1gPO0RaMzKyZJFpS-iyIEnPsWDztwZH0R3vG1VpSwvM" />
+
+  <!-- LOCAL CSS Libs -->
+  <link rel="stylesheet" href="https://developer.couchbase.com/webfiles/1498186094252/css/styles.css">
+
+  <!-- Default canonical comes from the URL -->
+  <link rel="canonical" href="http://developer.couchbase.com"/>
+  <title>Couchbase</title>
+  <link rel="stylesheet" href="https://developer.couchbase.com/binaries/content/assets/css/overrides.css">
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0"
+          width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<script>
+  var overrideJsPath = "/binaries/content/assets/js/overrides.js";
+  $.ajax({
+    url: overrideJsPath,
+    type: 'HEAD',
+    error: function () {
+    },
+    success: function () {
+      // file exists
+      $.getScript(overrideJsPath);
+    }
+  });
+</script>
+<!--    ________________
+_______/ INCLUDE HEADER - BODY - FOOTER \____________________________________________________-->
+<!-- begin - include ref= -->
+<nav class="aux">
+  <div>
+  </div>
+</nav>
+<!-- Beginning of site.../jsp/base/header.jsp -->
+<header id="global-header" class="global-header dev-portal">
+  <div class="layout-wrapper">
+    <div class="global-header__logo">
+      <a href='http://www.couchbase.com'>Couchbase</a>
+      <a href='index.html'>Developer</a>
+
+    </div>
+
+    <a data-modules="navigation,globalheadersearch"></a>
+    <nav role="navigation" id="primary-navigation" class="primary-navigation">
+      <button aria-controls="primary-navigation__wrapper"
+              aria-pressed="false"
+              class="primary-navigation__toggler"
+              type="button">
+
+        <span>Menu</span>
+      </button>
+      <div id="primary-navigation__wrapper"
+           class="primary-navigation__wrapper"
+           aria-expanded="false">
+
+        <ul class="primary-navigation__items">
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/documentation/server/current/introduction/intro.html">Server</a>
+          </li>
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/mobile">Mobile</a>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/community">Community</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/open-source-projects">Open Source Projects</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/contribute">Contribute</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://www.couchbase.com/nosql-resources/events">Events</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/experts-and-champions">Experts &amp; Champions</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://forums.couchbase.com/">Forums</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://blog.couchbase.com">Blogs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/support">Support</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/guides-and-references">Site Map</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-1">Couchbase Server</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-2">Couchbase Mobile</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-3">SDKs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-5">Connectors</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/documentation-archive">Documentation Archive</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <form id="global-header-search"
+              autocomplete="off"
+              class="global-header-search global-header-search--js"
+              action="https://developer.couchbase.com/search"
+              aria-expanded="false">
+          <ul><!--
+            ---><li>
+            <label for="global-header-search__query">
+              Search query
+            </label>
+            <input
+                    type="search"
+                    placeholder="Search"
+                    name="q"
+                    value=""
+                    id="global-header-search__query">
+          </li><!--
+                ---><li>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </li><!--
+        ---></ul>
+          <button aria-controls="global-header-search__items"
+                  aria-pressed="false"
+                  class="global-header-search__toggler"
+                  type="button">
+            <span>Search</span>
+          </button><!--
+        --->
+
+          <div style="display: none" about="custom-search-fields">
+
+            <input type="hidden"
+                   name="cx"
+                   value="017928787631531434501:3e7lwhjxsom" />
+            <input type="hidden"
+                   name="cof"
+                   value="FORID:11" />
+            <input type="hidden"
+                   name="safe"
+                   value="off" />
+            <input type="hidden"
+                   name="form_build_id"
+                   value="form-RrbKDUhO3kB2MiqBdZHIQI9L4LFE7c3L_s87N2B9BZo" />
+            <input type="hidden"
+                   name="form_id"
+                   value="google_cse_results_searchbox_form" />
+            <input type="hidden"
+                   name="siteurl"
+                   value='developer.couchbase.com' />
+
+          </div>
+        </form>
+      </div>
+    </nav>
+    <a class="global-header__download-button" href="https://developer.couchbase.com/downloads">
+      Download
+    </a>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="wrapper">
+    <main id="global-content" class="global-content" role="main">
+
+  <div id="page-template-attributes" data-template-id="" data-template-class="learn-support-sec article-tpl"></div>
+
+  <!-- LEFTNAV and ARTICLE -->
+  <section class="tpl-body">
+    <div class="wrapper">
+      <div class="cols">
+        <aside class="col one-fifth section-nav left-rail">
+          <nav role="navigation" aria-label="Secondary" style="width: 100%;">
+            <div class="toc collapsible" style="display: block;">
+              
+
+
+
+<!-- Used in the left nav to find the relative URL -->
+
+
+
+
+<nav style="width: 100%;" role="navigation" aria-label="Secondary" class="toc collapsible">
+  <ul class="main collapsed">
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../whatsnew.html">What's new</a>
+        
+      
+      
+      </li>
+    
+      <li class=" ishidden">
+      
+        <a href="#" class="static">Hidden Files For Redirects</a>
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/sync-gateway/views/index.html">Creating and querying a View</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../installation/index.html">Getting Started</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/ios/index.html">iOS/tvOS/macOS</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/android/index.html">Android</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/net/index.html">.NET</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/xamarin/index.html">Xamarin</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/java/index.html">Java</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/phonegap/index.html">PhoneGap</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class=" ">
+      
+        
+          <a href="../../../../training/index.html">Tutorial</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Design</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/design/data-modeling/index.html">Data Modeling</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/design/security/index.html">Access Control</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Develop</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/create-database/index.html">Create a Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/using-the-database/index.html">Using the Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/adding-synchronization/index.html">Adding Sync</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/adding-security/index.html">Adding Security</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/integration/index.html">Integration</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Deploy</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/install/index.html">Install</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/scale/index.html">Scale</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../guides/index.html">Guides</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/couchbase-lite/native-api/data-modeling/index.html">Data Modeling</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/couchbase-lite/native-api/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/manager/index.html">Manager</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/database/index.html">Database</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/document/index.html">Document</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/revision/index.html">Revision</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/view/index.html">View</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a class="selected" href="../../../../guides/couchbase-lite/native-api/query/index.html">Query</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/replication/index.html">Replication</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/peer-to-peer/index.html">Peer-to-peer</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/model/index.html">Model (iOS only)</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/couchbase-lite/tech-notes/index.html">Technical Notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/tech-notes/cbl-encryption/index.html">Encrypting Databases</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/config-properties/index.html">Configuration file</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/command-line-options/index.html">Command line options</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/authorizing-users/index.html">Authorizing Users</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/channels/index.html">Data Routing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/sync-function-api-guide/index.html">Sync Function API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/server-integration/index.html">Webhooks and changes feed</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/deployment/index.html">Deployment considerations</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/nginx/index.html">Load Balancer</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/database-offline/index.html">Taking databases offline and online</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/os-level-tuning/index.html">OS Level Tuning</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/resolving-conflicts/index.html">Resolving Conflicts</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/integrating-external-stores/index.html">Integrating External Stores</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/running-replications/index.html">Running replications</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/rest-api-client/index.html">REST API Client</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/sgcollect-info/index.html">SGCollect Info</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/configuring-ssl/index.html">Configuring SSL</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/bucket-shadowing/index.html">Bucket Shadowing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/accelerator.html">Accelerator</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/authentication/index.html">Authentication</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/basic-authentication/index.html">Basic Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/openid/index.html">OpenID Connect</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/configuration-options/index.html">Configuration Options</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/advanced-topics/index.html">Advanced Topics</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/google/index.html">How-To: Google</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/active-directory/index.html">How-To: Active Directory</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/custom-authentication/index.html">Custom Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/static-providers/index.html">Static Providers</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../references/index.html">API References</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../references/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/couchbase-lite/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/manager/index.html">Manager</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/manager/index.html">Manager</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/manager-options/index.html">ManagerOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/database-options/index.html">DatabaseOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/database/index.html">Database</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/database/database/index.html">Database</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/database/validation-context/index.html">ValidationContext</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/document/index.html">Document</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/document/document/index.html">Document</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/document/document-change/index.html">Document Change</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/revision/index.html">Revision</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/revision/index.html">Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html">Saved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html">Unsaved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/attachment/attachment/index.html">Attachment</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/view/index.html">View</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/view/view/index.html">View</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/view/view-compiler/index.html">View Compiler</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/query/index.html">Query</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query/index.html">Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/live-query/index.html">Live Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html">QueryEnumerator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query-row/index.html">QueryRow</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/replication/index.html">Replication</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/replication/index.html">Replication</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/authenticator/index.html">Authenticator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html">AuthenticatorFactory</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/rest-api/index.html">REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/release-notes/index.html">Release notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/Java/index.html">Java</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../references/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/rest-api/index.html">Public REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/admin-rest-api/index.html">Admin REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/release-notes/index.html">Release notes</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+  </ul>
+</nav>
+            </div>
+          </nav>
+        </aside>
+        <div class="col four-fifths article">
+          <div class="story">
+            <div class="body">
+              
+              
+              
+              <!-- Do not import the overridden styles on swagger ui pages -->
+              
+              <link rel="stylesheet" type="text/css" href="https://couchbase-docs.s3.amazonaws.com/mobile/assets/styles.css">
+              
+              
+              
+              <a class="edit-page-link" href="https://github.com/couchbaselabs/couchbase-mobile-portal/tree/master/md-docs/_1x/guides/couchbase-lite/native-api/query.md" target="_blank">Edit on GitHub</a>
+              
+
+              <div class="inner-content">
+                <!-- Style API ref links -->
+                <style>
+                  a > code {
+                    text-decoration: underline;
+                    color: #0099e5;
+                    background: #f5f7f7;
+                    border-radius: 5px;
+                    padding: 3px 6px;
+                    margin: 0 1px;
+                  }
+                </style>
+                <!-- Platform tabs -->
+                <!-- TODO: Make visible when ready to show multi-platform training -->
+                <div class="toggler">
+                  <style>
+                    .toggler a {
+                      display: inline-block;
+                      padding: 3px 20px;
+                      margin: 2px;
+                      border: 1px solid #00739c;
+                      border-radius: 3px;
+                      text-decoration: none !important;
+                    }
+                    .display-platform-ios .toggler .button-ios,
+                    .display-platform-android .toggler .button-android,
+                    .display-platform-rn .toggler .button-rn,
+                    .display-platform-wpf .toggler .button-wpf,
+                    .display-platform-csharp .toggler .button-csharp,
+                    .display-platform-xam .toggler .button-xam,
+                    .display-platform-swift .toggler .button-swift,
+                    .display-platform-objc .toggler .button-objc,
+                    .display-platform-java .toggler .button-java {
+                      background-color: #00739c;
+                      color: white;
+                    }
+
+                    block { display: none; }
+
+                    .display-platform-ios .ios,
+                    .display-platform-android .android,
+                    .display-platform-rn .rn,
+                    .display-platform-net .net,
+                    .display-platform-csharp .csharp,
+                    .display-platform-wpf .wpf,
+                    .display-platform-xam .xam,
+                    .display-platform-all .all,
+                    .display-platform-swift .swift,
+                    .display-platform-objc .objc,
+                    .display-platform-java .java {
+                      display: block;
+                    }
+                    .inner-content .inline:not(.tab-nav) {
+                      display: none;
+                    }
+                    /* Must change the display mode for striped method names.
+                       This works with the StripingTag Jekyll plugin. */
+                    .display-platform-ios .ios.inline,
+                    .display-platform-android .android.inline,
+                    .display-platform-net .net.inline,
+                    .display-platform-csharp .csharp.inline,
+                    .display-platform-swift .swift.inline,
+                    .display-platform-objc .objc.inline,
+                    .display-platform-java .java.inline {
+                      display: inline;
+                    }
+                  </style>
+                  <div id="platform-tabs" class="hide">
+                    <span>Platform:</span>
+                    
+                    <a href="javascript:void(0);" class="button-ios" onclick="display('platform', 'ios')">iOS</a>
+                    <a href="javascript:void(0);" class="button-android" onclick="display('platform', 'android')">Android</a>
+                    <a href="javascript:void(0);" class="button-wpf" onclick="display('platform', 'wpf')">WPF</a>
+                    
+                  </div>
+                </div>
+                <!-- SDK buttons -->
+                <div id="swagger-libs" style="display: none;">
+                  <span>Sync Gateway Public REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'public')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'public')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'public')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'public')">Python</a>
+                  <br>
+                  <span>Sync Gateway Admin REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'admin')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'admin')">Python</a>
+                  <br>
+                  <span>Couchbase Lite REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'lite')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'lite')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('swift', 'lite')">Swift</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'lite')">Python</a>
+                </div>
+                <!-- Markdown content -->
+                <p>A <strong>query</strong> is the action of looking up results from a view&#39;s index. In Couchbase Lite, queries are objects of the <code>Query</code> class. To perform a query you create one of these, customize its properties (such as the key range or the maximum number of rows) and then run it. The result is a <code>QueryEnumerator</code>, which provides a list of <code>QueryRow</code> objects, each one describing one row from the view&#39;s index.</p>
+
+<p>There&#39;s also a special type of query called an <strong>all-docs query</strong>. This type of query isn&#39;t associated with any view; or rather, you can think of it as querying an imaginary view that contains one row for every document in the database. You use an all-docs query to find all the documents in the database, or the documents with keys in a specific range, or even the documents with a specific set of keys. It can also be used to find documents with conflicts.</p>
+
+<p>Couchbase Lite also provides <strong>live queries</strong>. Once created, a live query remains active and monitors changes to the view&#39;s index, notifying observers whenever the query results change. Live queries are very useful for driving UI components like table views.</p>
+<h2><a class="anchor instructions" name="creating-and-configuring-queries"></a>Creating and configuring queries<a class="hash-link instructions" href="#creating-and-configuring-queries"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><code>Query</code> objects are created by a <code>View</code>&#39;s <code>createQuery</code> method, and by a <code>Database</code>&#39;s <code>createAllDocumentsQuery</code> method. In its default state a <code>Query</code> object will return every row of the index, in increasing order by key. But there are several properties you can configure to change this, before you run the query. Here are the most basic and common ones:</p>
+
+<ul>
+<li><code>startKey</code>: the key to start at. The default value, <code>null</code>, means to start from the beginning.</li>
+<li><code>endKey</code>: the last key to return. The default value, <code>null</code>, means to continue to the end.</li>
+<li><code>descending</code>: If set to <code>true</code>, the keys will be returned in reverse order. (This also reverses the meanings of the <code>startKey</code> and <code>endKey</code> properties, since the query will now start at the highest keys and end at lower ones!)</li>
+<li><code>limit</code>: If nonzero, this is the maximum number of rows that will be returned.</li>
+<li><code>skip</code>: If nonzero, this many rows will be skipped (starting from the <code>startKey</code> if any.)</li>
+</ul>
+
+<p>Some more advanced properties that aren&#39;t used as often:</p>
+
+<ul>
+<li><code>keys</code>: If provided, the query will fetch only the rows with the given keys. (and <code>startKey</code> and <code>endKey</code> will be ignored.)</li>
+<li><code>startKeyDocID</code>: If multiple index rows match the startKey, this property specifies that the result should start from the one(s) emitted by the document with this ID, if any. (Useful if the view contains multiple identical keys, making .startKey ambiguous.)</li>
+<li><code>endKeyDocID</code>: If multiple index rows match the endKey, this property specifies that the result should end with from the one(s) emitted by the document with this ID, if any. (Useful if the view contains multiple identical keys, making .startKey ambiguous.)</li>
+<li><code>indexUpdateMode</code>: Changes the behavior of index updating. By default the index will be updated if necessary before the query runs. You can choose to skip this (and get possibly-stale results), with the option of also starting an asynchronous background update of the index.</li>
+<li><p><code>prefixMatchLevel</code>: If nonzero, enables prefix matching of string or array keys.</p>
+
+<ul>
+<li>A value of 1 treats the endKey itself as a prefix: if it&#39;s a string, keys in the index that
+come after the endKey, but begin with the same prefix, will be matched. (For example, if the
+endKey is <code>&quot;foo&quot;</code> then the key <code>&quot;foolish&quot;</code> in the index will be matched, but not <code>&quot;fong&quot;</code>.) Or if
+the endKey is an array, any array beginning with those elements will be matched. (For
+example, if the endKey is <code>[1]</code>, then <code>[1, &quot;x&quot;]</code> will match, but not <code>[2]</code>.) If the key is any
+other type, there is no effect.</li>
+<li>A value of 2 assumes the endKey is an array and treats its final item as a prefix, using the
+rules above. (For example, an endKey of <code>[1, &quot;x&quot;]</code> will match <code>[1, &quot;xtc&quot;]</code> but not <code>[1, &quot;y&quot;]</code>.)</li>
+<li><p>A value of 3 assumes the key is an array of arrays, etc.</p>
+
+<p>Note that if the <code>.descending</code> property is also set, the search order is reversed and the above
+discussion applies to the <code>startKey</code>, <strong>not</strong> the <code>endKey</code>.</p></li>
+</ul></li>
+</ul>
+
+<p>There are other advanced properties that only apply to reducing and grouping:</p>
+
+<ul>
+<li><code>mapOnly</code>: If set to true, prevents the reduce function from being run, so you get all of the index rows instead of an aggregate. Has no effect if the view has no reduce function.</li>
+<li><code>groupLevel</code>: If greater than zero, enables grouping of rows. The value specifies the number of items in the value array that will be grouped.</li>
+</ul>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Set up a query for a view that indexes blog posts, to get the latest:
+CBLQuery* query = [[self.db viewNamed: @"postsByDate"] createQuery];
+query.descending = YES;
+query.limit = 20;
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Set up a query for a view that indexes blog posts, to get the latest:
+let query = db.viewNamed("postsByDate").createQuery()
+query.descending = true
+query.limit = 20
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Set up a query for a view that indexes blog posts, to get the latest:
+Query query = database.getView("postsByDate").createQuery();
+query.setDescending(true);
+query.setLimit(20);
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Set up a query for a view that indexes blog posts, to get the latest:
+Query query = database.getView("postsByDate").createQuery();
+query.setDescending(true);
+query.setLimit(20);
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Set up a query for a view that indexes blog posts, to get the latest:
+var query = database.GetView("postsByDate").CreateQuery();
+query.Descending = true;
+query.Limit = 20;
+</code></pre></span></div><h2><a class="anchor instructions" name="all-documents-queries"></a>All-documents queries<a class="hash-link instructions" href="#all-documents-queries"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>An all-docs query isn&#39;t associated with a view; or rather, you can think of it as querying an imaginary view that contains one row for every document in the database, whose key is the document ID. It supports all the standard view options, so you can query ranges of document IDs, reverse the order, and even query a specific set of documents using the <code>keys</code> property.</p>
+
+<p>All-docs queries also have a special property called <code>allDocsMode</code> that can customize their behavior. Its values are:</p>
+
+<ul>
+<li><code>allDocs</code>: The default mode. Returns all non-deleted documents.</li>
+<li><code>includeDeleted</code>: In this mode, deleted documents are included as well.</li>
+<li><code>showConflicts</code>: In this mode, each <code>QueryRow</code>&#39;s <code>conflictingRevisions</code> property can be used to find whether it&#39;s in conflict and what the IDs of the conflicting revisions are.</li>
+<li><code>onlyConflicts</code>: Like <code>showConflicts</code>, but <em>only</em> conflicted documents are returned.</li>
+</ul>
+
+<p>(<em>These are not flags.</em> You can only choose one.)</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Let's find the documents that have conflicts so we can resolve them:
+CBLQuery* query = [self.db createAllDocumentsQuery];
+query.allDocsMode = kCBLOnlyConflicts;
+CBLQueryEnumerator* result = [query run: &amp;error];
+for (CBLQueryRow* row in result) {
+    if (row.conflictingRevisions != nil) {
+        NSLog(@"!!! Conflict in document %@", row.documentID);
+        [self beginConflictResolution: row.document];
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Let's find the documents that have conflicts so we can resolve them:
+let query = db.createAllDocumentsQuery()
+query.allDocsMode = CBLAllDocsMode.OnlyConflicts
+var error: NSError?
+let result = query.run(&amp;error)
+while let row = result?.nextRow() {
+    NSLog("!!! Conflict in document %@", row.documentID);
+    self.beginConflictResolution(row.document)
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Let's find the documents that have conflicts so we can resolve them:
+Query query = database.createAllDocumentsQuery();
+query.setAllDocsMode(Query.AllDocsMode.ONLY_CONFLICTS);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    if (row.getConflictingRevisions().size() &gt; 0) {
+        Log.w("MYAPP", "Conflict in document: %s", row.getDocumentId());
+        beginConflictResolution(row.getDocument());
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Let's find the documents that have conflicts so we can resolve them:
+Query query = database.createAllDocumentsQuery();
+query.setAllDocsMode(Query.AllDocsMode.ONLY_CONFLICTS);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    if (row.getConflictingRevisions().size() &gt; 0) {
+        Log.w("MYAPP", "Conflict in document: %s", row.getDocumentId());
+        beginConflictResolution(row.getDocument());
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Let's find the documents that have conflicts so we can resolve them:
+var query = database.CreateAllDocumentsQuery();
+query.AllDocsMode = AllDocsMode.OnlyConflicts;
+var rows = query.Run();
+foreach (var row in rows) 
+{
+    if (row.GetConflictingRevisions().Any())
+    {
+        Log.W(Tag, "Conflict in document: " + row.DocumentId);
+        BeginConflictResolution(row.Document);
+    }
+}
+</code></pre></span></div><h2><a class="anchor instructions" name="running-queries"></a>Running queries<a class="hash-link instructions" href="#running-queries"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>After a <code>Query</code> object is set up just right, you call its <code>run</code> method to get the results. These are returned as a <code>QueryEnumerator</code> object, which mainly serves as an enumerable collection of <code>QueryRow</code> objects.</p>
+
+<p>Each <code>QueryRow</code> has two main properties, its <code>key</code> and its <code>value</code>. These are what were emitted to the index. (Or in the case of an all-docs query, the key is the same as the document ID.) It also has a <code>documentID</code> property that identifies the document that the key and value were emitted from, although usually you&#39;d access the <code>document</code> property instead, which gives you the <code>Document</code> object directly.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Let's query a view that maps product names to prices,
+// starting with the "M"s and showing 100 widgets:
+CBLQuery* query = [[self.db viewNamed: @"widgetsByName"] createQuery];
+query.startKey = @"m";
+query.limit = 100;
+CBLQueryEnumerator* result = [query run: &amp;error];
+for (CBLQueryRow* row in result) {
+    NSLog(@"Widget named %@ costs $%.2f", row.key, [row.value doubleValue]);
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Let's query a view that maps product names to prices,
+// starting with the "M"s and showing 100 widgets:
+let query = db.viewNamed("widgetsByName").createQuery()
+query.startKey = "m"
+query.limit = 100
+var error: NSError?
+let result = query.run(&amp;error)
+while let row = result?.nextRow() {
+    NSLog("Widget named %@ costs $%.2f", row.key as String, row.value as Double);
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Let's query a view that maps product names to prices,
+// starting with the "M"s and showing 100 widgets:
+Query query = database.getView("widgetsByName").createQuery();
+query.setStartKey("m");
+query.setLimit(100);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    Log.w("MYAPP", "Widget named %s costs $%f", row.getKey(), ((Double)row.getValue()).doubleValue());
+}
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Let's query a view that maps product names to prices,
+// starting with the "M"s and showing 100 widgets:
+Query query = database.getView("widgetsByName").createQuery();
+query.setStartKey("m");
+query.setLimit(100);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    Log.w("MYAPP", "Widget named %s costs $%f", row.getKey(), ((Double)row.getValue()).doubleValue());
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Let's query a view that maps product names to prices,
+// starting with the "M"s and showing 100 widgets:
+var query = database.GetView("widgetsByName").CreateQuery();
+query.StartKey = "m";
+query.Limit = 100;
+var rows = query.Run();
+foreach (var row in rows)
+{
+    var name = row.Key;
+    var cost = Convert.ToDouble(row.Value);
+    Log.W(Tag, "Widget named " + name + " costs $" +  cost);
+}
+</code></pre></span></div><h2><a class="anchor instructions" name="re-running-queries-and-livequery"></a>Re-running queries, and LiveQuery<a class="hash-link instructions" href="#re-running-queries-and-livequery"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>It&#39;s OK to run the same Query again. You can even change its settings before the next run. But if you find yourself wanting to re-run a query over and over to check for updates, there are some optimizations to consider.</p>
+
+<p>First, there&#39;s a quick check to see whether the previous query results are still up to date. If you keep the QueryEnumerator object and check its <code>stale</code> property, a <code>false</code> value means that the view index hasn&#39;t changed and re-running the query won&#39;t give you a different result set.</p>
+
+<p>Second, even if the enumerator says it&#39;s stale and you re-run the query, the new results might not be any different. The <code>stale</code> method is conservative and might report false positives, and even if the index did change, your query might not include any of the changed rows. You can quickly check if the new QueryEnumerator you got is equivalent to the old one by comparing the objects for equality (e.g. using <code>equals</code> in Java, or <code>-isEqual:</code> in Objective-C.)</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Check whether the query result set has changed:
+if (self.queryResult == nil || self.queryResult.stale) {
+    CBLQueryEnumerator *newResult = [self.query run: &amp;error];
+    if (![self.queryResult isEqual: newResult]) {
+        self.queryResult = newResult;
+        [self updateMyUserInterface];
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Check whether the query result set has changed:
+if (queryResult == nil || queryResult.stale) {
+    let newResult = query.run(&amp;error)
+    if (queryResult != newResult) {
+        queryResult = newResult
+        self.updateMyUserInterface()
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Check whether the query result set has changed:
+if (queryResult == null || queryResult.isStale()) {
+    QueryEnumerator newResult = query.run();
+    if (!queryResult.equals(newResult)) {
+        queryResult = newResult;
+        updateMyUserInterface();
+    }
+}
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Check whether the query result set has changed:
+if (queryResult == null || queryResult.isStale()) {
+    QueryEnumerator newResult = query.run();
+    if (!queryResult.equals(newResult)) {
+        queryResult = newResult;
+        updateMyUserInterface();
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Check whether the query result set has changed:
+if (queryResult == null || queryResult.Stale) 
+{
+    QueryEnumerator newResult = query.Run();
+    if (!queryResult.Equals(newResult))
+    {
+        queryResult = newResult;
+        UpdateMyUserInterface();
+    }
+}
+</code></pre></span></div>
+<p>There&#39;s a class that actually does this work for you, called <code>LiveQuery</code>. A live query stays active and monitors the database and view index for changes. When there&#39;s a change it re-runs itself automatically, and if the query results changed it notifies any observers. LiveQuery is a great way to build reactive user interfaces, especially table/list views, that keep themselves up to date. For example, as the replicator runs and pulls new data from the server, a LiveQuery-driven UI will automatically update to show the data without the user having to manually refresh. This helps your app feel quick and responsive.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">- (void) initializeQuery {
+    // Set up my live query during view initialization:
+    CBLQuery* query = [[self.db viewNamed: @"widgets"] createQuery];
+    query.limit = 100;
+    self.liveQuery = query.asLiveQuery;
+    [self.liveQuery addObserver: self forKeyPath: @"rows"
+                        options: 0 context: NULL];
+    [self.liveQuery start];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context 
+{
+    if (object == self.liveQuery) {
+        [self displayRows: self.liveQuery.rows]; // update the UI
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">func initializeQuery() {
+    let query = db.viewNamed("widgets").createQuery()
+    query.limit = 100
+    liveQuery = query.asLiveQuery()
+    liveQuery.addObserver(self, forKeyPath: "rows", options: nil, context: nil)
+    liveQuery.start()
+}
+override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, 
+    change: [NSObject : AnyObject], context: UnsafeMutablePointer&lt;Void&gt;) {
+    if object as? NSObject == liveQuery {
+        displayRows(liveQuery.rows)
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">private void initializeQuery() {
+    // Set up my live query during view initialization:
+    Query query = database.getView("widgets").createQuery();
+    query.setLimit(100);
+    LiveQuery liveQuery = query.toLiveQuery();
+    this.liveQuery = liveQuery;
+    liveQuery.addChangeListener(new LiveQuery.ChangeListener() {
+        @Override
+        public void changed(LiveQuery.ChangeEvent event) {
+            if (event.getSource().equals(this.liveQuery)) {
+                this.displayRows(event.getRows());
+            }
+        }
+    });
+    this.liveQuery.start();
+}
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">private void initializeQuery() {
+    // Set up my live query during view initialization:
+    Query query = database.getView("widgets").createQuery();
+    query.setLimit(100);
+    LiveQuery liveQuery = query.toLiveQuery();
+    this.liveQuery = liveQuery;
+    liveQuery.addChangeListener(new LiveQuery.ChangeListener() {
+        @Override
+        public void changed(LiveQuery.ChangeEvent event) {
+            if (event.getSource().equals(this.liveQuery)) {
+                this.displayRows(event.getRows());
+            }
+        }
+    });
+    this.liveQuery.start();
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">private void InitializeQuery() 
+{
+    // Set up my live query during view initialization:
+    var query = database.GetView("widgets").CreateQuery();
+    query.Limit = 100;
+    liveQuery = query.ToLiveQuery();
+    liveQuery.Changed += (sender, e) =&gt; DisplayRows(e.Rows);
+    liveQuery.Start();
+}
+</code></pre></span></div><h2><a class="anchor instructions" name="querying-key-ranges"></a>Querying key ranges<a class="hash-link instructions" href="#querying-key-ranges"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>There are some subtleties to working with key ranges (<code>startKey</code> and <code>endKey</code>.) The first is that if you reverse the order of keys, by setting the <code>reverse</code> property, then the <code>startKey</code> needs to be <em>greater than</em> the <code>endKey</code>. That&#39;s the reason they&#39;re named <em>start</em> and <em>end</em>, rather than <em>min</em> and <em>max</em>. In the following example, note that the key range starts at 100 and ends at 90; if we&#39;d done it the other way around, we&#39;d have gotten an empty result set.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Set up a query for the highest-rated movies:
+CBLQuery* query = [[self.db viewNamed: @"postsByDate"] createQuery];
+query.descending = YES;
+query.startKey = @100;  // Note the start key is higher than the end key
+query.endKey = @90;
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Set up a query for the highest-rated movies:
+let query = db.viewNamed("postsByDate").createQuery()
+query.descending = true
+query.startKey = 100 // Note the start key is higher than the end key
+query.endKey = 90
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Set up a query for the highest-rated movies:
+Query query = database.getView("postsByDate").createQuery();
+query.setDescending(true);
+query.setStartKey(new Integer(100));
+query.setEndKey(new Integer(90));
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Set up a query for the highest-rated movies:
+Query query = database.getView("postsByDate").createQuery();
+query.setDescending(true);
+query.setStartKey(new Integer(100));
+query.setEndKey(new Integer(90));
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Set up a query for the highest-rated movies:
+var query = database.GetView("postsByDate").CreateQuery();
+query.Descending = true;
+query.StartKey = 100;
+query.EndKey = 90;
+</code></pre></span></div>
+<p>Second is the handling of compound (array) keys. When a view&#39;s keys are arrays, it&#39;s very common to want to query all the rows that have a specific value (or value range) for the first element. The start key is just a one-element array with that value in it, but it&#39;s not obvious what the <em>end</em> key should be. What works is an array that&#39;s like the starting key but with a second object appended that&#39;s greater than any possible value. For example, if the start key is (in JSON) <code>[&quot;red&quot;]</code> then the end key could be <code>[&quot;red&quot;, &quot;ZZZZ&quot;]</code> ... because none of the possible second items could be greater than &quot;ZZZZ&quot;, right? Unfortunately this has obvious problems. The correct stop value to use turns out to be an empty object/dictionary, <code>{}</code>, making the end key <code>[&quot;red&quot;, {}]</code>. This works because the sort order in views puts dictionaries last.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Assume the view's keys are like [color, model]. We want all the red ones.
+CBLQuery* query = [[self.db viewNamed: @"carsByColorAndModel"] createQuery];
+query.startKey = @[@"red"]
+query.endKey   = @[@"red", @{}];
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Assume the view's keys are like [color, model]. We want all the red ones.
+let query = db.viewNamed("carsByColorAndModel").createQuery()
+query.startKey = ["red"]
+query.endKey = ["red",[:]]
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Assume the view's keys are like [color, model]. We want all the red ones.
+Query query = database.getView("carsByColorAndModel").createQuery();
+query.setStartKey("red");
+query.setEndKey(Arrays.asList("red", new HashMap&lt;String, Object&gt;()));
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Assume the view's keys are like [color, model]. We want all the red ones.
+Query query = database.getView("carsByColorAndModel").createQuery();
+query.setStartKey("red");
+query.setEndKey(Arrays.asList("red", new HashMap&lt;String, Object&gt;()));
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Assume the view's keys are like [color, model]. We want all the red ones.
+var query = database.GetView("carsByColorAndModel").CreateQuery();
+query.StartKey = new List&lt;object&gt; {"red"};
+query.EndKey = new List&lt;object&gt; {"red", new Dictionary&lt;string, object&gt;()};
+</code></pre></span></div><h2><a class="anchor instructions" name="reducing"></a>Reducing<a class="hash-link instructions" href="#reducing"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>If the view has a reduce function, it will be run <em>by default</em> when you query the view. This means that all rows of the output will be aggregated into a single row with no key, whose value is the output of the reduce function. (See the View documentation for a full description of what reduce functions do.)</p>
+
+<p>(It&#39;s important to realize that the reduce function runs on the rows that <em>would be output</em>, not all the rows in the view. So if you set the <code>startKey</code> and/or <code>endKey</code>, the reduce function runs only on the rows in that key range.)</p>
+
+<p>If you don&#39;t want the reduce function to be used, set the query&#39;s <code>mapOnly</code> property to <code>true</code>. This gives you the flexibility to use a single view for both detailed results and statistics. For example, adding a typical row-count reduce function to a view lets you get the full results (with <code>mapOnly=true</code>) or just the number of rows (with <code>mapOnly=false</code>).</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// This view's keys are order dates, and values are prices.
+// The reduce function computes an average of the input values.
+CBLQuery* query = [ordersByDateView createQuery];
+query.startKey = @"2014-01-01";
+query.endKey   = @"2014-02-01";
+query.inclusiveEnd = NO;
+// First run without reduce to get the individual orders for January '14:
+query.mapOnly = YES;
+for (CBLQueryRow* row in [query run: &amp;error]) {
+    NSLog(@"On %@: order for $%.2f", row.key, [row.value doubleValue])
+}
+// Now run with reduce to get the average order price for January '14:
+query.mapOnly = NO;
+CBLQueryRow* aggregate = [[query run: &amp;error] nextRow];
+NSLog(@"Average order was $%.2f", [row.value doublevalue]);
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// This view's keys are order dates, and values are prices.
+// The reduce function computes an average of the input values.
+let query = ordersByDateView.createQuery()
+query.startKey = "2014-01-01"
+query.endKey = "2014-02-01"
+query.inclusiveEnd = false
+// First run without reduce to get the individual orders for January '14:
+query.mapOnly = true
+var error: NSError?
+var result = query.run(&amp;error)
+while let row = result?.nextRow() {
+    NSLog("On %@: order for $%.2f", row.key as String, row.value as Double);
+}
+// Now run with reduce to get the average order price for January '14:
+query.mapOnly = false
+result = query.run(&amp;error)
+if let aggregate = result?.nextRow() {
+    NSLog("Average order was $%.2f", aggregate.value as Double)
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// This view's keys are order dates, and values are prices.
+// The reduce function computes an average of the input values.
+Query query = database.getView("ordersByDateView").createQuery();
+query.setStartKey("2014-01-01");
+query.setEndKey("2014-02-01");
+// First run without reduce to get the individual orders for January '14:
+query.setMapOnly(true);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    Log.w("MYAPP", "On %s: order for $%f", row.getKey(), ((Double)row.getValue()).doubleValue());
+}
+// Now run with reduce to get the average order price for January '14:
+query.setMapOnly(false);
+QueryEnumerator result = query.run();
+QueryRow aggregate = result.next();
+Log.w("MYAPP", "Average order was $%f", ((Double)aggregate.getValue()).doubleValue());
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// This view's keys are order dates, and values are prices.
+// The reduce function computes an average of the input values.
+Query query = database.getView("ordersByDateView").createQuery();
+query.setStartKey("2014-01-01");
+query.setEndKey("2014-02-01");
+// First run without reduce to get the individual orders for January '14:
+query.setMapOnly(true);
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    Log.w("MYAPP", "On %s: order for $%f", row.getKey(), ((Double)row.getValue()).doubleValue());
+}
+// Now run with reduce to get the average order price for January '14:
+query.setMapOnly(false);
+QueryEnumerator result = query.run();
+QueryRow aggregate = result.next();
+Log.w("MYAPP", "Average order was $%f", ((Double)aggregate.getValue()).doubleValue());
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// This view's keys are order dates, and values are prices.
+// The reduce function computes an average of the input values.
+var query = database.GetView("ordersByDateView").CreateQuery();
+query.StartKey = "2014-01-01";
+query.EndKey = "2014-02-01";
+query.InclusiveEnd = false;
+// First run without reduce to get the individual orders for January '14:
+query.MapOnly = true;
+var rows = query.Run();
+foreach (var row in rows)
+{
+    var date = row.Key;
+    var price = Convert.ToDouble(row.Value);
+    Log.D(Tag, String.Format("On {0}: order for ${1:0.##}", date, price));
+}
+// Now run with reduce to get the average order price for January '14:
+query.MapOnly = false;
+rows = query.Run();
+Debug.Assert(rows.Count &gt; 0);
+var avg = Convert.ToDouble(rows.GetRow(0).Value);
+Log.D(Tag, String.Format("Average order was ${0:0.##}", avg));
+</code></pre></span></div><h2><a class="anchor instructions" name="grouping-by-key"></a>Grouping by key<a class="hash-link instructions" href="#grouping-by-key"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>The <code>groupLevel</code> property of a query allows you to collapse together (aggregate) rows with the same keys or key prefixes. And you can compute aggregated statistics of the grouped-together rows by using a reduce function. One very powerful use of grouping is to take a view whose keys are arrays representing a hierarchy — like <code>[genre, artist, album, track]</code> for a music library — and query a single level of the hierarchy for use in a navigation UI.</p>
+
+<p>In general, <code>groupLevel</code> requires that the keys be arrays; rows with other types of keys will be ignored. When the <code>groupLevel</code> is <em>n</em>, the query combines rows that have equal values in the first n items of the key into a single row whose key is the n-item common prefix.</p>
+
+<p><code>groupLevel=1</code> is slightly different in that it supports non-array keys: it compares them for equality. In other words, if a view&#39;s keys are strings or numbers, a query with <code>groupLevel=1</code> will return a row for each <em>unique</em> key in the index.</p>
+
+<p>We&#39;ve talked about the keys of grouped query rows, but what are the values? The <code>value</code> property of each row will be the result of running the view&#39;s reduce function over all the rows that were aggregated; or if the view has no reduce function, there&#39;s no value. (See the View documentation for information on reduce functions.)</p>
+
+<p>Here&#39;s an interesting example. We have a database of the user&#39;s music library, and a view containing a row for every audio track, with key of the form <code>[genre, artist, album, trackname]</code> and value being the track&#39;s duration in seconds. The view has a reduce function that simply totals the input values. The user&#39;s drilled down into the genre &quot;Mope-Rock&quot;, then artist &quot;Radiohead&quot;, and now we want to display the albums by this artist, showing each album&#39;s running time.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">CBLQuery* query = [hierarchyView createQuery];
+query.groupLevel = 3;
+query.startKey = @[@"Mope-Rock", @"Radiohead"];
+query.endKey   = @[@"Mope-Rock", @"Radiohead", @{}];
+// groupLevel=3 will return [genre, artist, album] keys.
+NSMutableArray* albumTitles = [NSMutableArray array];
+NSMutableArray* albumTimes  = [NSMutableArray array];
+for (CBLQueryRow* row in [query run: &amp;error]) {
+    [albumTitles addObject: [row keyAtIndex: 2];  // title is 3rd item of key
+    [albumTimes addObject:  row.value];   // value is album's running time
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">var albumTitles: [String] = []
+var albumTimes: [Int] = []
+var error: NSError?
+let result = query.run(&amp;error)
+while let row = result?.nextRow() {
+    albumTitles.append(row.keyAtIndex(2) as String)
+    albumTimes.append(row.value as Int)
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">Query query = database.getView("hierarchyView").createQuery();
+query.setGroupLevel(3);
+query.setStartKey(Arrays.asList("Mope-Rock", "Radiohead"));
+query.setEndKey(Arrays.asList("Mope-Rock", "Radiohead", new HashMap&lt;String, Object&gt;()));
+// groupLevel=3 will return [genre, artist, album] keys.
+List&lt;String&gt; albumTitles = new ArrayList&lt;String&gt;();
+List&lt;String&gt; albumTimes = new ArrayList&lt;String&gt;();
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    List&lt;String&gt; key = (List) row.getKey();
+    albumTitles.add(key.get(2)); // title is 3rd item of key
+    albumTimes.add((String)row.getValue()); // value is album's running time
+}
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">Query query = database.getView("hierarchyView").createQuery();
+query.setGroupLevel(3);
+query.setStartKey(Arrays.asList("Mope-Rock", "Radiohead"));
+query.setEndKey(Arrays.asList("Mope-Rock", "Radiohead", new HashMap&lt;String, Object&gt;()));
+// groupLevel=3 will return [genre, artist, album] keys.
+List&lt;String&gt; albumTitles = new ArrayList&lt;String&gt;();
+List&lt;String&gt; albumTimes = new ArrayList&lt;String&gt;();
+QueryEnumerator result = query.run();
+for (Iterator&lt;QueryRow&gt; it = result; it.hasNext(); ) {
+    QueryRow row = it.next();
+    List&lt;String&gt; key = (List) row.getKey();
+    albumTitles.add(key.get(2)); // title is 3rd item of key
+    albumTimes.add((String)row.getValue()); // value is album's running time
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">var query = database.GetView("hierarchyView").CreateQuery();
+query.GroupLevel = 3;
+query.StartKey = new List&lt;object&gt; {"Mope-Rock", "Radiohead"};
+query.EndKey = new List&lt;object&gt; {"Mope-Rock", "Radiohead", new Dictionary&lt;string, object&gt;()};
+// GroupLevel = 3 will return [genre, artist, album] keys.
+var albumTitles = new List&lt;string&gt;();
+var albumTimes = new List&lt;string&gt;();
+var rows = query.Run();
+foreach (var row in rows)
+{
+    var keys = row.Key.AsList&lt;string&gt;();
+    albumTitles.Add(keys[2]);           // title is 3rd item of key
+    albumTimes.Add((string)row.Value);  // value is album's running time
+}
+</code></pre></span></div>
+                <!-- Logic to make all links open in a new tab -->
+                <script>
+                  var links = document.links;
+
+                  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+                    if (['button-swift', 'button-objc', 'button-csharp', 'button-java', 'button-ios', 'button-android', 'button-wpf'].indexOf(links[i].className) == -1) {
+                      if (links[i].hostname != window.location.hostname) {
+                        links[i].target = '_blank';
+                      }
+                    }
+                  }
+                </script>
+                <!-- Logic for platform tabs -->
+                <script>
+                  // Only show on Develop pages
+                  var blocksv1 = document.getElementsByClassName('ios');
+                  var blocksv2 = document.getElementsByClassName('swift');
+                  if ((blocksv1.length > 0 && blocksv1[0].tagName == 'BLOCK') || (blocksv2.length > 0 && blocksv2[0].tagName == 'BLOCK')) {
+                    var platformTabs = document.getElementById('platform-tabs');
+                    platformTabs.className = "show";
+                  }
+                  // Convert <div>...<span><block /></span>...</div>
+                  // Into <div>...<block />...</div>
+                  var blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      var span = blocks[i].parentNode;
+                      var container = span.parentNode;
+                      container.insertBefore(block, span);
+                      container.removeChild(span);
+                    }
+                  }
+                  // Convert <div>...<block />content<block />...</div>
+                  // Into <div>...<block>content</block><block />...</div>
+                  blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      while (block.nextSibling && block.nextSibling.tagName !== 'BLOCK') {
+                        block.appendChild(block.nextSibling);
+                      }
+                    }
+                  }
+                  function display(type, value, isFirstPageLoad) {
+                    deleteCookie('mobile-lang');
+                    setCookie('mobile-lang', value, 365);
+                    if (!isFirstPageLoad) {
+                      var newurl = UpdateQueryString('language', value);
+                      window.history.pushState({path: newurl}, '', newurl);
+                    }
+                    // Place the display-platform-* class on div.inner-content
+                    var container = document.getElementsByClassName('inner-content')[0];
+                    container.className = 'inner-content display-' + type + '-' + value;
+                    if (value == 'wpf' || value == 'csharp' || value == 'xam') {
+                      container.className += ' display-platform-net';
+                    }
+                    container.className += ' display-platform-all';
+                    return false;
+                  }
+
+                  // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+                  // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+                  var foundHash = false;
+                  var language = getParameterByName('language');
+                  if (['ios', 'android', 'csharp', 'swift', 'objc', 'wpf', 'java'].indexOf(language) > -1) {
+                    foundHash = true;
+                    display('platform', language, true);
+                  }
+
+                  if (!foundHash) {
+                    var cookie_lang = getCookie('mobile-lang');
+                    if (document.getElementsByClassName(cookie_lang).length > 0) {
+                      display('platform', cookie_lang, true);
+                    } else {
+                      if (document.getElementsByClassName('swift').length > 0) {
+                        display('platform', 'swift', true);
+                      } else if (document.getElementsByClassName('ios').length > 0) {
+                        display('platform', 'ios', true);
+                      }
+                    }
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) {
+                      url = window.location.href;
+                    }
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                  function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                  }
+                  function deleteCookie(cname) {
+                    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+                  function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                      }
+                    }
+                    return "";
+                  }
+                  function UpdateQueryString(key, value, url) {
+                    if (!url) url = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+                      hash;
+
+                    if (re.test(url)) {
+                      if (typeof value !== 'undefined' && value !== null)
+                        return url.replace(re, '$1' + key + "=" + value + '$2$3');
+                      else {
+                        hash = url.split('#');
+                        url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                    }
+                    else {
+                      if (typeof value !== 'undefined' && value !== null) {
+                        var separator = url.indexOf('?') !== -1 ? '&' : '?';
+                        hash = url.split('#');
+                        url = hash[0] + separator + key + '=' + value;
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                      else
+                        return url;
+                    }
+                  }
+                </script>
+                <!-- Segment.io analytics -->
+                <script type="text/javascript">
+                  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+                    analytics.load("8mPwsJfsKAal6r62qS9ubBQqjWwYly4M");
+                    analytics.page()
+                  }}();
+                </script>
+                <script>
+                  var starterProject = document.getElementById('project');
+                  analytics.trackLink(starterProject, 'Download project', {
+                    category: 'Training',
+                    label: 'Swift'
+                  });
+                </script>
+                <!-- SDK buttons (shown only if show_true=true in the SDK) -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+                <script>
+
+                  if (getParameterByName("show_swagger_libs") || getParameterByName("swagger")) {
+                    var swagger_libs_el = document.getElementById('swagger-libs');
+                    swagger_libs_el.style.display = 'block';
+                  }
+
+                  function getSDK(lang, spec) {
+                    var url = null;
+                    switch(spec) {
+                      case 'public':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-public/spec.json';
+                        break;
+                      case 'admin':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-admin/spec.json';
+                        break;
+                      case 'lite':
+                        url = 'http://developer.couchbase.com/mobile/swagger/couchbase-lite/spec.json';
+                        break;
+                    }
+                    fetch(url)
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        var options = {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({spec: res})
+                        };
+                        return fetch('http://generator.swagger.io/api/gen/clients/' + lang, options)
+                      })
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        window.location = res.link;
+                      });
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                </script>
+              </div>
+
+              <script>
+                /**
+                 * HACK: To keep the code tabs while using markdown. Insert <div class="tab"></div> in the markdown and this script
+                 * finds and replaces all instances with a tab bar.
+                 */
+                var tab_bar_html = "</div><a href='javascript:setLanguage(\"swift\")' class=\"tab stripe-active swift\">Swift</a> <a href='javascript:setLanguage(\"objective-c\")' class=\"tab stripe-active objective-c selected\">Objective-C</a> <a href='javascript:setLanguage(\"android\")' class=\"tab stripe-active android\">Android</a> <a href='javascript:setLanguage(\"java\")' class=\"tab stripe-active java\">Java</a> <a href='javascript:setLanguage(\"c\")' class=\"tab stripe-active c\">C#</a>"
+                var tab_bars = document.getElementsByClassName('tabs');
+                var i = tab_bars.length - 1;
+                while (i >= 0) {
+                  var parent = tab_bars.item(i).parentNode;
+                  var element = document.createElement('div');
+                  element.className = 'tab-bar';
+                  element.innerHTML = tab_bar_html;
+                  parent.replaceChild(element, tab_bars.item(i));
+                  i--;
+                }
+
+                /**
+                 * HACK: To keep the markdown tables styles after ingestion we need to wrap the ouput in <div class="table"></div>
+                 */
+                var tables = document.getElementsByTagName("table");
+                var j = tables.length - 1;
+                while (j >= 0) {
+                  var parent = tables.item(j).parentNode;
+                  var table = tables.item(j);
+                  var wrapper = document.createElement('div');
+                  wrapper.className = 'table';
+                  wrapper.style.padding = 0;
+                  parent.insertBefore(wrapper, table);
+                  wrapper.appendChild(table);
+                  j--;
+                }
+              </script>
+              <script>
+                /**
+                 * Hack to not open some list titles
+                 */
+                (function() {
+                  var els = document.getElementsByClassName('static');
+                  for (var i = 0; i < els.length; i++) {
+                    (function() {
+                      var el = els[i];
+                      el.onclick = function () {
+                        var icon = el.previousSibling;
+                        var iconClasses = icon.className;
+                        if (iconClasses == 'icon') {
+                          icon.className = 'icon close';
+                        } else {
+                          icon.className = 'icon';
+                        }
+                        var list = el.nextSibling;
+                        var displayProp = list.style.display;
+                        if (displayProp == 'block') {
+                          list.style.display = 'none';
+                        } else {
+                          list.style.display = 'block';
+                        }
+                      }
+                    })()
+                  }
+                })()
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+</main>
+  </div>
+</div>
+
+<!-- Require_js bootstrap for app-specific JS module support -->
+<!-- data-main attribute tells require.js to load
+scripts/main.js after require.js loads. -->
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/require.js"></script>
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/prism.js"></script>
+<script rel="main" type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/main.js" ></script>
+<!-- leave the main attribute, it is used to help main.js determine -->
+<!-- the domain-relative path to the base script (main.js) -->
+
+</body>
+
+</html>

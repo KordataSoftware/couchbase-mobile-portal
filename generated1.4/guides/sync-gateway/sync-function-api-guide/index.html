@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="description" content="A high-level introduction to the component parts of the Couchbase Mobile product." />
+  <meta name="version" content="1.4" />
+  <meta name="product" content="mobile" />
+  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/webfiles/1498186094252/images/icons/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/webfiles/1498186094252/images/icons/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--    _____________________________
+  _______/ Support for legacy browsers \_______________________________________-->
+  <!--[if lte IE 8]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/html5shiv.js" />
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/respond.js" />
+  <![endif]-->
+  <!--[if IE 9]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/classList.js" />
+  <![endif]-->
+  <!--_________________________________________________________________________-->
+  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/jquery-migrate.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/slick.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/isotope.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/imagesloaded.min.js"></script>
+
+  <meta name="apple-mobile-web-app-title" content="Couchbase">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="1gPO0RaMzKyZJFpS-iyIEnPsWDztwZH0R3vG1VpSwvM" />
+
+  <!-- LOCAL CSS Libs -->
+  <link rel="stylesheet" href="https://developer.couchbase.com/webfiles/1498186094252/css/styles.css">
+
+  <!-- Default canonical comes from the URL -->
+  <link rel="canonical" href="http://developer.couchbase.com"/>
+  <title>Couchbase</title>
+  <link rel="stylesheet" href="https://developer.couchbase.com/binaries/content/assets/css/overrides.css">
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0"
+          width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<script>
+  var overrideJsPath = "/binaries/content/assets/js/overrides.js";
+  $.ajax({
+    url: overrideJsPath,
+    type: 'HEAD',
+    error: function () {
+    },
+    success: function () {
+      // file exists
+      $.getScript(overrideJsPath);
+    }
+  });
+</script>
+<!--    ________________
+_______/ INCLUDE HEADER - BODY - FOOTER \____________________________________________________-->
+<!-- begin - include ref= -->
+<nav class="aux">
+  <div>
+  </div>
+</nav>
+<!-- Beginning of site.../jsp/base/header.jsp -->
+<header id="global-header" class="global-header dev-portal">
+  <div class="layout-wrapper">
+    <div class="global-header__logo">
+      <a href='http://www.couchbase.com'>Couchbase</a>
+      <a href='index.html'>Developer</a>
+
+    </div>
+
+    <a data-modules="navigation,globalheadersearch"></a>
+    <nav role="navigation" id="primary-navigation" class="primary-navigation">
+      <button aria-controls="primary-navigation__wrapper"
+              aria-pressed="false"
+              class="primary-navigation__toggler"
+              type="button">
+
+        <span>Menu</span>
+      </button>
+      <div id="primary-navigation__wrapper"
+           class="primary-navigation__wrapper"
+           aria-expanded="false">
+
+        <ul class="primary-navigation__items">
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/documentation/server/current/introduction/intro.html">Server</a>
+          </li>
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/mobile">Mobile</a>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/community">Community</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/open-source-projects">Open Source Projects</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/contribute">Contribute</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://www.couchbase.com/nosql-resources/events">Events</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/experts-and-champions">Experts &amp; Champions</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://forums.couchbase.com/">Forums</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://blog.couchbase.com">Blogs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/support">Support</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/guides-and-references">Site Map</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-1">Couchbase Server</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-2">Couchbase Mobile</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-3">SDKs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-5">Connectors</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/documentation-archive">Documentation Archive</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <form id="global-header-search"
+              autocomplete="off"
+              class="global-header-search global-header-search--js"
+              action="https://developer.couchbase.com/search"
+              aria-expanded="false">
+          <ul><!--
+            ---><li>
+            <label for="global-header-search__query">
+              Search query
+            </label>
+            <input
+                    type="search"
+                    placeholder="Search"
+                    name="q"
+                    value=""
+                    id="global-header-search__query">
+          </li><!--
+                ---><li>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </li><!--
+        ---></ul>
+          <button aria-controls="global-header-search__items"
+                  aria-pressed="false"
+                  class="global-header-search__toggler"
+                  type="button">
+            <span>Search</span>
+          </button><!--
+        --->
+
+          <div style="display: none" about="custom-search-fields">
+
+            <input type="hidden"
+                   name="cx"
+                   value="017928787631531434501:3e7lwhjxsom" />
+            <input type="hidden"
+                   name="cof"
+                   value="FORID:11" />
+            <input type="hidden"
+                   name="safe"
+                   value="off" />
+            <input type="hidden"
+                   name="form_build_id"
+                   value="form-RrbKDUhO3kB2MiqBdZHIQI9L4LFE7c3L_s87N2B9BZo" />
+            <input type="hidden"
+                   name="form_id"
+                   value="google_cse_results_searchbox_form" />
+            <input type="hidden"
+                   name="siteurl"
+                   value='developer.couchbase.com' />
+
+          </div>
+        </form>
+      </div>
+    </nav>
+    <a class="global-header__download-button" href="https://developer.couchbase.com/downloads">
+      Download
+    </a>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="wrapper">
+    <main id="global-content" class="global-content" role="main">
+
+  <div id="page-template-attributes" data-template-id="" data-template-class="learn-support-sec article-tpl"></div>
+
+  <!-- LEFTNAV and ARTICLE -->
+  <section class="tpl-body">
+    <div class="wrapper">
+      <div class="cols">
+        <aside class="col one-fifth section-nav left-rail">
+          <nav role="navigation" aria-label="Secondary" style="width: 100%;">
+            <div class="toc collapsible" style="display: block;">
+              
+
+
+
+<!-- Used in the left nav to find the relative URL -->
+
+
+
+
+<nav style="width: 100%;" role="navigation" aria-label="Secondary" class="toc collapsible">
+  <ul class="main collapsed">
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../whatsnew.html">What's new</a>
+        
+      
+      
+      </li>
+    
+      <li class=" ishidden">
+      
+        <a href="#" class="static">Hidden Files For Redirects</a>
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/sync-gateway/views/index.html">Creating and querying a View</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../installation/index.html">Getting Started</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/ios/index.html">iOS/tvOS/macOS</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/android/index.html">Android</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/net/index.html">.NET</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/xamarin/index.html">Xamarin</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/java/index.html">Java</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/phonegap/index.html">PhoneGap</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class=" ">
+      
+        
+          <a href="../../../training/index.html">Tutorial</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Design</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/design/data-modeling/index.html">Data Modeling</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/design/security/index.html">Access Control</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Develop</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/create-database/index.html">Create a Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/using-the-database/index.html">Using the Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/adding-synchronization/index.html">Adding Sync</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/adding-security/index.html">Adding Security</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/integration/index.html">Integration</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Deploy</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/install/index.html">Install</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/scale/index.html">Scale</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../guides/index.html">Guides</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/couchbase-lite/native-api/data-modeling/index.html">Data Modeling</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/couchbase-lite/native-api/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/manager/index.html">Manager</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/database/index.html">Database</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/document/index.html">Document</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/revision/index.html">Revision</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/view/index.html">View</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/query/index.html">Query</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/replication/index.html">Replication</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/peer-to-peer/index.html">Peer-to-peer</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/model/index.html">Model (iOS only)</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/couchbase-lite/tech-notes/index.html">Technical Notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/tech-notes/cbl-encryption/index.html">Encrypting Databases</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/config-properties/index.html">Configuration file</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/command-line-options/index.html">Command line options</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/authorizing-users/index.html">Authorizing Users</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/channels/index.html">Data Routing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a class="selected" href="../../../guides/sync-gateway/sync-function-api-guide/index.html">Sync Function API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/server-integration/index.html">Webhooks and changes feed</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/deployment/index.html">Deployment considerations</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/nginx/index.html">Load Balancer</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/database-offline/index.html">Taking databases offline and online</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/os-level-tuning/index.html">OS Level Tuning</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/resolving-conflicts/index.html">Resolving Conflicts</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/integrating-external-stores/index.html">Integrating External Stores</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/running-replications/index.html">Running replications</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/rest-api-client/index.html">REST API Client</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/sgcollect-info/index.html">SGCollect Info</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/configuring-ssl/index.html">Configuring SSL</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/bucket-shadowing/index.html">Bucket Shadowing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/accelerator.html">Accelerator</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/authentication/index.html">Authentication</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/basic-authentication/index.html">Basic Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/openid/index.html">OpenID Connect</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/configuration-options/index.html">Configuration Options</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/advanced-topics/index.html">Advanced Topics</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/google/index.html">How-To: Google</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/active-directory/index.html">How-To: Active Directory</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/custom-authentication/index.html">Custom Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/static-providers/index.html">Static Providers</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../references/index.html">API References</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../references/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/couchbase-lite/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/manager/index.html">Manager</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/manager/index.html">Manager</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/manager-options/index.html">ManagerOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/database-options/index.html">DatabaseOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/database/index.html">Database</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/database/database/index.html">Database</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/database/validation-context/index.html">ValidationContext</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/document/index.html">Document</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/document/document/index.html">Document</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/document/document-change/index.html">Document Change</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/revision/index.html">Revision</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/revision/index.html">Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html">Saved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html">Unsaved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/attachment/attachment/index.html">Attachment</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/view/index.html">View</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/view/view/index.html">View</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/view/view-compiler/index.html">View Compiler</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/query/index.html">Query</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query/index.html">Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/live-query/index.html">Live Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html">QueryEnumerator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query-row/index.html">QueryRow</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/replication/index.html">Replication</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/replication/index.html">Replication</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/authenticator/index.html">Authenticator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html">AuthenticatorFactory</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/rest-api/index.html">REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/release-notes/index.html">Release notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/Java/index.html">Java</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../references/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/rest-api/index.html">Public REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/admin-rest-api/index.html">Admin REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/release-notes/index.html">Release notes</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+  </ul>
+</nav>
+            </div>
+          </nav>
+        </aside>
+        <div class="col four-fifths article">
+          <div class="story">
+            <div class="body">
+              
+              
+              
+              <!-- Do not import the overridden styles on swagger ui pages -->
+              
+              <link rel="stylesheet" type="text/css" href="https://couchbase-docs.s3.amazonaws.com/mobile/assets/styles.css">
+              
+              
+              
+              <a class="edit-page-link" href="https://github.com/couchbaselabs/couchbase-mobile-portal/tree/master/md-docs/_1x/guides/sync-gateway/sync-function-api.md" target="_blank">Edit on GitHub</a>
+              
+
+              <div class="inner-content">
+                <!-- Style API ref links -->
+                <style>
+                  a > code {
+                    text-decoration: underline;
+                    color: #0099e5;
+                    background: #f5f7f7;
+                    border-radius: 5px;
+                    padding: 3px 6px;
+                    margin: 0 1px;
+                  }
+                </style>
+                <!-- Platform tabs -->
+                <!-- TODO: Make visible when ready to show multi-platform training -->
+                <div class="toggler">
+                  <style>
+                    .toggler a {
+                      display: inline-block;
+                      padding: 3px 20px;
+                      margin: 2px;
+                      border: 1px solid #00739c;
+                      border-radius: 3px;
+                      text-decoration: none !important;
+                    }
+                    .display-platform-ios .toggler .button-ios,
+                    .display-platform-android .toggler .button-android,
+                    .display-platform-rn .toggler .button-rn,
+                    .display-platform-wpf .toggler .button-wpf,
+                    .display-platform-csharp .toggler .button-csharp,
+                    .display-platform-xam .toggler .button-xam,
+                    .display-platform-swift .toggler .button-swift,
+                    .display-platform-objc .toggler .button-objc,
+                    .display-platform-java .toggler .button-java {
+                      background-color: #00739c;
+                      color: white;
+                    }
+
+                    block { display: none; }
+
+                    .display-platform-ios .ios,
+                    .display-platform-android .android,
+                    .display-platform-rn .rn,
+                    .display-platform-net .net,
+                    .display-platform-csharp .csharp,
+                    .display-platform-wpf .wpf,
+                    .display-platform-xam .xam,
+                    .display-platform-all .all,
+                    .display-platform-swift .swift,
+                    .display-platform-objc .objc,
+                    .display-platform-java .java {
+                      display: block;
+                    }
+                    .inner-content .inline:not(.tab-nav) {
+                      display: none;
+                    }
+                    /* Must change the display mode for striped method names.
+                       This works with the StripingTag Jekyll plugin. */
+                    .display-platform-ios .ios.inline,
+                    .display-platform-android .android.inline,
+                    .display-platform-net .net.inline,
+                    .display-platform-csharp .csharp.inline,
+                    .display-platform-swift .swift.inline,
+                    .display-platform-objc .objc.inline,
+                    .display-platform-java .java.inline {
+                      display: inline;
+                    }
+                  </style>
+                  <div id="platform-tabs" class="hide">
+                    <span>Platform:</span>
+                    
+                    <a href="javascript:void(0);" class="button-ios" onclick="display('platform', 'ios')">iOS</a>
+                    <a href="javascript:void(0);" class="button-android" onclick="display('platform', 'android')">Android</a>
+                    <a href="javascript:void(0);" class="button-wpf" onclick="display('platform', 'wpf')">WPF</a>
+                    
+                  </div>
+                </div>
+                <!-- SDK buttons -->
+                <div id="swagger-libs" style="display: none;">
+                  <span>Sync Gateway Public REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'public')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'public')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'public')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'public')">Python</a>
+                  <br>
+                  <span>Sync Gateway Admin REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'admin')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'admin')">Python</a>
+                  <br>
+                  <span>Couchbase Lite REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'lite')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'lite')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('swift', 'lite')">Swift</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'lite')">Python</a>
+                </div>
+                <!-- Markdown content -->
+                <p>The sync function is the core API you interact with on Sync Gateway. This article explains its functionality, and how you write and configure it.</p>
+
+<p>For simple applications it might be the only server-side code you need to write. For more complex applications it is still a primary touchpoint for managing data routing and access control.</p>
+
+<p>The sync function is a JavaScript function whose source code is stored in the Sync Gateway&#39;s database configuration file. The sync function is called every time a new revision/update is made to a document, and the changes to channels and access made by the sync function are <em>tied to that revision</em>. If the document is later updated, the sync function will be called again on the new revision, and the new channel assignments and user/channel access <em>replace</em> the ones from the first call.</p>
+
+<p>It can do the following things:</p>
+
+<ul>
+<li><strong>Validate the document:</strong> If the document has invalid contents, the sync function can throw an exception to reject it. The document won&#39;t be added to the database, and the client request will get an error response</li>
+<li><strong>Authorize the change:</strong> The sync function can call <code>requireUser()</code> or <code>requireRole()</code> to specify what user(s) are allowed to modify the document. If the user making the change isn&#39;t in that list, an exception is thrown and the update is rejected with an error. Similarly, <code>requireAccess()</code> requires that the user making the change have access to any of the listed channels.</li>
+<li><strong>Assign the document to channels:</strong> Based on the contents of the document, the sync function can call <strong>channel()</strong> to add the document to one or more channels. This makes it accessible to users who have access to those channels, and will cause the document to be pulled by users that are subscribed to those channels.</li>
+<li><strong>Grant users access to channels:</strong> Calling <code>access(user, channel)</code> grants a user access to a channel. This allows documents to act as membership lists or access-control lists.</li>
+</ul>
+
+<p><strong>The sync function is crucial to the security of your application.</strong> It&#39;s in charge of data validation, and of authorizing both read and write access to documents. The API is high-level and lets you do some powerful things very simply, but you do need to remain vigilant and review the function carefully to make sure that it detects threats and prevents all illegal access. The sync function should be a focus of any security review of your application.</p>
+
+<p>You write your sync function in JavaScript. The basic structure of the sync function looks like this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="nx">oldDoc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Your code here</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The sync function arguments are:</p>
+
+<ul>
+<li><code>doc</code>: An object, the content of the document that is being saved. This matches the JSON that was saved by the Couchbase Lite and replicated to Sync Gateway. The <code>_id</code> property contains the document ID, and the <code>_rev</code> property the new revision ID. If the document is being deleted, there will be a <code>_deleted</code> property with the value true.</li>
+<li><code>oldDoc</code>: If the document has been saved before, the revision that is being replaced is available in this argument. Otherwise it&#39;s <code>null</code>. (In the case of a document with conflicts, the current provisional winning revision is passed in <code>oldDoc</code>.) Your implementation of the sync function can omit the <code>oldDoc</code> parameter if you do not need it (JavaScript ignores extra parameters passed to a function).</li>
+</ul>
+
+<p>The default Sync Function is documented in the API reference <a href="../../../guides/sync-gateway/config-properties/index.html#1.5/databases-foo_db-sync"><code>databases.$dbname.sync</code></a>.</p>
+<h2><a class="anchor instructions" name="validation-and-authorization"></a>Validation and Authorization<a class="hash-link instructions" href="#validation-and-authorization"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>The sync function API provides several methods that you can use to validate document creation, updates and deletions. For error conditions, you can simply call the built-in JavaScript <code>throw()</code> function. You can also enforce user access privileges by calling <code>requireUser()</code>, <code>requireRole()</code>, or <code>requireAccess()</code>.</p>
+
+<p>What happens to rejected documents? Firstly, they aren&#39;t saved to the Sync Gateway&#39;s database, so no access changes take effect. Instead an error code (usually 403 Forbidden) is returned to Couchbase Lite&#39;s replicator.</p>
+
+<p>Any other exception (including implicit ones thrown by the JavaScript runtime, like array bounds exceptions) will also prevent the document update, but will cause the gateway to return an HTTP 500 &quot;Internal Error&quot; status.</p>
+<h3><a class="anchor instructions" name="throw"></a>throw()<a class="hash-link instructions" href="#throw"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>At the most basic level, the sync function can prevent a document from persisting or syncing to any other users by calling <code>throw()</code> with an error object containing a <code>forbidden</code>: property. You enforce the validity of document structure by checking the necessary constraints and throwing an exception if they&#39;re not met.</p>
+
+<p>Here is an example sync function that disallows all writes to the database it is in.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">throw</span><span class="p">({</span><span class="na">forbidden</span><span class="p">:</span> <span class="s2">"read only!"</span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The document update will be rejected with an HTTP 403 &quot;Forbidden&quot; error code, with the value of the <code>forbidden:</code> property being the HTTP status message. This is the preferred way to reject an update.</p>
+
+<p>In validating a document, you&#39;ll often need to compare the new revision to the old one, to check for illegal changes in state. For example, some properties may be immutable after the document is created, or may be changeable only by certain users, or may only be allowed to change in certain ways. That&#39;s why the current document contents are given to the sync function, as the <code>oldDoc</code> parameter.</p>
+
+<p>We recommend that you not create invalid documents in the first place. As much as possible, your app logic and validation function should prevent invalid documents from being created locally. The server-side sync function validation should be seen as a fail-safe and a guard against malicious access.</p>
+<h3><a class="anchor instructions" name="requireuserusername"></a>requireUser(username)<a class="hash-link instructions" href="#requireuserusername"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>requireUser()</code> function authorizes a document update by rejecting it unless it&#39;s made by a specific user or users, as shown in the following example:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Throw an error if username is not "snej":</span>
+<span class="nx">requireUser</span><span class="p">(</span><span class="s2">"snej"</span><span class="p">);</span>
+
+<span class="c1">// Throw an error if username is not in the list:</span>
+<span class="nx">requireUser</span><span class="p">([</span><span class="s2">"snej"</span><span class="p">,</span> <span class="s2">"jchris"</span><span class="p">,</span> <span class="s2">"tleyden"</span><span class="p">]);</span>
+</code></pre></div>
+<p>The function signals rejection by throwing an exception, so the rest of the sync function will not be run. All properties of the <code>doc</code> parameter should be considered <em>untrusted</em>, since this is after all the object that you&#39;re validating. This may sound obvious, but it can be easy to make mistakes, like calling <code>requireUser(doc.owners)</code> instead of <code>requireUser(oldDoc.owners)</code>. When using one document property to validate another, look up that property in <code>oldDoc</code>, not <code>doc</code>!</p>
+<h3><a class="anchor instructions" name="requirerolerolename"></a>requireRole(rolename)<a class="hash-link instructions" href="#requirerolerolename"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>requireRole()</code> function authorizes a document update by rejecting it unless the user making it has a specific role or roles, as shown in the following example:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Throw an error unless the user has the "admin" role:</span>
+<span class="nx">requireRole</span><span class="p">(</span><span class="s2">"admin"</span><span class="p">);</span>
+
+<span class="c1">// Throw an error unless the user has one or more of those roles:</span>
+<span class="nx">requireRole</span><span class="p">([</span><span class="s2">"admin"</span><span class="p">,</span> <span class="s2">"old-timer"</span><span class="p">]);</span>
+</code></pre></div>
+<p>The argument may be a single role name, or an array of role names. In the latter case, the user making the change must have one or more of the given roles.</p>
+
+<p>The function signals rejection by throwing an exception, so the rest of the sync function will not be run.</p>
+<h3><a class="anchor instructions" name="requireaccesschannels"></a>requireAccess(channels)<a class="hash-link instructions" href="#requireaccesschannels"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>requireAccess()</code> function authorizes a document update by rejecting it unless the user making it has access to at least one of the given channels, as shown in the following example:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Throw an exception unless the user has access to read the "events" channel:</span>
+<span class="nx">requireAccess</span><span class="p">(</span><span class="s2">"events"</span><span class="p">);</span>
+
+<span class="c1">// Throw an exception unless the user can read one of the channels in the</span>
+<span class="c1">// previous revision's "channels" property:</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">oldDoc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">requireAccess</span><span class="p">(</span><span class="nx">oldDoc</span><span class="p">.</span><span class="nx">channels</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The function signals rejection by throwing an exception, so the rest of the sync function will not be run.</p>
+
+<p>If a user was granted access to the <a href="../channels/index.html#special-channels">star channel</a> (noted <code>*</code>), a call to <code>requireAccess(&#39;any channel name&#39;)&#39;</code> will fail because the user wasn&#39;t granted access to that channel (only to the <code>*</code> channel). To allow a user to perform a document update in this case, you can specify multiple channel names (<code>requireAccess(&#39;any channel name&#39;, &#39;*&#39;)&#39;</code>)</p>
+<h2><a class="anchor instructions" name="routing"></a>Routing<a class="hash-link instructions" href="#routing"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>The sync function API provides several functions that you can use to route documents. The routing functions assign documents to channels, and enable user access to channels (which will route documents in those channels to those users.)</p>
+
+<p>Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls <code>channel()</code> or <code>access()</code>, but then rejects the update, the channel and access changes will not occur.</p>
+<h3><a class="anchor instructions" name="channel-name"></a>channel (name)<a class="hash-link instructions" href="#channel-name"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>channel()</code> function routes the document to the named channel(s). It accepts one or more arguments, each of which must be a channel name string, or an array of strings. The channel function can be called zero or more times from the sync function, for any document. Here is an example that routes all &quot;published&quot; documents to the &quot;public&quot; channel:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="nx">oldDoc</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">published</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">channel</span> <span class="p">(</span><span class="s2">"public"</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Tip:</strong> As a convenience, it is legal to call <code>channel</code> with a <code>null</code> or <code>undefined</code> argument; it simply does nothing. This allows you to do something like <code>channel(doc.channels)</code> without having to first check whether <code>doc.channels</code> exists.</p>
+
+<p><strong>Note:</strong> Channels don&#39;t have to be predefined. A channel implicitly comes into existence when a document is routed to it.</p>
+</blockquote>
+
+<p>If the document was previously routed to a channel, but the current call to the sync function (for an updated revision) doesn&#39;t route it to that channel, the document is removed from the channel. This may cause users to lose access to that document. If that happens, the next time Couchbase Lite pulls changes from the gateway, it will receive an empty revision of the document with nothing but a <code>&quot;_removed&quot;: true</code> property. (Of course the previous revisions of the document remain in your Couchbase Lite database until it&#39;s compacted.)</p>
+<h2><a class="anchor instructions" name="read-access"></a>Read Access<a class="hash-link instructions" href="#read-access"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><h3><a class="anchor instructions" name="access-username-channelname"></a>access (username, channelname)<a class="hash-link instructions" href="#access-username-channelname"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>access()</code> function grants access to a channel to a specified user. It can be called multiple times from a sync function.</p>
+
+<p>The first argument can be an array of strings, in which case each user in the array is given access. The second argument can also be an array of strings, in which case the user(s) are given access to each channel in the array. As a convenience, either argument may be <code>null</code> or <code>undefined</code>, in which case nothing happens.</p>
+
+<p>If a user name begins with the prefix <code>role:</code>, the rest of the name is interpreted as a role rather than a user. The call then grants access to the specified channels for all users with that role.</p>
+
+<blockquote>
+<p><strong>Note:</strong> The effects of all access calls by all active documents are effectively unioned together, so if <em>any</em> document grants a user access to a channel, that user has access to the channel.</p>
+
+<p><strong>Caution:</strong> Revoking access to a channel can cause a user to lose access to documents, if s/he no longer has access to any channels those documents are in. However, the replicator does <em>not</em> currently delete such documents that have already been synced to a user&#39;s device (although future changes to those documents will not be replicated.) This is a design limitation of the Sync Gateway 1.0 that may be resolved in the future.</p>
+</blockquote>
+
+<p>The following code snippets shows some valid ways to call <code>access()</code>:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">access</span> <span class="p">(</span><span class="s2">"jchris"</span><span class="p">,</span> <span class="s2">"mtv"</span><span class="p">);</span>
+<span class="nx">access</span> <span class="p">(</span><span class="s2">"jchris"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"mtv"</span><span class="p">,</span> <span class="s2">"mtv2"</span><span class="p">,</span> <span class="s2">"vh1"</span><span class="p">]);</span>
+<span class="nx">access</span> <span class="p">([</span><span class="s2">"snej"</span><span class="p">,</span> <span class="s2">"jchris"</span><span class="p">,</span> <span class="s2">"role:admin"</span><span class="p">],</span> <span class="s2">"vh1"</span><span class="p">);</span>
+<span class="nx">access</span> <span class="p">([</span><span class="s2">"snej"</span><span class="p">,</span> <span class="s2">"jchris"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"mtv"</span><span class="p">,</span> <span class="s2">"mtv2"</span><span class="p">,</span> <span class="s2">"vh1"</span><span class="p">]);</span>
+<span class="nx">access</span> <span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s2">"hbo"</span><span class="p">);</span>  <span class="c1">// no-op</span>
+<span class="nx">access</span> <span class="p">(</span><span class="s2">"snej"</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>  <span class="c1">// no-op</span>
+</code></pre></div>
+<p>Here is an example of a sync function that grants access to a channel for all the users listed in a document:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="nx">oldDoc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">"chat_room"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Give members access to the chat channel this document manages:</span>
+        <span class="nx">access</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">members</span><span class="p">,</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">channel_name</span><span class="p">);</span>
+
+        <span class="c1">// Put this document in the channel it manages:</span>
+        <span class="nx">channel</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">channel_name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3><a class="anchor instructions" name="role-username-rolename"></a>role (username, rolename)<a class="hash-link instructions" href="#role-username-rolename"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The <code>role()</code> function grants a user a role, indirectly giving them access to all channels granted to that role. It can also affect the user&#39;s ability to revise documents, if the access function requires role membership to validate certain types of changes. Its use is similar to <code>access</code> — the value of either parameter can be a string, an array of strings, or null. If the value is null, the call is a no-op.</p>
+
+<p>For consistency with the <code>access</code> call, role names must always be prefixed with <code>role:</code>. An exception is thrown if a role name doesn&#39;t match this. Some examples:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">role</span> <span class="p">(</span><span class="s2">"jchris"</span><span class="p">,</span> <span class="s2">"role:admin"</span><span class="p">);</span>
+<span class="nx">role</span> <span class="p">(</span><span class="s2">"jchris"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"role:portlandians"</span><span class="p">,</span> <span class="s2">"role:portlandians-owners"</span><span class="p">]);</span>
+<span class="nx">role</span> <span class="p">([</span><span class="s2">"snej"</span><span class="p">,</span> <span class="s2">"jchris"</span><span class="p">,</span> <span class="s2">"traun"</span><span class="p">],</span> <span class="s2">"role:mobile"</span><span class="p">);</span>
+<span class="nx">role</span> <span class="p">(</span><span class="s2">"ed"</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>  <span class="c1">// no-op</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> Roles, like users, have to be explicitly created by an administrator. So unlike channels, which come into existence simply by being named, you can&#39;t create new roles with a <code>role()</code> call. Nonexistent roles don&#39;t cause an error, but have no effect on the user&#39;s access privileges. You can create a role after the fact; as soon as a role is created, any pre-existing references to it take effect.</p>
+</blockquote>
+<h2><a class="anchor instructions" name="expiry"></a>Expiry<a class="hash-link instructions" href="#expiry"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><h3><a class="anchor instructions" name="expiry-value"></a>expiry (value)<a class="hash-link instructions" href="#expiry-value"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Calling <code>expiry(value)</code> from within the sync function will set the expiry value (TTL) on the document. When the expiry value is reached, the document will be purged from the database.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">expiry</span><span class="p">(</span><span class="s2">"2018-07-06T17:00:00+01:00"</span><span class="p">)</span>
+</code></pre></div>
+<p>Under the hood, the expiration time is set and managed on the Couchbase Server document (TTL is not supported for databases in walrus mode). The value can be specified in two ways:</p>
+
+<ul>
+<li><strong>ISO-8601 format:</strong> for example the 6th of July 2016 at 17:00 in the BST timezone would be <code>2016-07-06T17:00:00+01:00</code>;</li>
+<li><strong>as a numeric Couchbase Server expiry value:</strong> Couchbase Server expiries are specified as Unix time, and if the desired TTL is below 30 days then it can also represent an interval in seconds from the current time (for example, a value of 5 will remove the document 5 seconds after it is written to Couchbase Server). The document expiration time is returned in the response of GET <a href="../../../references/sync-gateway/rest-api/index.html#/document/get__db___doc_"><code>/{db}/{doc}</code></a> when <code>show_exp=true</code> is included in the querystring.</li>
+</ul>
+
+<p>As with the existing explicit purge mechanism, this applies only to the local database; it has nothing to do with replication. This expiration time is not propagated when the document is replicated. The purge of the document does not cause it to be deleted on any other database.</p>
+
+<p>If <a href="../shared-bucket-access.html">shared bucket access</a> is enabled (introduced in Sync Gateway 1.5), the behaviour of the expiry feature changes in the following way: when the expiry value is reached, instead of getting purged, the <strong>active</strong> revision of the document is tombstoned. If there is another non-tombstoned revision for this document (i.e a conflict) it will become the active revision. The tombstoned revision will be purged when the server&#39;s metadata purge interval is reached.</p>
+<h2><a class="anchor instructions" name="document-conflicts"></a>Document Conflicts<a class="hash-link instructions" href="#document-conflicts"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>If a document is in conflict there will be multiple current revisions. The default, &quot;winning&quot; one is the one whose channel assignments and access grants take effect.</p>
+<h2><a class="anchor instructions" name="handling-deletions"></a>Handling deletions<a class="hash-link instructions" href="#handling-deletions"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Validation checks often need to treat deletions specially, because a deletion is just a revision with a <code>&quot;_deleted&quot;: true</code> property and usually nothing else. Many types of validations won&#39;t work on a deletion because of the missing properties — for example, a check for a required property, or a check that a property value doesn&#39;t change. You&#39;ll need to skip such checks if <code>doc._deleted</code> is true.</p>
+<h2><a class="anchor instructions" name="example"></a>Example<a class="hash-link instructions" href="#example"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Here&#39;s an example of a complete, useful sync function that properly validates and authorizes both new and updated documents. The requirements are:</p>
+
+<ul>
+<li>Only users with the role <code>editor</code> may create or delete documents.</li>
+<li>Every document has an immutable <code>creator</code> property containing the name of the user who created it.</li>
+<li>Only users named in the document&#39;s (required, non-empty) <code>writers</code> property may make changes to a document, including deleting it.</li>
+<li><p>Every document must also have a <code>title</code> and a <code>channels</code> property.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="nx">oldDoc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">_deleted</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Only editors with write access can delete documents:</span>
+                <span class="nx">requireRole</span><span class="p">(</span><span class="s2">"role:editor"</span><span class="p">);</span>
+                <span class="nx">requireUser</span><span class="p">(</span><span class="nx">oldDoc</span><span class="p">.</span><span class="nx">writers</span><span class="p">);</span>
+                <span class="c1">// Skip other validation because a deletion has no other properties:</span>
+                <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// Required properties:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">doc</span><span class="p">.</span><span class="nx">title</span> <span class="o">||</span> <span class="o">!</span><span class="nx">doc</span><span class="p">.</span><span class="nx">creator</span> <span class="o">||</span> <span class="o">!</span><span class="nx">doc</span><span class="p">.</span><span class="nx">channels</span> <span class="o">||</span> <span class="o">!</span><span class="nx">doc</span><span class="p">.</span><span class="nx">writers</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span><span class="p">({</span><span class="na">forbidden</span><span class="p">:</span> <span class="s2">"Missing required properties"</span><span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">writers</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span><span class="p">({</span><span class="na">forbidden</span><span class="p">:</span> <span class="s2">"No writers"</span><span class="p">});</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">oldDoc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Only editors can create documents:</span>
+                <span class="nx">requireRole</span><span class="p">(</span><span class="s2">"role:editor"</span><span class="p">);</span>
+                <span class="c1">// The 'creator' property must match the user creating the document:</span>
+                <span class="nx">requireUser</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">creator</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// Only users in the existing doc's writers list can change a document:</span>
+                <span class="nx">requireUser</span><span class="p">(</span><span class="nx">oldDoc</span><span class="p">.</span><span class="nx">writers</span><span class="p">);</span>
+                <span class="c1">// The "creator" property is immutable:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">creator</span> <span class="o">!=</span> <span class="nx">oldDoc</span><span class="p">.</span><span class="nx">creator</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">throw</span><span class="p">({</span><span class="na">forbidden</span><span class="p">:</span> <span class="s2">"Can't change creator"</span><span class="p">});</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// Finally, assign the document to the channels in the list:</span>
+        <span class="nx">channel</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">channels</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h2><a class="anchor instructions" name="changing-the-sync-function"></a>Changing the sync function<a class="hash-link instructions" href="#changing-the-sync-function"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>The Sync Function computes document routing to channels and user access to channels at document write time. If the Sync Function is changed, Sync Gateway needs to reprocess all existing documents in the bucket to recalculate the routing and access assignments.</p>
+
+<p>The Admin REST API has a re-sync endpoint to process every document in the database again. To update the Sync Function, it is recommended to follow the steps outlined below:</p>
+
+<ol>
+<li>Update the configuration file of the Sync Gateway instance.</li>
+<li>Restart Sync Gateway.</li>
+<li>Take the database offline using the <a href="../../../references/sync-gateway/admin-rest-api/index.html#!/database/post_db_offline">/{db}/_offline</a> endpoint.</li>
+<li>Call the re-sync endpoint on the Admin REST API. The message body of the response contains the number of changes that were made as a result of calling re-sync.</li>
+<li>Bring the database back online using the <a href="../../../references/sync-gateway/admin-rest-api/index.html#!/database/post_db_online">/{db}/_online</a> endpoint.</li>
+</ol>
+
+<p>This is an expensive operation because it requires every document in the database to be processed by the new function. The database can&#39;t accept any requests until this process is complete (because no user&#39;s full access privileges are known until all documents have been scanned). Therefore the Sync Function update will result in application downtime between the call to the <code>/{db}/_offline</code> and <code>/{db}/_online</code> endpoints as mentioned above.</p>
+<h3><a class="anchor instructions" name="when-should-you-run-a-re-sync"></a>When should you run a re-sync?<a class="hash-link instructions" href="#when-should-you-run-a-re-sync"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>When running a re-sync operation, the context in the Sync Function is the admin user. For that reason, calling the <code>requireUser</code>, <code>requireAccess</code> and <code>requireRole</code> methods will always succeed. It is very likely that you are using those functions in production to govern write operations. But in a re-sync operation, all the documents are already written to the database. For that reason, it is recommended to use re-sync for changing the assignment to channels only (i.e. reads). If the modifications to the Sync Function only impact write security (and not routing/access), you won&#39;t need to run the re-sync operation.</p>
+
+<p>Similarly, if you wish to change the channel/access rules, but only want those rules to apply to documents written after the change was made, then you don&#39;t need to run the re-sync operation.</p>
+
+<p>If you need to ensure access to the database during the update, you can create a read-only backup of the Sync Gateway&#39;s bucket beforehand, then run a secondary Sync Gateway on the backup bucket, in read-only mode. After the update is complete, switch to the main Gateway and bucket.</p>
+
+<p>In a clustered environment with multiple Sync Gateway instances sharing the load, all the instances need to share the same configuration, so they all need to be taken offline either by stopping the process or taking them offline using the <a href="../../../references/sync-gateway/admin-rest-api/index.html#!/database/post_db_offline">/{db}/_offline</a> endpoint. After the configuration is updated, <strong>one</strong> instance should be brought up so it can update the database — if more than one is running at this time, they&#39;ll conflict with each other. After the first instance finishes opening the database, the others can be started.</p>
+
+                <!-- Logic to make all links open in a new tab -->
+                <script>
+                  var links = document.links;
+
+                  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+                    if (['button-swift', 'button-objc', 'button-csharp', 'button-java', 'button-ios', 'button-android', 'button-wpf'].indexOf(links[i].className) == -1) {
+                      if (links[i].hostname != window.location.hostname) {
+                        links[i].target = '_blank';
+                      }
+                    }
+                  }
+                </script>
+                <!-- Logic for platform tabs -->
+                <script>
+                  // Only show on Develop pages
+                  var blocksv1 = document.getElementsByClassName('ios');
+                  var blocksv2 = document.getElementsByClassName('swift');
+                  if ((blocksv1.length > 0 && blocksv1[0].tagName == 'BLOCK') || (blocksv2.length > 0 && blocksv2[0].tagName == 'BLOCK')) {
+                    var platformTabs = document.getElementById('platform-tabs');
+                    platformTabs.className = "show";
+                  }
+                  // Convert <div>...<span><block /></span>...</div>
+                  // Into <div>...<block />...</div>
+                  var blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      var span = blocks[i].parentNode;
+                      var container = span.parentNode;
+                      container.insertBefore(block, span);
+                      container.removeChild(span);
+                    }
+                  }
+                  // Convert <div>...<block />content<block />...</div>
+                  // Into <div>...<block>content</block><block />...</div>
+                  blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      while (block.nextSibling && block.nextSibling.tagName !== 'BLOCK') {
+                        block.appendChild(block.nextSibling);
+                      }
+                    }
+                  }
+                  function display(type, value, isFirstPageLoad) {
+                    deleteCookie('mobile-lang');
+                    setCookie('mobile-lang', value, 365);
+                    if (!isFirstPageLoad) {
+                      var newurl = UpdateQueryString('language', value);
+                      window.history.pushState({path: newurl}, '', newurl);
+                    }
+                    // Place the display-platform-* class on div.inner-content
+                    var container = document.getElementsByClassName('inner-content')[0];
+                    container.className = 'inner-content display-' + type + '-' + value;
+                    if (value == 'wpf' || value == 'csharp' || value == 'xam') {
+                      container.className += ' display-platform-net';
+                    }
+                    container.className += ' display-platform-all';
+                    return false;
+                  }
+
+                  // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+                  // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+                  var foundHash = false;
+                  var language = getParameterByName('language');
+                  if (['ios', 'android', 'csharp', 'swift', 'objc', 'wpf', 'java'].indexOf(language) > -1) {
+                    foundHash = true;
+                    display('platform', language, true);
+                  }
+
+                  if (!foundHash) {
+                    var cookie_lang = getCookie('mobile-lang');
+                    if (document.getElementsByClassName(cookie_lang).length > 0) {
+                      display('platform', cookie_lang, true);
+                    } else {
+                      if (document.getElementsByClassName('swift').length > 0) {
+                        display('platform', 'swift', true);
+                      } else if (document.getElementsByClassName('ios').length > 0) {
+                        display('platform', 'ios', true);
+                      }
+                    }
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) {
+                      url = window.location.href;
+                    }
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                  function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                  }
+                  function deleteCookie(cname) {
+                    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+                  function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                      }
+                    }
+                    return "";
+                  }
+                  function UpdateQueryString(key, value, url) {
+                    if (!url) url = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+                      hash;
+
+                    if (re.test(url)) {
+                      if (typeof value !== 'undefined' && value !== null)
+                        return url.replace(re, '$1' + key + "=" + value + '$2$3');
+                      else {
+                        hash = url.split('#');
+                        url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                    }
+                    else {
+                      if (typeof value !== 'undefined' && value !== null) {
+                        var separator = url.indexOf('?') !== -1 ? '&' : '?';
+                        hash = url.split('#');
+                        url = hash[0] + separator + key + '=' + value;
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                      else
+                        return url;
+                    }
+                  }
+                </script>
+                <!-- Segment.io analytics -->
+                <script type="text/javascript">
+                  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+                    analytics.load("8mPwsJfsKAal6r62qS9ubBQqjWwYly4M");
+                    analytics.page()
+                  }}();
+                </script>
+                <script>
+                  var starterProject = document.getElementById('project');
+                  analytics.trackLink(starterProject, 'Download project', {
+                    category: 'Training',
+                    label: 'Swift'
+                  });
+                </script>
+                <!-- SDK buttons (shown only if show_true=true in the SDK) -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+                <script>
+
+                  if (getParameterByName("show_swagger_libs") || getParameterByName("swagger")) {
+                    var swagger_libs_el = document.getElementById('swagger-libs');
+                    swagger_libs_el.style.display = 'block';
+                  }
+
+                  function getSDK(lang, spec) {
+                    var url = null;
+                    switch(spec) {
+                      case 'public':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-public/spec.json';
+                        break;
+                      case 'admin':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-admin/spec.json';
+                        break;
+                      case 'lite':
+                        url = 'http://developer.couchbase.com/mobile/swagger/couchbase-lite/spec.json';
+                        break;
+                    }
+                    fetch(url)
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        var options = {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({spec: res})
+                        };
+                        return fetch('http://generator.swagger.io/api/gen/clients/' + lang, options)
+                      })
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        window.location = res.link;
+                      });
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                </script>
+              </div>
+
+              <script>
+                /**
+                 * HACK: To keep the code tabs while using markdown. Insert <div class="tab"></div> in the markdown and this script
+                 * finds and replaces all instances with a tab bar.
+                 */
+                var tab_bar_html = "</div><a href='javascript:setLanguage(\"swift\")' class=\"tab stripe-active swift\">Swift</a> <a href='javascript:setLanguage(\"objective-c\")' class=\"tab stripe-active objective-c selected\">Objective-C</a> <a href='javascript:setLanguage(\"android\")' class=\"tab stripe-active android\">Android</a> <a href='javascript:setLanguage(\"java\")' class=\"tab stripe-active java\">Java</a> <a href='javascript:setLanguage(\"c\")' class=\"tab stripe-active c\">C#</a>"
+                var tab_bars = document.getElementsByClassName('tabs');
+                var i = tab_bars.length - 1;
+                while (i >= 0) {
+                  var parent = tab_bars.item(i).parentNode;
+                  var element = document.createElement('div');
+                  element.className = 'tab-bar';
+                  element.innerHTML = tab_bar_html;
+                  parent.replaceChild(element, tab_bars.item(i));
+                  i--;
+                }
+
+                /**
+                 * HACK: To keep the markdown tables styles after ingestion we need to wrap the ouput in <div class="table"></div>
+                 */
+                var tables = document.getElementsByTagName("table");
+                var j = tables.length - 1;
+                while (j >= 0) {
+                  var parent = tables.item(j).parentNode;
+                  var table = tables.item(j);
+                  var wrapper = document.createElement('div');
+                  wrapper.className = 'table';
+                  wrapper.style.padding = 0;
+                  parent.insertBefore(wrapper, table);
+                  wrapper.appendChild(table);
+                  j--;
+                }
+              </script>
+              <script>
+                /**
+                 * Hack to not open some list titles
+                 */
+                (function() {
+                  var els = document.getElementsByClassName('static');
+                  for (var i = 0; i < els.length; i++) {
+                    (function() {
+                      var el = els[i];
+                      el.onclick = function () {
+                        var icon = el.previousSibling;
+                        var iconClasses = icon.className;
+                        if (iconClasses == 'icon') {
+                          icon.className = 'icon close';
+                        } else {
+                          icon.className = 'icon';
+                        }
+                        var list = el.nextSibling;
+                        var displayProp = list.style.display;
+                        if (displayProp == 'block') {
+                          list.style.display = 'none';
+                        } else {
+                          list.style.display = 'block';
+                        }
+                      }
+                    })()
+                  }
+                })()
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+</main>
+  </div>
+</div>
+
+<!-- Require_js bootstrap for app-specific JS module support -->
+<!-- data-main attribute tells require.js to load
+scripts/main.js after require.js loads. -->
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/require.js"></script>
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/prism.js"></script>
+<script rel="main" type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/main.js" ></script>
+<!-- leave the main attribute, it is used to help main.js determine -->
+<!-- the domain-relative path to the base script (main.js) -->
+
+</body>
+
+</html>

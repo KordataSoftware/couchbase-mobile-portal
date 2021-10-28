@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="description" content="A high-level introduction to the component parts of the Couchbase Mobile product." />
+  <meta name="version" content="1.4" />
+  <meta name="product" content="mobile" />
+  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/webfiles/1498186094252/images/icons/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/webfiles/1498186094252/images/icons/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--    _____________________________
+  _______/ Support for legacy browsers \_______________________________________-->
+  <!--[if lte IE 8]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/html5shiv.js" />
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/respond.js" />
+  <![endif]-->
+  <!--[if IE 9]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/classList.js" />
+  <![endif]-->
+  <!--_________________________________________________________________________-->
+  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/jquery-migrate.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/slick.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/isotope.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/imagesloaded.min.js"></script>
+
+  <meta name="apple-mobile-web-app-title" content="Couchbase">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="1gPO0RaMzKyZJFpS-iyIEnPsWDztwZH0R3vG1VpSwvM" />
+
+  <!-- LOCAL CSS Libs -->
+  <link rel="stylesheet" href="https://developer.couchbase.com/webfiles/1498186094252/css/styles.css">
+
+  <!-- Default canonical comes from the URL -->
+  <link rel="canonical" href="http://developer.couchbase.com"/>
+  <title>Couchbase</title>
+  <link rel="stylesheet" href="https://developer.couchbase.com/binaries/content/assets/css/overrides.css">
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0"
+          width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<script>
+  var overrideJsPath = "/binaries/content/assets/js/overrides.js";
+  $.ajax({
+    url: overrideJsPath,
+    type: 'HEAD',
+    error: function () {
+    },
+    success: function () {
+      // file exists
+      $.getScript(overrideJsPath);
+    }
+  });
+</script>
+<!--    ________________
+_______/ INCLUDE HEADER - BODY - FOOTER \____________________________________________________-->
+<!-- begin - include ref= -->
+<nav class="aux">
+  <div>
+  </div>
+</nav>
+<!-- Beginning of site.../jsp/base/header.jsp -->
+<header id="global-header" class="global-header dev-portal">
+  <div class="layout-wrapper">
+    <div class="global-header__logo">
+      <a href='http://www.couchbase.com'>Couchbase</a>
+      <a href='index.html'>Developer</a>
+
+    </div>
+
+    <a data-modules="navigation,globalheadersearch"></a>
+    <nav role="navigation" id="primary-navigation" class="primary-navigation">
+      <button aria-controls="primary-navigation__wrapper"
+              aria-pressed="false"
+              class="primary-navigation__toggler"
+              type="button">
+
+        <span>Menu</span>
+      </button>
+      <div id="primary-navigation__wrapper"
+           class="primary-navigation__wrapper"
+           aria-expanded="false">
+
+        <ul class="primary-navigation__items">
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/documentation/server/current/introduction/intro.html">Server</a>
+          </li>
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/mobile">Mobile</a>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/community">Community</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/open-source-projects">Open Source Projects</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/contribute">Contribute</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://www.couchbase.com/nosql-resources/events">Events</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/experts-and-champions">Experts &amp; Champions</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://forums.couchbase.com/">Forums</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://blog.couchbase.com">Blogs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/support">Support</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/guides-and-references">Site Map</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-1">Couchbase Server</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-2">Couchbase Mobile</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-3">SDKs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-5">Connectors</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/documentation-archive">Documentation Archive</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <form id="global-header-search"
+              autocomplete="off"
+              class="global-header-search global-header-search--js"
+              action="https://developer.couchbase.com/search"
+              aria-expanded="false">
+          <ul><!--
+            ---><li>
+            <label for="global-header-search__query">
+              Search query
+            </label>
+            <input
+                    type="search"
+                    placeholder="Search"
+                    name="q"
+                    value=""
+                    id="global-header-search__query">
+          </li><!--
+                ---><li>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </li><!--
+        ---></ul>
+          <button aria-controls="global-header-search__items"
+                  aria-pressed="false"
+                  class="global-header-search__toggler"
+                  type="button">
+            <span>Search</span>
+          </button><!--
+        --->
+
+          <div style="display: none" about="custom-search-fields">
+
+            <input type="hidden"
+                   name="cx"
+                   value="017928787631531434501:3e7lwhjxsom" />
+            <input type="hidden"
+                   name="cof"
+                   value="FORID:11" />
+            <input type="hidden"
+                   name="safe"
+                   value="off" />
+            <input type="hidden"
+                   name="form_build_id"
+                   value="form-RrbKDUhO3kB2MiqBdZHIQI9L4LFE7c3L_s87N2B9BZo" />
+            <input type="hidden"
+                   name="form_id"
+                   value="google_cse_results_searchbox_form" />
+            <input type="hidden"
+                   name="siteurl"
+                   value='developer.couchbase.com' />
+
+          </div>
+        </form>
+      </div>
+    </nav>
+    <a class="global-header__download-button" href="https://developer.couchbase.com/downloads">
+      Download
+    </a>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="wrapper">
+    <main id="global-content" class="global-content" role="main">
+
+  <div id="page-template-attributes" data-template-id="" data-template-class="learn-support-sec article-tpl"></div>
+
+  <!-- LEFTNAV and ARTICLE -->
+  <section class="tpl-body">
+    <div class="wrapper">
+      <div class="cols">
+        <aside class="col one-fifth section-nav left-rail">
+          <nav role="navigation" aria-label="Secondary" style="width: 100%;">
+            <div class="toc collapsible" style="display: block;">
+              
+
+
+
+<!-- Used in the left nav to find the relative URL -->
+
+
+
+
+<nav style="width: 100%;" role="navigation" aria-label="Secondary" class="toc collapsible">
+  <ul class="main collapsed">
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../whatsnew.html">What's new</a>
+        
+      
+      
+      </li>
+    
+      <li class=" ishidden">
+      
+        <a href="#" class="static">Hidden Files For Redirects</a>
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/sync-gateway/views/index.html">Creating and querying a View</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../installation/index.html">Getting Started</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/ios/index.html">iOS/tvOS/macOS</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/android/index.html">Android</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/net/index.html">.NET</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/xamarin/index.html">Xamarin</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/java/index.html">Java</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/phonegap/index.html">PhoneGap</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../installation/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class=" ">
+      
+        
+          <a href="../../../training/index.html">Tutorial</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Design</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/design/data-modeling/index.html">Data Modeling</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/design/security/index.html">Access Control</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Develop</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/create-database/index.html">Create a Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/using-the-database/index.html">Using the Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a class="selected" href="../../../training/develop/adding-synchronization/index.html">Adding Sync</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/adding-security/index.html">Adding Security</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/develop/integration/index.html">Integration</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Deploy</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/install/index.html">Install</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../training/deploy/scale/index.html">Scale</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../guides/index.html">Guides</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/couchbase-lite/native-api/data-modeling/index.html">Data Modeling</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/couchbase-lite/native-api/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/manager/index.html">Manager</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/database/index.html">Database</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/document/index.html">Document</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/revision/index.html">Revision</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/view/index.html">View</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/query/index.html">Query</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/replication/index.html">Replication</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/peer-to-peer/index.html">Peer-to-peer</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/native-api/model/index.html">Model (iOS only)</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/couchbase-lite/tech-notes/index.html">Technical Notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/couchbase-lite/tech-notes/cbl-encryption/index.html">Encrypting Databases</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/config-properties/index.html">Configuration file</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/command-line-options/index.html">Command line options</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/authorizing-users/index.html">Authorizing Users</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/channels/index.html">Data Routing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/sync-function-api-guide/index.html">Sync Function API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/server-integration/index.html">Webhooks and changes feed</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/deployment/index.html">Deployment considerations</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/nginx/index.html">Load Balancer</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/database-offline/index.html">Taking databases offline and online</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/os-level-tuning/index.html">OS Level Tuning</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/resolving-conflicts/index.html">Resolving Conflicts</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/integrating-external-stores/index.html">Integrating External Stores</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/running-replications/index.html">Running replications</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/rest-api-client/index.html">REST API Client</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/sgcollect-info/index.html">SGCollect Info</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/configuring-ssl/index.html">Configuring SSL</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/bucket-shadowing/index.html">Bucket Shadowing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/sync-gateway/accelerator.html">Accelerator</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../guides/authentication/index.html">Authentication</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/basic-authentication/index.html">Basic Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/openid/index.html">OpenID Connect</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/configuration-options/index.html">Configuration Options</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/advanced-topics/index.html">Advanced Topics</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/google/index.html">How-To: Google</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../guides/authentication/openid/active-directory/index.html">How-To: Active Directory</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/custom-authentication/index.html">Custom Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../guides/authentication/static-providers/index.html">Static Providers</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../references/index.html">API References</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../references/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/couchbase-lite/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/manager/index.html">Manager</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/manager/index.html">Manager</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/manager-options/index.html">ManagerOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/manager/database-options/index.html">DatabaseOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/database/index.html">Database</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/database/database/index.html">Database</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/database/validation-context/index.html">ValidationContext</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/document/index.html">Document</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/document/document/index.html">Document</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/document/document-change/index.html">Document Change</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/revision/index.html">Revision</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/revision/index.html">Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html">Saved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html">Unsaved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/attachment/attachment/index.html">Attachment</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/view/index.html">View</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/view/view/index.html">View</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/view/view-compiler/index.html">View Compiler</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/query/index.html">Query</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query/index.html">Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/live-query/index.html">Live Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html">QueryEnumerator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/query/query-row/index.html">QueryRow</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/couchbase-lite/replication/index.html">Replication</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/replication/index.html">Replication</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/authenticator/index.html">Authenticator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html">AuthenticatorFactory</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/rest-api/index.html">REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/couchbase-lite/release-notes/index.html">Release notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/Java/index.html">Java</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../references/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/rest-api/index.html">Public REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/admin-rest-api/index.html">Admin REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../references/sync-gateway/release-notes/index.html">Release notes</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+  </ul>
+</nav>
+            </div>
+          </nav>
+        </aside>
+        <div class="col four-fifths article">
+          <div class="story">
+            <div class="body">
+              
+              
+              
+              <!-- Do not import the overridden styles on swagger ui pages -->
+              
+              <link rel="stylesheet" type="text/css" href="https://couchbase-docs.s3.amazonaws.com/mobile/assets/styles.css">
+              
+              
+              
+              <a class="edit-page-link" href="https://github.com/couchbaselabs/couchbase-mobile-portal/tree/master/md-docs/_1x/training/develop/adding-synchronization/05-adding-synchronization.md" target="_blank">Edit on GitHub</a>
+              
+
+              <div class="inner-content">
+                <!-- Style API ref links -->
+                <style>
+                  a > code {
+                    text-decoration: underline;
+                    color: #0099e5;
+                    background: #f5f7f7;
+                    border-radius: 5px;
+                    padding: 3px 6px;
+                    margin: 0 1px;
+                  }
+                </style>
+                <!-- Platform tabs -->
+                <!-- TODO: Make visible when ready to show multi-platform training -->
+                <div class="toggler">
+                  <style>
+                    .toggler a {
+                      display: inline-block;
+                      padding: 3px 20px;
+                      margin: 2px;
+                      border: 1px solid #00739c;
+                      border-radius: 3px;
+                      text-decoration: none !important;
+                    }
+                    .display-platform-ios .toggler .button-ios,
+                    .display-platform-android .toggler .button-android,
+                    .display-platform-rn .toggler .button-rn,
+                    .display-platform-wpf .toggler .button-wpf,
+                    .display-platform-csharp .toggler .button-csharp,
+                    .display-platform-xam .toggler .button-xam,
+                    .display-platform-swift .toggler .button-swift,
+                    .display-platform-objc .toggler .button-objc,
+                    .display-platform-java .toggler .button-java {
+                      background-color: #00739c;
+                      color: white;
+                    }
+
+                    block { display: none; }
+
+                    .display-platform-ios .ios,
+                    .display-platform-android .android,
+                    .display-platform-rn .rn,
+                    .display-platform-net .net,
+                    .display-platform-csharp .csharp,
+                    .display-platform-wpf .wpf,
+                    .display-platform-xam .xam,
+                    .display-platform-all .all,
+                    .display-platform-swift .swift,
+                    .display-platform-objc .objc,
+                    .display-platform-java .java {
+                      display: block;
+                    }
+                    .inner-content .inline:not(.tab-nav) {
+                      display: none;
+                    }
+                    /* Must change the display mode for striped method names.
+                       This works with the StripingTag Jekyll plugin. */
+                    .display-platform-ios .ios.inline,
+                    .display-platform-android .android.inline,
+                    .display-platform-net .net.inline,
+                    .display-platform-csharp .csharp.inline,
+                    .display-platform-swift .swift.inline,
+                    .display-platform-objc .objc.inline,
+                    .display-platform-java .java.inline {
+                      display: inline;
+                    }
+                  </style>
+                  <div id="platform-tabs" class="hide">
+                    <span>Platform:</span>
+                    
+                    <a href="javascript:void(0);" class="button-ios" onclick="display('platform', 'ios')">iOS</a>
+                    <a href="javascript:void(0);" class="button-android" onclick="display('platform', 'android')">Android</a>
+                    <a href="javascript:void(0);" class="button-wpf" onclick="display('platform', 'wpf')">WPF</a>
+                    
+                  </div>
+                </div>
+                <!-- SDK buttons -->
+                <div id="swagger-libs" style="display: none;">
+                  <span>Sync Gateway Public REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'public')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'public')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'public')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'public')">Python</a>
+                  <br>
+                  <span>Sync Gateway Admin REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'admin')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'admin')">Python</a>
+                  <br>
+                  <span>Couchbase Lite REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'lite')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'lite')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('swift', 'lite')">Swift</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'lite')">Python</a>
+                </div>
+                <!-- Markdown content -->
+                <p>In this lesson you’ll be introduced to Sync Gateway, our secure web gateway. You’ll learn how to use Couchbase Lite’s synchronization APIs, set up Sync Gateway for synchronization with the cloud and other devices, and resolve data conflicts within your application.</p>
+
+<p><block class="ios" /></p>
+<h4><a class="anchor instructions" name="requirements"></a>Requirements<a class="hash-link instructions" href="#requirements"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<ul>
+<li>Xcode 8 (Swift 3)</li>
+</ul>
+<h4><a class="anchor instructions" name="getting-started"></a>Getting Started<a class="hash-link instructions" href="#getting-started"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<p>Download the project below.</p>
+
+<div class="buttons-unit downloads">
+  <a href="https://cl.ly/3f263e2O0837/project.zip" class="button" id="project">
+    <img src="img/download-xcode.png">
+  </a>
+</div>
+
+<p>Unzip the file and install Couchbase Lite using the install script.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>xcode-project
+<span class="nv">$ </span>./install.sh
+</code></pre></div>
+<p>Open <strong>Todo.xcodeproj</strong> in Xcode. Then build &amp; run the project.</p>
+
+<p><block class="net" /></p>
+<h4><a class="anchor instructions" name="requirements"></a>Requirements<a class="hash-link instructions" href="#requirements"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<ul>
+<li>Visual Studio 2015+ (Windows) or Xamarin Studio 6+ (OS X)</li>
+</ul>
+<h4><a class="anchor instructions" name="getting-started"></a>Getting Started<a class="hash-link instructions" href="#getting-started"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<p>Download the project below.</p>
+
+<div class="buttons-unit downloads">
+  <a href="https://cl.ly/3f263e2O0837/project.zip" class="button" id="project">
+    <img src="img/download-vs.png">
+  </a>
+</div>
+
+<p><block class="android" /></p>
+<h4><a class="anchor instructions" name="requirements"></a>Requirements<a class="hash-link instructions" href="#requirements"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<ul>
+<li>Android Studio 2.2</li>
+<li>Android SDK 24</li>
+<li>Android Build Tools 24.0.3</li>
+<li>JDK 8</li>
+<li>⚠️ Docker and x86 Android emulators are <a href="http://stackoverflow.com/questions/37397810/android-studio-unable-to-run-avd">not compatible</a> (i.e cannot run simultaneously on the same machine). Make sure Docker isn&#39;t running in the background when deploying the application to an x86 Android emulator.</li>
+</ul>
+<h4><a class="anchor instructions" name="getting-started"></a>Getting Started<a class="hash-link instructions" href="#getting-started"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<p>Download the project below.</p>
+
+<div class="buttons-unit downloads">
+  <a href="https://cl.ly/3f263e2O0837/project.zip" class="button" id="project">
+    <img src="img/download-android.png">
+  </a>
+</div>
+
+<p><block class="all" /></p>
+
+<blockquote>
+<p><strong>Tip:</strong> To make things a bit more exciting, you may want to use the pre-built database containing a list of Groceries. Refer to the <a href="/documentation/mobile/current/training/develop/using-the-database/index.html">Create a Database</a> lesson to learn how to use it.</p>
+</blockquote>
+<h2><a class="anchor instructions" name="install-sync-gateway"></a>Install Sync Gateway<a class="hash-link instructions" href="#install-sync-gateway"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Now that your application runs smoothly on the device you are ready to introduce Sync Gateway. Create a new file called <strong>sync-gateway-config.json</strong> with the following.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="s2">"interface"</span><span class="p">:</span><span class="s2">":4984"</span><span class="p">,</span>
+  <span class="s2">"log"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"HTTP"</span><span class="p">,</span> <span class="s2">"Auth"</span><span class="p">],</span>
+  <span class="s2">"databases"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"todo"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"server"</span><span class="p">:</span> <span class="s2">"walrus:"</span><span class="p">,</span>
+      <span class="s2">"users"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"GUEST"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"disabled"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">"admin_channels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"*"</span><span class="p">]</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>During development, you can set the <strong>server</strong> property to <strong>walrus:</strong> (also known as the Walrus mode) and it will keep the data in memory. Note that anytime you restart Sync Gateway in walrus mode, the database will be empty.</p>
+
+<p>By default, Sync Gateway doesn&#39;t allow unauthenticated requests to be processed for security reasons. So you&#39;re enabling the <strong>GUEST</strong> user which represents all the unauthenticated clients that will be synchronizing with your Sync Gateway instance.</p>
+
+<blockquote>
+<p><strong>Note:</strong> User authentication is covered in more detail in the <a href="/documentation/mobile/current/training/develop/adding-security/index.html">Adding Security</a> lesson.</p>
+</blockquote>
+
+<p>Sync Gateway is always listening on two ports:</p>
+
+<ul>
+<li>4984: the public port which will be used from the application.</li>
+<li>4985: the admin port used for administrative tasks (for security reasons, it’s only accessible on localhost).</li>
+</ul>
+<h3><a class="anchor instructions" name="try-it-out"></a>Try it out<a class="hash-link instructions" href="#try-it-out"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li><a href="http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile">Download Sync Gateway</a></li>
+<li>Unzip the file and locate the executable at <strong>bin/sync_gateway</strong> (macOS) or run the installer (Windows).</li>
+<li><p>Start Sync Gateway from the command-line in your project directory.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sync_gateway sync-gateway-config.json
+</code></pre></div><div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS</span><span class="o">&gt;</span> &amp; <span class="s1">'C:\Program Files (x86)\Couchbase\sync_gateway.exe'</span> sync-gateway-config.json
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message &#39;FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.&#39;  To get around this, stop the &#39;Couchbase Sync Gateway&#39; service in &#39;services.msc&#39;.</p>
+</blockquote></li>
+</ol>
+<h2><a class="anchor instructions" name="add-synchronization"></a>Add synchronization<a class="hash-link instructions" href="#add-synchronization"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Typically, an application needs to send data to the server and receive it. In Couchbase Mobile, this is handled by replications which run on the device. A replication requires a Couchbase Lite database and a Sync Gateway URL, and synchronizes data between the two. They can be of two types:</p>
+
+<ul>
+<li><strong>Push:</strong> The data is pushed from Couchbase Lite to Sync Gateway.</li>
+<li><strong>Pull:</strong> The data is pulled from Sync Gateway to Couchbase Lite.</li>
+</ul>
+
+<p>There are a few terminologies that designate the role of each database involved in a replications:</p>
+
+<ul>
+<li><strong>Source:</strong> The database where the data is read.</li>
+<li><strong>Target:</strong> The database where the data is written.</li>
+<li><strong>Local:</strong> The database that resides where the replication is running.</li>
+<li><strong>Remote:</strong> The database to which the replication is sending data.</li>
+</ul>
+
+<p>The following code starts a pull and push replication with progress notifications.</p>
+
+<p><block class="ios" /></p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// This code can be found in AppDelegate.swift</span>
+<span class="c1">// in the startReplication(withUsername:andPassword:)</span>
+<span class="n">pusher</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="nf">createPushReplication</span><span class="p">(</span><span class="n">kSyncGatewayUrl</span><span class="p">)</span>
+<span class="n">pusher</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">true</span> <span class="c1">// Runs forever in the background</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">replicationProgress(notification:)</span><span class="kd">)</span><span class="p">,</span>
+                                        <span class="nv">name</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">cblReplicationChange</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">pusher</span><span class="p">)</span>
+
+<span class="n">puller</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="nf">createPullReplication</span><span class="p">(</span><span class="n">kSyncGatewayUrl</span><span class="p">)</span>
+<span class="n">puller</span><span class="o">.</span><span class="n">continuous</span> <span class="o">=</span> <span class="kc">true</span> <span class="c1">// Runs forever in the background</span>
+<span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">replicationProgress(notification:)</span><span class="kd">)</span><span class="p">,</span>
+                                        <span class="nv">name</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">cblReplicationChange</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">puller</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">kLoginFlowEnabled</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">authenticator</span> <span class="o">=</span> <span class="kt">CBLAuthenticator</span><span class="o">.</span><span class="nf">basicAuthenticator</span><span class="p">(</span><span class="nv">withName</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="n">password</span><span class="o">!</span><span class="p">)</span>
+    <span class="n">pusher</span><span class="o">.</span><span class="n">authenticator</span> <span class="o">=</span> <span class="n">authenticator</span>
+    <span class="n">puller</span><span class="o">.</span><span class="n">authenticator</span> <span class="o">=</span> <span class="n">authenticator</span>
+<span class="p">}</span>
+
+<span class="n">pusher</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+<span class="n">puller</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+</code></pre></div>
+<p><block class="net" /></p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// This code can be found in CoreApp.cs</span>
+<span class="c1">// in the StartReplication(string, string) method</span>
+<span class="kt">var</span> <span class="n">authenticator</span> <span class="p">=</span> <span class="k">default</span><span class="p">(</span><span class="n">IAuthenticator</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">username</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">password</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">authenticator</span> <span class="p">=</span> <span class="n">AuthenticatorFactory</span><span class="p">.</span><span class="nf">CreateBasicAuthenticator</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">var</span> <span class="n">db</span> <span class="p">=</span> <span class="n">AppWideManager</span><span class="p">.</span><span class="nf">GetDatabase</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">pusher</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="nf">CreatePushReplication</span><span class="p">(</span><span class="n">SyncGatewayUrl</span><span class="p">);</span>
+<span class="n">pusher</span><span class="p">.</span><span class="n">Continuous</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// Runs forever in the background</span>
+<span class="n">pusher</span><span class="p">.</span><span class="n">Authenticator</span> <span class="p">=</span> <span class="n">authenticator</span><span class="p">;</span>
+
+
+<span class="kt">var</span> <span class="n">puller</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="nf">CreatePullReplication</span><span class="p">(</span><span class="n">SyncGatewayUrl</span><span class="p">);</span>
+<span class="n">puller</span><span class="p">.</span><span class="n">Continuous</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// Runs forever in the background</span>
+<span class="n">puller</span><span class="p">.</span><span class="n">Authenticator</span> <span class="p">=</span> <span class="n">authenticator</span><span class="p">;</span>
+
+<span class="n">pusher</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
+<span class="n">puller</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
+
+<span class="n">_pusher</span> <span class="p">=</span> <span class="n">pusher</span><span class="p">;</span>
+<span class="n">_puller</span> <span class="p">=</span> <span class="n">puller</span><span class="p">;</span>
+</code></pre></div>
+<p><block class="android" /></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// This code can be found in Application.java</span>
+<span class="c1">// in the startReplication(String, String) method</span>
+<span class="n">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">mSyncGatewayUrl</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MalformedURLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="n">pusher</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="na">createPushReplication</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+<span class="n">pusher</span><span class="o">.</span><span class="na">setContinuous</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Runs forever in the background</span>
+
+<span class="n">puller</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="na">createPullReplication</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+<span class="n">puller</span><span class="o">.</span><span class="na">setContinuous</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Runs forever in the background</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">mLoginFlowEnabled</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Authenticator</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="n">AuthenticatorFactory</span><span class="o">.</span><span class="na">createBasicAuthenticator</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+    <span class="n">pusher</span><span class="o">.</span><span class="na">setAuthenticator</span><span class="o">(</span><span class="n">authenticator</span><span class="o">);</span>
+    <span class="n">puller</span><span class="o">.</span><span class="na">setAuthenticator</span><span class="o">(</span><span class="n">authenticator</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">pusher</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="n">puller</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div>
+<p><block class="all" /></p>
+<h3><a class="anchor instructions" name="try-it-out"></a>Try it out<a class="hash-link instructions" href="#try-it-out"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><block class="ios" /></p>
+
+<ol>
+<li><p>In <strong>AppDelegate.swift</strong>, set <code>kSyncGatewayUrl</code> to the URL of the Sync Gateway database (<a href="http://localhost:4984/todo/">http://localhost:4984/todo/</a>).</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">kSyncGatewayUrl</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"http://localhost:4984/todo/"</span><span class="p">)</span><span class="o">!</span>
+</code></pre></div></li>
+<li><p>Set <code>kSyncEnabled</code> to <code>true</code> in <strong>AppDelegate.swift</strong>.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">kSyncEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></li>
+<li><p>Build and run.</p></li>
+<li><p>Open <a href="http://localhost:4985/_admin/db/todo">http://localhost:4985/_admin/db/todo</a> in the browser and notice that all the documents are pushed to Sync Gateway! You may have more or less rows depending on how many documents are present in the Couchbase Lite database.</p>
+
+<p><img src="./img/image19.png" /></p></li>
+</ol>
+
+<p><block class="net" /></p>
+
+<ol>
+<li><p>In <strong>CoreApp.cs</strong> set <code>SyncGatewayUrl</code> to the URL of the Sync Gateway database (<a href="http://localhost:4984/todo/">http://localhost:4984/todo/</a>).</p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Uri</span> <span class="n">SyncGatewayUrl</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Uri</span><span class="p">(</span><span class="s">"http://localhost:4984/todo/"</span><span class="p">);</span>
+</code></pre></div></li>
+<li><p>In <strong>CoreApp.cs</strong> in the <code>CreateHint()</code> method, change <code>SyncEnabled = false</code> to <code>SyncEnabled = true</code>.</p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">var</span> <span class="n">retVal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CoreAppStartHint</span> <span class="p">{</span>
+    <span class="n">LoginEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+    <span class="n">EncryptionEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+    <span class="n">SyncEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// Line to change is here</span>
+    <span class="n">UsePrebuiltDB</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+    <span class="n">ConflictResolution</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+    <span class="n">Username</span> <span class="p">=</span> <span class="s">"todo"</span>
+<span class="p">};</span>
+
+<span class="k">return</span> <span class="n">retVal</span><span class="p">;</span>
+</code></pre></div></li>
+<li><p>Build and run.</p></li>
+<li><p>Open <a href="http://localhost:4985/_admin/db/todo">http://localhost:4985/_admin/db/todo</a> in the browser and notice that all the documents are pushed to Sync Gateway! You may have more or less rows depending on how many documents are present in the Couchbase Lite database.</p>
+
+<p><img src="./img/image19w.png" /></p></li>
+</ol>
+
+<p><block class="android" /></p>
+
+<ol>
+<li><p>In <strong>Application.java</strong>, set <code>mSyncGatewayUrl</code> to the URL of the Sync Gateway database (<a href="http://localhost:4984/todo/">http://localhost:4984/todo/</a>).</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">String</span> <span class="n">mSyncGatewayUrl</span> <span class="o">=</span> <span class="s">"http://10.0.2.2:4984/todo/"</span><span class="o">;</span>
+</code></pre></div>
+<p>For Android stock emulators, the hostname is <code>10.0.2.2</code>.</p></li>
+<li><p>Set <code>mSyncEnabled</code> to <code>true</code> in <strong>Application.java</strong>.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">Boolean</span> <span class="n">mSyncEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</code></pre></div></li>
+<li><p>Build and run.</p></li>
+<li><p>Open <a href="http://localhost:4985/_admin/db/todo">http://localhost:4985/_admin/db/todo</a> in the browser and notice that all the documents are pushed to Sync Gateway! You may have more or less rows depending on how many documents are present in the Couchbase Lite database.</p>
+
+<p><img src="./img/image19a.png" /></p></li>
+</ol>
+
+<p><block class="all" /></p>
+<h2><a class="anchor instructions" name="resolve-conflicts"></a>Resolve Conflicts<a class="hash-link instructions" href="#resolve-conflicts"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Due to the unpredictability of mobile connections it&#39;s inevitable that more than one device will update the same document simultaneously. Couchbase Lite provides features to resolve these conflicts. The resolution rules are written by the developer to keep full control over which revision should be picked. The most common resolution methods are:</p>
+
+<ul>
+<li><strong>Deletes always win:</strong> if one side deletes a document it will always stay deleted, even if the other side has made changes to it later on.</li>
+<li><strong>N-way merge:</strong> if both sides have updated different properties, the document will end up with the updates from both sides.</li>
+<li><strong>Last update wins:</strong> if both sides have updated the same property, the value will end up as the last one that was updated.</li>
+</ul>
+
+<p>Revisions form a tree data structure and a conflict occurs when there are multiple branches in the revision tree. On the diagram below the conflict is resolved by deleting one branch of the tree (the branch starting at <strong>3-42cc</strong>). The other one is the active branch (i.e the winner) where further child revisions can be persisted (<strong>4-45cb</strong> and <strong>5-42bb</strong>).</p>
+
+<p><img src="img/image16.png" class="portrait" /></p>
+<h3><a class="anchor instructions" name="detecting-conflicts"></a>Detecting conflicts<a class="hash-link instructions" href="#detecting-conflicts"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>To resolve conflicts you must first learn how to detect them. The code below uses an All Docs query which is an index of all the documents in the local database. The <strong>OnlyConflicts</strong> option is passed to report only the documents with conflicts and a <strong>LiveQuery</strong> is used to continuously monitor the database for changes.</p>
+
+<p><block class="ios" /></p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// This code can be found in AppDelegate.swift</span>
+<span class="c1">// in the startConflictLiveQuery() method</span>
+<span class="k">guard</span> <span class="n">kConflictResolution</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="n">conflictsLiveQuery</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="nf">createAllDocumentsQuery</span><span class="p">()</span><span class="o">.</span><span class="nf">asLive</span><span class="p">()</span>
+<span class="n">conflictsLiveQuery</span><span class="o">!.</span><span class="n">allDocsMode</span> <span class="o">=</span> <span class="o">.</span><span class="n">onlyConflicts</span>
+<span class="n">conflictsLiveQuery</span><span class="o">!.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKeyPath</span><span class="p">:</span> <span class="s">"rows"</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="o">.</span><span class="k">new</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="n">conflictsLiveQuery</span><span class="o">!.</span><span class="nf">start</span><span class="p">()</span>
+</code></pre></div>
+<p>The query results are then posted to the application code using the KVO observer method.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// This code can be found in AppDelegate.swift</span>
+<span class="c1">// in the observeValue(forKeyPath:of:change:context:) method</span>
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="n">of</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span>
+                            <span class="nv">change</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSKeyValueChangeKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">object</span> <span class="k">as?</span> <span class="kt">NSObject</span> <span class="o">==</span> <span class="n">conflictsLiveQuery</span> <span class="p">{</span>
+        <span class="nf">resolveConflicts</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><block class="net" /></p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// This code can be found in CoreApp.cs</span>
+<span class="c1">// in the StartConflictLiveQuery() method</span>
+<span class="n">_conflictsLiveQuery</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="nf">CreateAllDocumentsQuery</span><span class="p">().</span><span class="nf">ToLiveQuery</span><span class="p">();</span>
+<span class="n">_conflictsLiveQuery</span><span class="p">.</span><span class="n">AllDocsMode</span> <span class="p">=</span> <span class="n">AllDocsMode</span><span class="p">.</span><span class="n">OnlyConflicts</span><span class="p">;</span>
+<span class="n">_conflictsLiveQuery</span><span class="p">.</span><span class="n">Changed</span> <span class="p">+=</span> <span class="n">ResolveConflicts</span><span class="p">;</span>
+
+<span class="n">_conflictsLiveQuery</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
+</code></pre></div>
+<p><block class="android" /></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// This code can be found in Application.java</span>
+<span class="c1">// in the startConflictLiveQuery() method</span>
+<span class="n">LiveQuery</span> <span class="n">conflictsLiveQuery</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="na">createAllDocumentsQuery</span><span class="o">().</span><span class="na">toLiveQuery</span><span class="o">();</span>
+<span class="n">conflictsLiveQuery</span><span class="o">.</span><span class="na">setAllDocsMode</span><span class="o">(</span><span class="n">Query</span><span class="o">.</span><span class="na">AllDocsMode</span><span class="o">.</span><span class="na">ONLY_CONFLICTS</span><span class="o">);</span>
+<span class="n">conflictsLiveQuery</span><span class="o">.</span><span class="na">addChangeListener</span><span class="o">(</span><span class="k">new</span> <span class="n">LiveQuery</span><span class="o">.</span><span class="na">ChangeListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changed</span><span class="o">(</span><span class="n">LiveQuery</span><span class="o">.</span><span class="na">ChangeEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">resolveConflicts</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getRows</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+<span class="n">conflictsLiveQuery</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div>
+<p><block class="all" /></p>
+
+<p>The query results are then posted to the application code using the change callback or change listener.</p>
+<h3><a class="anchor instructions" name="automatic-conflict-resolution"></a>Automatic conflict resolution<a class="hash-link instructions" href="#automatic-conflict-resolution"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Even if the conflict isn’t resolved, Couchbase Lite has to return something. It chooses one of the two conflicting revisions as the &quot;winner&quot;. The choice is deterministic, which means that every device that is faced with the same conflict will pick the same winner, without having to communicate.</p>
+
+<p>Shown below is a list document created with two conflicting revisions. After deleting the row, the text <strong>Text Changed</strong> appears which is the name of the second conflicting revision. The action of deleting a document only deletes the current revision and if there are conflicting revisions it will be promoted as the new current revision.</p>
+
+<p><block class="ios" /></p>
+
+<p><img src="https://cl.ly/0h3T1c0e1V2G/image47.gif" class="portrait" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> During development, the method <code>saveAllowingConflicts</code> is used to intentionally create a conflict. You can shake the device (<strong>^⌘Z</strong> on the simulator) to create a list conflict. The code is located in the <code>motionEnded(_:with:)</code> method of <strong>ListsViewController.swift</strong>.</p>
+</blockquote>
+
+<p><block class="wpf" /></p>
+
+<p><img src="https://cl.ly/0V2I0h1T1j24/image47w.gif" class="center-image" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> During development, the method <code>Save(bool)</code> is used to intentionally create a conflict. You can press Ctrl+C to create a list conflict. The code is located in the <code>TestConflict()</code> method of <strong>TaskListsModel.cs</strong>.</p>
+</blockquote>
+
+<p><block class="xam" /></p>
+
+<p><strong>iOS</strong>
+<img src="./img/image47.gif" class="portrait" />
+<strong>Android</strong>
+<img src="./img/image47xa.gif" class="portrait" /></p>
+
+<p><block class="android" /></p>
+
+<p><img src="https://cl.ly/2h0Z2u2S0M1W/image47a.gif" class="portrait" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> During development, the method <code>save(boolean)</code> is used to intentionally create a conflict. You can long press the floating action button to create a list conflict. The code is located in the <code>createListConflict()</code> method of <strong>ListsActivity.java</strong>.</p>
+</blockquote>
+
+<p><block class="all" /></p>
+
+<p>This can be surprising at first but it’s the strength of using a distributed database that defers the conflict resolution logic to the application. It’s your responsibility as the developer to ensure conflicts are resolved! Even if you decide to let Couchbase Lite pick the winner you must remove extraneous conflicting revisions to prevent the behaviour observed above. The code below removes all revisions except the current/winning one.</p>
+
+<p><block class="ios" /></p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// This code can be found in AppDelegate.swift</span>
+<span class="c1">// in the resolveConflicts(revisions:withProps:andImage:) method</span>
+<span class="n">database</span><span class="o">.</span><span class="n">inTransaction</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">rev</span> <span class="k">in</span> <span class="n">revs</span> <span class="k">as!</span> <span class="p">[</span><span class="kt">CBLSavedRevision</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">newRev</span> <span class="o">=</span> <span class="n">rev</span><span class="o">.</span><span class="nf">createRevision</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Default winning revision</span>
+            <span class="n">newRev</span><span class="o">.</span><span class="n">userProperties</span> <span class="o">=</span> <span class="n">props</span>
+            <span class="k">if</span> <span class="n">rev</span><span class="o">.</span><span class="nf">attachmentNamed</span><span class="p">(</span><span class="s">"image"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">image</span> <span class="p">{</span>
+                <span class="n">newRev</span><span class="o">.</span><span class="nf">setAttachmentNamed</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="nv">withContentType</span><span class="p">:</span> <span class="s">"image/jpg"</span><span class="p">,</span>
+                    <span class="nv">content</span><span class="p">:</span> <span class="n">image</span><span class="p">?</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">newRev</span><span class="o">.</span><span class="n">isDeletion</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="p">}</span>
+
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="n">newRev</span><span class="o">.</span><span class="nf">saveAllowingConflict</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="k">let</span> <span class="nv">error</span> <span class="k">as</span> <span class="kt">NSError</span> <span class="p">{</span>
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Cannot resolve conflicts with error: %@"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">false</span>
+        <span class="p">}</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><block class="net" /></p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// This code can be found in CoreApp.cs</span>
+<span class="c1">// in the ResolveConflicts(SavedRevision[], IDictionary&lt;string, object&gt;, Attachment) method</span>
+<span class="n">Database</span><span class="p">.</span><span class="nf">RunInTransaction</span><span class="p">(()</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">rev</span> <span class="k">in</span> <span class="n">revs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">newRev</span> <span class="p">=</span> <span class="n">rev</span><span class="p">.</span><span class="nf">CreateRevision</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Default winning revision</span>
+            <span class="n">newRev</span><span class="p">.</span><span class="nf">SetUserProperties</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">newRev</span><span class="p">.</span><span class="nf">GetAttachment</span><span class="p">(</span><span class="s">"image"</span><span class="p">)</span> <span class="p">!=</span> <span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">newRev</span><span class="p">.</span><span class="nf">SetAttachment</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="s">"image/jpg"</span><span class="p">,</span> <span class="n">image</span><span class="p">?.</span><span class="n">Content</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">newRev</span><span class="p">.</span><span class="n">IsDeletion</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">newRev</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Cannot resolve conflicts with error: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">i</span> <span class="p">+=</span> <span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><block class="android" /></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// This code can be found in Application.java</span>
+<span class="c1">// in the resolveConflicts(List&lt;SavedRevision&gt;, Map&lt;String, Object&gt;, Attachment)</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">resolveConflicts</span><span class="o">(</span><span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SavedRevision</span><span class="o">&gt;</span> <span class="n">revs</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">desiredProps</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Attachment</span> <span class="n">desiredImage</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">database</span><span class="o">.</span><span class="na">runInTransaction</span><span class="o">(</span><span class="k">new</span> <span class="n">TransactionalTask</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">SavedRevision</span> <span class="n">rev</span> <span class="o">:</span> <span class="n">revs</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">UnsavedRevision</span> <span class="n">newRev</span> <span class="o">=</span> <span class="n">rev</span><span class="o">.</span><span class="na">createRevision</span><span class="o">();</span> <span class="c1">// Create new revision</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// That's the current/winning revision</span>
+                    <span class="n">newRev</span><span class="o">.</span><span class="na">setUserProperties</span><span class="o">(</span><span class="n">desiredProps</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">desiredImage</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">try</span> <span class="o">{</span>
+                            <span class="n">newRev</span><span class="o">.</span><span class="na">setAttachment</span><span class="o">(</span><span class="s">"image"</span><span class="o">,</span> <span class="s">"image/jpg"</span><span class="o">,</span> <span class="n">desiredImage</span><span class="o">.</span><span class="na">getContent</span><span class="o">());</span>
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CouchbaseLiteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// That's a conflicting revision, delete it</span>
+                    <span class="n">newRev</span><span class="o">.</span><span class="na">setIsDeletion</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">newRev</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Persist the new revision</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CouchbaseLiteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div>
+<p><block class="all" /></p>
+<h4><a class="anchor instructions" name="try-it-out"></a>Try it out<a class="hash-link instructions" href="#try-it-out"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<p><block class="ios" /></p>
+
+<ol>
+<li><p>To enable conflict resolution, set the <code>kConflictResolution</code> constant in <strong>AppDelegate.swift</strong> to <code>true</code>.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">kConflictResolution</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></li>
+<li><p>Perform the same actions and this time deleting the list conflict doesn’t reveal the subsequent conflicting revision anymore.</p>
+
+<p><img class="portrait" src="https://cl.ly/0b2y1o1U1L2u/image48.gif"  /></p></li>
+</ol>
+
+<p><block class="net" /></p>
+
+<ol>
+<li>To enable conflict resolution, change <code>ConflictResolution = false</code> to <code>ConflictResolution = true</code> in the <code>CreateHint()</code> method in <strong>CoreApp.cs</strong></li>
+</ol>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#">   <span class="kt">var</span> <span class="n">retVal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CoreAppStartHint</span> <span class="p">{</span>
+       <span class="n">LoginEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">EncryptionEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">SyncEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">UsePrebuiltDB</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">ConflictResolution</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// The line to change</span>
+       <span class="n">Username</span> <span class="p">=</span> <span class="s">"todo"</span>
+   <span class="p">};</span>
+
+   <span class="k">return</span> <span class="n">retVal</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li>Perform the same actions and this time deleting the list conflict doesn’t reveal the subsequent conflicting revision anymore.</li>
+</ol>
+
+<p><block class="wpf" /></p>
+
+<p><img class="center-image" src="https://cl.ly/0o1z380g2w2w/image48w.gif"  /></p>
+
+<p><block class="xam" /></p>
+
+<p><strong>iOS</strong>
+<img class="portrait" src="./img/image48.gif"  />
+<strong>Android</strong>
+<img class="portrait" src="./img/image48xa.gif"  /></p>
+
+<p><block class="android" /></p>
+
+<ol>
+<li><p>To enable conflict resolution, set the <code>mConflictResolution</code> constant in <strong>Application.java</strong> to <code>true</code>.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">Boolean</span> <span class="n">mConflictResolution</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</code></pre></div></li>
+<li><p>Perform the same actions and this time deleting the list conflict doesn&#39;t reveal the subsequent conflicting revision anymore.</p>
+
+<p><img class="portrait" src="https://cl.ly/1A0u402Z1t08/image48a.gif"  /></p></li>
+</ol>
+
+<p><block class="all" /></p>
+<h3><a class="anchor instructions" name="n-way-conflict-resolution"></a>N-way conflict resolution<a class="hash-link instructions" href="#n-way-conflict-resolution"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>For task documents, you will follow the same steps as previously except this time the conflict resolution will merge the differences between the conflicting revisions into a new revision before removing them. This time, one revision changes the title of the task while the other revision marks it as completed.</p>
+
+<p><block class="ios" /></p>
+
+<p><img src="https://cl.ly/0q3A3F2E1Z2L/image67.gif" class="portrait" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> To see the same result, open any list and shake the device (<strong>^⌘Z</strong> on the simulator) to create a task conflict. The code is located in the <code>motionEnded(_:with:)</code> method of <strong>TasksViewController.swift</strong>. Be sure to disable conflict resolution to see the same result as the animation above.</p>
+</blockquote>
+
+<p><block class="wpf" /></p>
+
+<p><img src="https://cl.ly/451n2X1v1r0z/image67w.gif" class="center-image" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> To see the same result, open any list and press Ctrl+C to create a task conflict.  The code is located in the
+<code>TestConflict()</code> method of <strong>TasksModel.cs</strong>.  Be sure to disable conflict resolution to see the same result as the animation above.</p>
+</blockquote>
+
+<p><block class="android" /></p>
+
+<p><img src="https://cl.ly/1E1O0M1l333r/image67a.gif" class="portrait" /></p>
+
+<blockquote>
+<p><strong>Note:</strong> To see the same result, open any list and long press the floating action button to create a task conflict. The code is located in the <code>createTaskConflict()</code> method of <strong>TasksFragment.java</strong>. Be sure to disable conflict resolution to see the same result as the animation above.</p>
+</blockquote>
+
+<p><block class="all" /></p>
+
+<p>Similarly to the previous section, you will learn how to resolve conflicts, this time for &quot;task&quot; documents. In this case, the resolution code will <strong>merge the changes</strong> (i.e n-way merge) of the conflicting revisions and promote the result as the current revision.</p>
+
+<p><block class="ios" /></p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// This code can be found in AppDelegate.swift</span>
+<span class="c1">// in the resolveConflicts() method</span>
+<span class="k">let</span> <span class="nv">rows</span> <span class="o">=</span> <span class="n">conflictsLiveQuery</span><span class="p">?</span><span class="o">.</span><span class="n">rows</span>
+<span class="k">while</span> <span class="k">let</span> <span class="nv">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">?</span><span class="o">.</span><span class="nf">nextRow</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">revs</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">conflictingRevisions</span><span class="p">,</span> <span class="n">revs</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">defaultWinning</span> <span class="o">=</span> <span class="n">revs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">let</span> <span class="nv">type</span> <span class="o">=</span> <span class="p">(</span><span class="n">defaultWinning</span><span class="p">[</span><span class="s">"type"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span><span class="p">)</span> <span class="p">??</span> <span class="s">""</span>
+        <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+        <span class="c1">// TRAINING: Automatic conflict resolution</span>
+        <span class="k">case</span> <span class="s">"task-list"</span><span class="p">,</span> <span class="s">"task-list.user"</span><span class="p">:</span>
+            <span class="k">let</span> <span class="nv">props</span> <span class="o">=</span> <span class="n">defaultWinning</span><span class="o">.</span><span class="n">userProperties</span>
+            <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">defaultWinning</span><span class="o">.</span><span class="nf">attachmentNamed</span><span class="p">(</span><span class="s">"image"</span><span class="p">)</span>
+            <span class="nf">resolveConflicts</span><span class="p">(</span><span class="nv">revisions</span><span class="p">:</span> <span class="n">revs</span><span class="p">,</span> <span class="nv">withProps</span><span class="p">:</span> <span class="n">props</span><span class="p">,</span> <span class="nv">andImage</span><span class="p">:</span> <span class="n">image</span><span class="p">)</span>
+        <span class="c1">// TRAINING: N-way merge conflict resolution</span>
+        <span class="k">case</span> <span class="s">"task"</span><span class="p">:</span>
+            <span class="k">let</span> <span class="nv">merged</span> <span class="o">=</span> <span class="nf">nWayMergeConflicts</span><span class="p">(</span><span class="nv">revs</span><span class="p">:</span> <span class="n">revs</span><span class="p">)</span>
+            <span class="nf">resolveConflicts</span><span class="p">(</span><span class="nv">revisions</span><span class="p">:</span> <span class="n">revs</span><span class="p">,</span> <span class="nv">withProps</span><span class="p">:</span> <span class="n">merged</span><span class="o">.</span><span class="n">props</span><span class="p">,</span> <span class="nv">andImage</span><span class="p">:</span> <span class="n">merged</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><block class="net" /></p>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// This code can be found in CoreApp.cs</span>
+<span class="c1">// in the ResolveConflicts() method</span>
+<span class="kt">var</span> <span class="n">rows</span> <span class="p">=</span> <span class="n">_conflictsLiveQuery</span><span class="p">?.</span><span class="n">Rows</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">rows</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">row</span> <span class="k">in</span> <span class="n">rows</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">var</span> <span class="n">conflicts</span> <span class="p">=</span> <span class="n">row</span><span class="p">.</span><span class="nf">GetConflictingRevisions</span><span class="p">().</span><span class="nf">ToArray</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">conflicts</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">defaultWinning</span> <span class="p">=</span> <span class="n">conflicts</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+        <span class="kt">var</span> <span class="n">type</span> <span class="p">=</span> <span class="n">defaultWinning</span><span class="p">.</span><span class="nf">GetProperty</span><span class="p">(</span><span class="s">"type"</span><span class="p">)</span> <span class="k">as</span> <span class="kt">string</span> <span class="p">??</span> <span class="s">""</span><span class="p">;</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// TRAINING: Automatic conflict resolution</span>
+            <span class="k">case</span> <span class="s">"task-list"</span><span class="p">:</span>
+            <span class="k">case</span> <span class="s">"task-list.user"</span><span class="p">:</span>
+                <span class="kt">var</span> <span class="n">props</span> <span class="p">=</span> <span class="n">defaultWinning</span><span class="p">.</span><span class="n">UserProperties</span><span class="p">;</span>
+                <span class="kt">var</span> <span class="n">image</span> <span class="p">=</span> <span class="n">defaultWinning</span><span class="p">.</span><span class="nf">GetAttachment</span><span class="p">(</span><span class="s">"image"</span><span class="p">);</span>
+                <span class="nf">ResolveConflicts</span><span class="p">(</span><span class="n">conflicts</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// TRAINING: N-way merge conflict resolution</span>
+            <span class="k">case</span> <span class="s">"task"</span><span class="p">:</span>
+                <span class="kt">var</span> <span class="n">merged</span> <span class="p">=</span> <span class="nf">NWayMergeConflicts</span><span class="p">(</span><span class="n">conflicts</span><span class="p">);</span>
+                <span class="nf">ResolveConflicts</span><span class="p">(</span><span class="n">conflicts</span><span class="p">,</span> <span class="n">merged</span><span class="p">.</span><span class="n">Item1</span><span class="p">,</span> <span class="n">merged</span><span class="p">.</span><span class="n">Item2</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><block class="android" /></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// This code can be found in Application.java</span>
+<span class="c1">// in the resolveConflicts(QueryEnumerator) method</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">QueryRow</span> <span class="n">row</span> <span class="o">:</span> <span class="n">rows</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">SavedRevision</span><span class="o">&gt;</span> <span class="n">revs</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="na">getConflictingRevisions</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">revs</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SavedRevision</span> <span class="n">defaultWinning</span> <span class="o">=</span> <span class="n">revs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">type</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">defaultWinning</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"type"</span><span class="o">);</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// TRAINING: Automatic conflict resolution</span>
+            <span class="k">case</span> <span class="s">"task-list"</span><span class="o">:</span>
+            <span class="k">case</span> <span class="s">"task-list.user"</span><span class="o">:</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">props</span> <span class="o">=</span> <span class="n">defaultWinning</span><span class="o">.</span><span class="na">getUserProperties</span><span class="o">();</span>
+                <span class="n">Attachment</span> <span class="n">image</span> <span class="o">=</span> <span class="n">defaultWinning</span><span class="o">.</span><span class="na">getAttachment</span><span class="o">(</span><span class="s">"image"</span><span class="o">);</span>
+                <span class="n">resolveConflicts</span><span class="o">(</span><span class="n">revs</span><span class="o">,</span> <span class="n">props</span><span class="o">,</span> <span class="n">image</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="c1">// TRAINING: N-way merge conflict resolution</span>
+            <span class="k">case</span> <span class="s">"task"</span><span class="o">:</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">mergedPropsAndImage</span> <span class="o">=</span> <span class="n">nWayMergeConflicts</span><span class="o">(</span><span class="n">revs</span><span class="o">);</span>
+                <span class="n">resolveConflicts</span><span class="o">(</span><span class="n">revs</span><span class="o">,</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">mergedPropsAndImage</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="o">(</span><span class="n">Attachment</span><span class="o">)</span> <span class="n">mergedPropsAndImage</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p><block class="all" /></p>
+
+<p>Notice that for &#39;task&#39; documents, the <code>nWayMergeConflicts()</code> method is called to merge the differences of conflicting revisions. The body of this method is too long to copy here but you can find it in the same file.</p>
+<h4><a class="anchor instructions" name="try-it-out"></a>Try it out<a class="hash-link instructions" href="#try-it-out"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h4>
+<p><block class="ios" /></p>
+
+<ol>
+<li><p>Enable conflict resolution.</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">kConflictResolution</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></li>
+<li><p>Build and run. </p></li>
+<li><p>Create a task conflict using the shake gesture (or <strong>^⌘Z</strong>) and this time the row contains the updated text <strong>and</strong> is marked as completed.
+<img src="img/image03.png" class="portrait" /></p></li>
+</ol>
+
+<p><block class="wpf" /></p>
+
+<ol>
+<li>Enable conflict resolution</li>
+</ol>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#">   <span class="kt">var</span> <span class="n">retVal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CoreAppStartHint</span> <span class="p">{</span>
+       <span class="n">LoginEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">EncryptionEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">SyncEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">UsePrebuiltDB</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">ConflictResolution</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// The line to change</span>
+       <span class="n">Username</span> <span class="p">=</span> <span class="s">"todo"</span>
+   <span class="p">};</span>
+
+   <span class="k">return</span> <span class="n">retVal</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li>Build and run</li>
+<li><p>Create a conflict by pressing &#39;Ctrl+C&#39; and this time the row contains the updated text <strong>and</strong> is marked as completed.</p>
+
+<p><img src="img/image03w.png" alt=""></p></li>
+</ol>
+
+<p><block class="xam" /></p>
+
+<ol>
+<li>Enable conflict resolution</li>
+</ol>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#">   <span class="kt">var</span> <span class="n">retVal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CoreAppStartHint</span> <span class="p">{</span>
+       <span class="n">LoginEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">EncryptionEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">SyncEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">UsePrebuiltDB</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+       <span class="n">ConflictResolution</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// The line to change</span>
+       <span class="n">Username</span> <span class="p">=</span> <span class="s">"todo"</span>
+   <span class="p">};</span>
+
+   <span class="k">return</span> <span class="n">retVal</span><span class="p">;</span>
+</code></pre></div>
+<ol>
+<li>Build and run</li>
+<li>Create a task conflict using the shake gesture and this time the row contains the updated text <strong>and</strong> is marked as completed.</li>
+</ol>
+
+<p><strong>iOS</strong>
+<img src="img/image03.png" alt="">
+<strong>Android</strong></p>
+
+<p><block class="android" /></p>
+
+<ol>
+<li><p>Enable conflict resolution in <strong>Application.java</strong>.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">Boolean</span> <span class="n">mConflictResolution</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</code></pre></div></li>
+<li><p>Build and run.</p></li>
+<li><p>Create a task conflict using the shake gesture and this time the row contains the updated text <strong>and</strong> is marked as completed.</p>
+
+<p><image src="img/image03a.png" class="portrait" /></p></li>
+</ol>
+
+<p><block class="all" /></p>
+<h2><a class="anchor instructions" name="conclusion"></a>Conclusion<a class="hash-link instructions" href="#conclusion"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Well done! You&#39;ve completed this lesson on enabling synchronization, detecting and resolving conflicts. In the next lesson you&#39;ll learn how to implement authentication and define access control rules in the Sync Function. Feel free to share your feedback, findings or ask any questions on the forums.</p>
+
+                <!-- Logic to make all links open in a new tab -->
+                <script>
+                  var links = document.links;
+
+                  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+                    if (['button-swift', 'button-objc', 'button-csharp', 'button-java', 'button-ios', 'button-android', 'button-wpf'].indexOf(links[i].className) == -1) {
+                      if (links[i].hostname != window.location.hostname) {
+                        links[i].target = '_blank';
+                      }
+                    }
+                  }
+                </script>
+                <!-- Logic for platform tabs -->
+                <script>
+                  // Only show on Develop pages
+                  var blocksv1 = document.getElementsByClassName('ios');
+                  var blocksv2 = document.getElementsByClassName('swift');
+                  if ((blocksv1.length > 0 && blocksv1[0].tagName == 'BLOCK') || (blocksv2.length > 0 && blocksv2[0].tagName == 'BLOCK')) {
+                    var platformTabs = document.getElementById('platform-tabs');
+                    platformTabs.className = "show";
+                  }
+                  // Convert <div>...<span><block /></span>...</div>
+                  // Into <div>...<block />...</div>
+                  var blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      var span = blocks[i].parentNode;
+                      var container = span.parentNode;
+                      container.insertBefore(block, span);
+                      container.removeChild(span);
+                    }
+                  }
+                  // Convert <div>...<block />content<block />...</div>
+                  // Into <div>...<block>content</block><block />...</div>
+                  blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      while (block.nextSibling && block.nextSibling.tagName !== 'BLOCK') {
+                        block.appendChild(block.nextSibling);
+                      }
+                    }
+                  }
+                  function display(type, value, isFirstPageLoad) {
+                    deleteCookie('mobile-lang');
+                    setCookie('mobile-lang', value, 365);
+                    if (!isFirstPageLoad) {
+                      var newurl = UpdateQueryString('language', value);
+                      window.history.pushState({path: newurl}, '', newurl);
+                    }
+                    // Place the display-platform-* class on div.inner-content
+                    var container = document.getElementsByClassName('inner-content')[0];
+                    container.className = 'inner-content display-' + type + '-' + value;
+                    if (value == 'wpf' || value == 'csharp' || value == 'xam') {
+                      container.className += ' display-platform-net';
+                    }
+                    container.className += ' display-platform-all';
+                    return false;
+                  }
+
+                  // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+                  // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+                  var foundHash = false;
+                  var language = getParameterByName('language');
+                  if (['ios', 'android', 'csharp', 'swift', 'objc', 'wpf', 'java'].indexOf(language) > -1) {
+                    foundHash = true;
+                    display('platform', language, true);
+                  }
+
+                  if (!foundHash) {
+                    var cookie_lang = getCookie('mobile-lang');
+                    if (document.getElementsByClassName(cookie_lang).length > 0) {
+                      display('platform', cookie_lang, true);
+                    } else {
+                      if (document.getElementsByClassName('swift').length > 0) {
+                        display('platform', 'swift', true);
+                      } else if (document.getElementsByClassName('ios').length > 0) {
+                        display('platform', 'ios', true);
+                      }
+                    }
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) {
+                      url = window.location.href;
+                    }
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                  function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                  }
+                  function deleteCookie(cname) {
+                    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+                  function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                      }
+                    }
+                    return "";
+                  }
+                  function UpdateQueryString(key, value, url) {
+                    if (!url) url = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+                      hash;
+
+                    if (re.test(url)) {
+                      if (typeof value !== 'undefined' && value !== null)
+                        return url.replace(re, '$1' + key + "=" + value + '$2$3');
+                      else {
+                        hash = url.split('#');
+                        url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                    }
+                    else {
+                      if (typeof value !== 'undefined' && value !== null) {
+                        var separator = url.indexOf('?') !== -1 ? '&' : '?';
+                        hash = url.split('#');
+                        url = hash[0] + separator + key + '=' + value;
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                      else
+                        return url;
+                    }
+                  }
+                </script>
+                <!-- Segment.io analytics -->
+                <script type="text/javascript">
+                  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+                    analytics.load("8mPwsJfsKAal6r62qS9ubBQqjWwYly4M");
+                    analytics.page()
+                  }}();
+                </script>
+                <script>
+                  var starterProject = document.getElementById('project');
+                  analytics.trackLink(starterProject, 'Download project', {
+                    category: 'Training',
+                    label: 'Swift'
+                  });
+                </script>
+                <!-- SDK buttons (shown only if show_true=true in the SDK) -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+                <script>
+
+                  if (getParameterByName("show_swagger_libs") || getParameterByName("swagger")) {
+                    var swagger_libs_el = document.getElementById('swagger-libs');
+                    swagger_libs_el.style.display = 'block';
+                  }
+
+                  function getSDK(lang, spec) {
+                    var url = null;
+                    switch(spec) {
+                      case 'public':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-public/spec.json';
+                        break;
+                      case 'admin':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-admin/spec.json';
+                        break;
+                      case 'lite':
+                        url = 'http://developer.couchbase.com/mobile/swagger/couchbase-lite/spec.json';
+                        break;
+                    }
+                    fetch(url)
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        var options = {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({spec: res})
+                        };
+                        return fetch('http://generator.swagger.io/api/gen/clients/' + lang, options)
+                      })
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        window.location = res.link;
+                      });
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                </script>
+              </div>
+
+              <script>
+                /**
+                 * HACK: To keep the code tabs while using markdown. Insert <div class="tab"></div> in the markdown and this script
+                 * finds and replaces all instances with a tab bar.
+                 */
+                var tab_bar_html = "</div><a href='javascript:setLanguage(\"swift\")' class=\"tab stripe-active swift\">Swift</a> <a href='javascript:setLanguage(\"objective-c\")' class=\"tab stripe-active objective-c selected\">Objective-C</a> <a href='javascript:setLanguage(\"android\")' class=\"tab stripe-active android\">Android</a> <a href='javascript:setLanguage(\"java\")' class=\"tab stripe-active java\">Java</a> <a href='javascript:setLanguage(\"c\")' class=\"tab stripe-active c\">C#</a>"
+                var tab_bars = document.getElementsByClassName('tabs');
+                var i = tab_bars.length - 1;
+                while (i >= 0) {
+                  var parent = tab_bars.item(i).parentNode;
+                  var element = document.createElement('div');
+                  element.className = 'tab-bar';
+                  element.innerHTML = tab_bar_html;
+                  parent.replaceChild(element, tab_bars.item(i));
+                  i--;
+                }
+
+                /**
+                 * HACK: To keep the markdown tables styles after ingestion we need to wrap the ouput in <div class="table"></div>
+                 */
+                var tables = document.getElementsByTagName("table");
+                var j = tables.length - 1;
+                while (j >= 0) {
+                  var parent = tables.item(j).parentNode;
+                  var table = tables.item(j);
+                  var wrapper = document.createElement('div');
+                  wrapper.className = 'table';
+                  wrapper.style.padding = 0;
+                  parent.insertBefore(wrapper, table);
+                  wrapper.appendChild(table);
+                  j--;
+                }
+              </script>
+              <script>
+                /**
+                 * Hack to not open some list titles
+                 */
+                (function() {
+                  var els = document.getElementsByClassName('static');
+                  for (var i = 0; i < els.length; i++) {
+                    (function() {
+                      var el = els[i];
+                      el.onclick = function () {
+                        var icon = el.previousSibling;
+                        var iconClasses = icon.className;
+                        if (iconClasses == 'icon') {
+                          icon.className = 'icon close';
+                        } else {
+                          icon.className = 'icon';
+                        }
+                        var list = el.nextSibling;
+                        var displayProp = list.style.display;
+                        if (displayProp == 'block') {
+                          list.style.display = 'none';
+                        } else {
+                          list.style.display = 'block';
+                        }
+                      }
+                    })()
+                  }
+                })()
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+</main>
+  </div>
+</div>
+
+<!-- Require_js bootstrap for app-specific JS module support -->
+<!-- data-main attribute tells require.js to load
+scripts/main.js after require.js loads. -->
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/require.js"></script>
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/prism.js"></script>
+<script rel="main" type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/main.js" ></script>
+<!-- leave the main attribute, it is used to help main.js determine -->
+<!-- the domain-relative path to the base script (main.js) -->
+
+</body>
+
+</html>

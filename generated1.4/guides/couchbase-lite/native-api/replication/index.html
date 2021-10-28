@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="description" content="A high-level introduction to the component parts of the Couchbase Mobile product." />
+  <meta name="version" content="1.4" />
+  <meta name="product" content="mobile" />
+  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVPNN2');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/webfiles/1498186094252/images/icons/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://developer.couchbase.com/webfiles/1498186094252/images/icons/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/webfiles/1498186094252/images/icons/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--    _____________________________
+  _______/ Support for legacy browsers \_______________________________________-->
+  <!--[if lte IE 8]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/html5shiv.js" />
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/vendor/respond.js" />
+  <![endif]-->
+  <!--[if IE 9]>
+  <script type="text/javascript" charset="utf-8" src="/webfiles/1498186094252/js/thirdparty/classList.js" />
+  <![endif]-->
+  <!--_________________________________________________________________________-->
+  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/jquery-migrate.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/slick.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/isotope.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/imagesloaded.min.js"></script>
+
+  <meta name="apple-mobile-web-app-title" content="Couchbase">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="1gPO0RaMzKyZJFpS-iyIEnPsWDztwZH0R3vG1VpSwvM" />
+
+  <!-- LOCAL CSS Libs -->
+  <link rel="stylesheet" href="https://developer.couchbase.com/webfiles/1498186094252/css/styles.css">
+
+  <!-- Default canonical comes from the URL -->
+  <link rel="canonical" href="http://developer.couchbase.com"/>
+  <title>Couchbase</title>
+  <link rel="stylesheet" href="https://developer.couchbase.com/binaries/content/assets/css/overrides.css">
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVPNN2" height="0"
+          width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager -->
+<script>
+  var overrideJsPath = "/binaries/content/assets/js/overrides.js";
+  $.ajax({
+    url: overrideJsPath,
+    type: 'HEAD',
+    error: function () {
+    },
+    success: function () {
+      // file exists
+      $.getScript(overrideJsPath);
+    }
+  });
+</script>
+<!--    ________________
+_______/ INCLUDE HEADER - BODY - FOOTER \____________________________________________________-->
+<!-- begin - include ref= -->
+<nav class="aux">
+  <div>
+  </div>
+</nav>
+<!-- Beginning of site.../jsp/base/header.jsp -->
+<header id="global-header" class="global-header dev-portal">
+  <div class="layout-wrapper">
+    <div class="global-header__logo">
+      <a href='http://www.couchbase.com'>Couchbase</a>
+      <a href='index.html'>Developer</a>
+
+    </div>
+
+    <a data-modules="navigation,globalheadersearch"></a>
+    <nav role="navigation" id="primary-navigation" class="primary-navigation">
+      <button aria-controls="primary-navigation__wrapper"
+              aria-pressed="false"
+              class="primary-navigation__toggler"
+              type="button">
+
+        <span>Menu</span>
+      </button>
+      <div id="primary-navigation__wrapper"
+           class="primary-navigation__wrapper"
+           aria-expanded="false">
+
+        <ul class="primary-navigation__items">
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/documentation/server/current/introduction/intro.html">Server</a>
+          </li>
+          <li class="primary-navigation__item ">
+
+            <a href="https://developer.couchbase.com/mobile">Mobile</a>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/community">Community</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/open-source-projects">Open Source Projects</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/contribute">Contribute</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://www.couchbase.com/nosql-resources/events">Events</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/experts-and-champions">Experts &amp; Champions</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://forums.couchbase.com/">Forums</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="http://blog.couchbase.com">Blogs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/support">Support</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="primary-navigation__item has-secondary-navigation">
+
+            <a href="https://developer.couchbase.com/guides-and-references">Site Map</a>
+            <div class="secondary-navigation">
+              <ul class="secondary-navigation__items">
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-1">Couchbase Server</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#section-2">Couchbase Mobile</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-3">SDKs</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/guides-and-references#subsection-1-5">Connectors</a>
+                </li>
+                <li class="secondary-navigation__item">
+                  <a href="https://developer.couchbase.com/documentation-archive">Documentation Archive</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <form id="global-header-search"
+              autocomplete="off"
+              class="global-header-search global-header-search--js"
+              action="https://developer.couchbase.com/search"
+              aria-expanded="false">
+          <ul><!--
+            ---><li>
+            <label for="global-header-search__query">
+              Search query
+            </label>
+            <input
+                    type="search"
+                    placeholder="Search"
+                    name="q"
+                    value=""
+                    id="global-header-search__query">
+          </li><!--
+                ---><li>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </li><!--
+        ---></ul>
+          <button aria-controls="global-header-search__items"
+                  aria-pressed="false"
+                  class="global-header-search__toggler"
+                  type="button">
+            <span>Search</span>
+          </button><!--
+        --->
+
+          <div style="display: none" about="custom-search-fields">
+
+            <input type="hidden"
+                   name="cx"
+                   value="017928787631531434501:3e7lwhjxsom" />
+            <input type="hidden"
+                   name="cof"
+                   value="FORID:11" />
+            <input type="hidden"
+                   name="safe"
+                   value="off" />
+            <input type="hidden"
+                   name="form_build_id"
+                   value="form-RrbKDUhO3kB2MiqBdZHIQI9L4LFE7c3L_s87N2B9BZo" />
+            <input type="hidden"
+                   name="form_id"
+                   value="google_cse_results_searchbox_form" />
+            <input type="hidden"
+                   name="siteurl"
+                   value='developer.couchbase.com' />
+
+          </div>
+        </form>
+      </div>
+    </nav>
+    <a class="global-header__download-button" href="https://developer.couchbase.com/downloads">
+      Download
+    </a>
+  </div>
+</header>
+
+<div class="page-content">
+  <div class="wrapper">
+    <main id="global-content" class="global-content" role="main">
+
+  <div id="page-template-attributes" data-template-id="" data-template-class="learn-support-sec article-tpl"></div>
+
+  <!-- LEFTNAV and ARTICLE -->
+  <section class="tpl-body">
+    <div class="wrapper">
+      <div class="cols">
+        <aside class="col one-fifth section-nav left-rail">
+          <nav role="navigation" aria-label="Secondary" style="width: 100%;">
+            <div class="toc collapsible" style="display: block;">
+              
+
+
+
+<!-- Used in the left nav to find the relative URL -->
+
+
+
+
+<nav style="width: 100%;" role="navigation" aria-label="Secondary" class="toc collapsible">
+  <ul class="main collapsed">
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../whatsnew.html">What's new</a>
+        
+      
+      
+      </li>
+    
+      <li class=" ishidden">
+      
+        <a href="#" class="static">Hidden Files For Redirects</a>
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/sync-gateway/views/index.html">Creating and querying a View</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../installation/index.html">Getting Started</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/ios/index.html">iOS/tvOS/macOS</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/android/index.html">Android</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/net/index.html">.NET</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/xamarin/index.html">Xamarin</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/java/index.html">Java</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/phonegap/index.html">PhoneGap</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../installation/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class=" ">
+      
+        
+          <a href="../../../../training/index.html">Tutorial</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Design</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/design/data-modeling/index.html">Data Modeling</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/design/security/index.html">Access Control</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Develop</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/create-database/index.html">Create a Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/using-the-database/index.html">Using the Database</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/adding-synchronization/index.html">Adding Sync</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/adding-security/index.html">Adding Security</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/develop/integration/index.html">Integration</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              <a href="#" class="static">Deploy</a>
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/install/index.html">Install</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../training/deploy/scale/index.html">Scale</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../guides/index.html">Guides</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/couchbase-lite/native-api/data-modeling/index.html">Data Modeling</a>
+              
+            
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/couchbase-lite/native-api/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/manager/index.html">Manager</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/database/index.html">Database</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/document/index.html">Document</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/revision/index.html">Revision</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/view/index.html">View</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/query/index.html">Query</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a class="selected" href="../../../../guides/couchbase-lite/native-api/replication/index.html">Replication</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/peer-to-peer/index.html">Peer-to-peer</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/native-api/model/index.html">Model (iOS only)</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/couchbase-lite/tech-notes/index.html">Technical Notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/couchbase-lite/tech-notes/cbl-encryption/index.html">Encrypting Databases</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/config-properties/index.html">Configuration file</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/command-line-options/index.html">Command line options</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/authorizing-users/index.html">Authorizing Users</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/channels/index.html">Data Routing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/sync-function-api-guide/index.html">Sync Function API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/server-integration/index.html">Webhooks and changes feed</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/deployment/index.html">Deployment considerations</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/upgrade/index.html">Upgrade</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/nginx/index.html">Load Balancer</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/database-offline/index.html">Taking databases offline and online</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/os-level-tuning/index.html">OS Level Tuning</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/resolving-conflicts/index.html">Resolving Conflicts</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/integrating-external-stores/index.html">Integrating External Stores</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/running-replications/index.html">Running replications</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/rest-api-client/index.html">REST API Client</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/sgcollect-info/index.html">SGCollect Info</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/configuring-ssl/index.html">Configuring SSL</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/bucket-shadowing/index.html">Bucket Shadowing</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/sync-gateway/accelerator.html">Accelerator</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../guides/authentication/index.html">Authentication</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/basic-authentication/index.html">Basic Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/openid/index.html">OpenID Connect</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/configuration-options/index.html">Configuration Options</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/advanced-topics/index.html">Advanced Topics</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/google/index.html">How-To: Google</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../guides/authentication/openid/active-directory/index.html">How-To: Active Directory</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/custom-authentication/index.html">Custom Authentication</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../guides/authentication/static-providers/index.html">Static Providers</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+      <li class="isexpanded open ">
+      
+        
+          <a href="../../../../references/index.html">API References</a>
+        
+      
+      
+        <ul>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../references/couchbase-lite/index.html">Couchbase Lite</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/couchbase-lite/index.html">Native API</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/manager/index.html">Manager</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/manager/index.html">Manager</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/manager-options/index.html">ManagerOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/manager/database-options/index.html">DatabaseOptions</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/database/index.html">Database</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/database/database/index.html">Database</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/database/validation-context/index.html">ValidationContext</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/document/index.html">Document</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/document/document/index.html">Document</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/document/document-change/index.html">Document Change</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/revision/index.html">Revision</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/revision/index.html">Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/saved-revision/index.html">Saved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/revision/unsaved-revision/index.html">Unsaved Revision</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/attachment/index.html">Attachment</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/attachment/attachment/index.html">Attachment</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/view/index.html">View</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/view/view/index.html">View</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/view/view-compiler/index.html">View Compiler</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/query/index.html">Query</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query/index.html">Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/live-query/index.html">Live Query</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query-enumerator/index.html">QueryEnumerator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/query/query-row/index.html">QueryRow</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/couchbase-lite/replication/index.html">Replication</a>
+                      
+                    
+                    
+                    <ul>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/replication/index.html">Replication</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/authenticator/index.html">Authenticator</a>
+                          
+                        
+                        
+                      </li>
+                      
+                      <li class=" ">
+                        
+                          
+                          <a href="../../../../references/couchbase-lite/couchbase-lite/replication/authenticator-factory/index.html">AuthenticatorFactory</a>
+                          
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/rest-api/index.html">REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/couchbase-lite/release-notes/index.html">Release notes</a>
+                  
+                
+                
+                <ul>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/iOS/index.html">iOS</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/Java/index.html">Java</a>
+                      
+                    
+                    
+                  </li>
+                  
+                  <li class=" ">
+                    
+                      
+                      <a href="../../../../references/couchbase-lite/release-notes/Dot-Net/index.html">.NET</a>
+                      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class=" ">
+            
+              
+                <a href="../../../../references/sync-gateway/index.html">Sync Gateway</a>
+              
+            
+            
+            <ul>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/rest-api/index.html">Public REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/admin-rest-api/index.html">Admin REST API</a>
+                  
+                
+                
+              </li>
+              
+              <li class=" ">
+                
+                  
+                    <a href="../../../../references/sync-gateway/release-notes/index.html">Release notes</a>
+                  
+                
+                
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+        </ul>
+      
+      </li>
+    
+  </ul>
+</nav>
+            </div>
+          </nav>
+        </aside>
+        <div class="col four-fifths article">
+          <div class="story">
+            <div class="body">
+              
+              
+              
+              <!-- Do not import the overridden styles on swagger ui pages -->
+              
+              <link rel="stylesheet" type="text/css" href="https://couchbase-docs.s3.amazonaws.com/mobile/assets/styles.css">
+              
+              
+              
+              <a class="edit-page-link" href="https://github.com/couchbaselabs/couchbase-mobile-portal/tree/master/md-docs/_1x/guides/couchbase-lite/native-api/replication.md" target="_blank">Edit on GitHub</a>
+              
+
+              <div class="inner-content">
+                <!-- Style API ref links -->
+                <style>
+                  a > code {
+                    text-decoration: underline;
+                    color: #0099e5;
+                    background: #f5f7f7;
+                    border-radius: 5px;
+                    padding: 3px 6px;
+                    margin: 0 1px;
+                  }
+                </style>
+                <!-- Platform tabs -->
+                <!-- TODO: Make visible when ready to show multi-platform training -->
+                <div class="toggler">
+                  <style>
+                    .toggler a {
+                      display: inline-block;
+                      padding: 3px 20px;
+                      margin: 2px;
+                      border: 1px solid #00739c;
+                      border-radius: 3px;
+                      text-decoration: none !important;
+                    }
+                    .display-platform-ios .toggler .button-ios,
+                    .display-platform-android .toggler .button-android,
+                    .display-platform-rn .toggler .button-rn,
+                    .display-platform-wpf .toggler .button-wpf,
+                    .display-platform-csharp .toggler .button-csharp,
+                    .display-platform-xam .toggler .button-xam,
+                    .display-platform-swift .toggler .button-swift,
+                    .display-platform-objc .toggler .button-objc,
+                    .display-platform-java .toggler .button-java {
+                      background-color: #00739c;
+                      color: white;
+                    }
+
+                    block { display: none; }
+
+                    .display-platform-ios .ios,
+                    .display-platform-android .android,
+                    .display-platform-rn .rn,
+                    .display-platform-net .net,
+                    .display-platform-csharp .csharp,
+                    .display-platform-wpf .wpf,
+                    .display-platform-xam .xam,
+                    .display-platform-all .all,
+                    .display-platform-swift .swift,
+                    .display-platform-objc .objc,
+                    .display-platform-java .java {
+                      display: block;
+                    }
+                    .inner-content .inline:not(.tab-nav) {
+                      display: none;
+                    }
+                    /* Must change the display mode for striped method names.
+                       This works with the StripingTag Jekyll plugin. */
+                    .display-platform-ios .ios.inline,
+                    .display-platform-android .android.inline,
+                    .display-platform-net .net.inline,
+                    .display-platform-csharp .csharp.inline,
+                    .display-platform-swift .swift.inline,
+                    .display-platform-objc .objc.inline,
+                    .display-platform-java .java.inline {
+                      display: inline;
+                    }
+                  </style>
+                  <div id="platform-tabs" class="hide">
+                    <span>Platform:</span>
+                    
+                    <a href="javascript:void(0);" class="button-ios" onclick="display('platform', 'ios')">iOS</a>
+                    <a href="javascript:void(0);" class="button-android" onclick="display('platform', 'android')">Android</a>
+                    <a href="javascript:void(0);" class="button-wpf" onclick="display('platform', 'wpf')">WPF</a>
+                    
+                  </div>
+                </div>
+                <!-- SDK buttons -->
+                <div id="swagger-libs" style="display: none;">
+                  <span>Sync Gateway Public REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'public')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'public')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'public')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'public')">Python</a>
+                  <br>
+                  <span>Sync Gateway Admin REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('go', 'admin')">Go</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'admin')">Python</a>
+                  <br>
+                  <span>Couchbase Lite REST API:</span>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('java', 'lite')">Java</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('csharp', 'lite')">C#</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('swift', 'lite')">Swift</a>
+                  <a href="javascript:void(0);" class="button" onclick="getSDK('python', 'lite')">Python</a>
+                </div>
+                <!-- Markdown content -->
+                <p>A Replication object represents a replication (or &quot;sync&quot;) task that transfers changes between a local database and a remote one. To replicate, you first get a new Replication object from a Database, then configure its settings, then tell it to start. The actual replication runs asynchronously on a background thread; you can monitor its progress by observing notifications posted by the Replication object when its state changes, as well as notifications posted by the database when documents are changed by the replicator.</p>
+
+<p>A typical application will create a pair of replications (push and pull) at launch time, both pointing to the URL of a server run by the application vendor. These stay active continuously during the lifespan of the app, uploading and downloading documents as changes occur and when the network is available.</p>
+
+<p>(Of course, atypical applications can use replication differently. The architecture is very flexible, supporting one-way replication, peer-to-peer replication, and replication between multiple devices and servers in arbitrary directed graphs. An app might also choose to replicate only once in a while, or only with a subset of its documents.)</p>
+
+<p>The application code doesn&#39;t have to pay attention to the details: it just knows that when it makes changes to the local database they will eventually be uploaded to the server, and when changes occur on the server they will eventually be downloaded to the local database. The app&#39;s job is to make the UI reflect what&#39;s in the local database, and to reflect user actions by making changes to local documents. If it does that, replication will Just Work without much extra effort.</p>
+<h2><a class="anchor instructions" name="types-of-replications"></a>Types of replications<a class="hash-link instructions" href="#types-of-replications"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li><strong>Push vs Pull:</strong> A push replication uploads changes from the local database to the remote one; a pull downloads changes from the remote database to the local one.</li>
+<li><strong>One-shot vs Continuous:</strong> By default a replication runs long enough to transfer all the changes from the source to the target database, then quits. A continuous replication, on the other hand, will stay active indefinitely, watching for further changes to occur and transferring them.</li>
+<li><strong>Filtered:</strong> Replications can have filters that restrict what documents they&#39;ll transfer. This can be useful to limit the amount of a large remote database that&#39;s downloaded to a device, or to keep some local documents private. A special type of filter used with the Couchbase Sync Gateway is the set of <strong>channels</strong> that a pull replication will download from. It&#39;s also possible to limit a replication to an explicit set of document IDs.</li>
+</ul>
+<h2><a class="anchor instructions" name="creating-replications"></a>Creating replications<a class="hash-link instructions" href="#creating-replications"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>You create a Replication object by calling the Database methods <code>createPullReplication</code> or <code>createPushReplication</code>. Both of these take a single parameter, the URL of the remote database to sync with. As the names imply, each method creates a replication that transfers changes in one direction only; if you want bidirectional sync, as most apps do, you should create one of each.</p>
+
+<p>Next you can customize the replication settings. The most common change is to set the <code>continuous</code> property to <code>true</code>. You may also need to supply authentication credentials, like a username/password or a Facebook token.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">NSURL* url = [NSURL URLWithString: @"https://example.com/mydatabase/"];
+CBLReplication *push = [database createPushReplication: url];
+CBLReplication *pull = [database createPullReplication: url];
+push.continuous = pull.continuous = YES;
+id&lt;CBLAuthenticator&gt; auth;
+auth = [CBLAuthenticator basicAuthenticatorWithName: username
+                                           password: password];
+push.authenticator = pull.authenticator = auth;
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">let url = NSURL(string: "https://example.com/mydatabase/")
+let push = database.createPushReplication(url)
+let pull = database.createPullReplication(url)
+push.continuous = true
+pull.continuous = true
+var auth: CBLAuthenticatorProtocol?
+auth = CBLAuthenticator.basicAuthenticatorWithName(username, password: password)
+push.authenticator = auth
+pull.authenticator = auth
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">URL url = new URL("https://example.com/mydatabase/");
+Replication push = database.createPushReplication(url);
+Replication pull = database.createPullReplication(url);
+pull.setContinuous(true);
+push.setContinuous(true);
+Authenticator auth = new BasicAuthenticator(username, password);
+push.setAuthenticator(auth);
+pull.setAuthenticator(auth);
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">URL url = new URL("https://example.com/mydatabase/");
+Replication push = database.createPushReplication(url);
+Replication pull = database.createPullReplication(url);
+pull.setContinuous(true);
+push.setContinuous(true);
+Authenticator auth = new BasicAuthenticator(username, password);
+push.setAuthenticator(auth);
+pull.setAuthenticator(auth);
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">var url = new Uri("https://example.com/mydatabase/");
+var push = database.CreatePushReplication(url);
+var pull = database.CreatePullReplication(url);
+var auth = AuthenticatorFactory.CreateBasicAuthenticator(username, password);
+push.Authenticator = auth;
+pull.Authenticator = auth;
+push.Continuous = true;
+pull.Continuous = true;
+</code></pre></span></div>
+<p>You will also probably want to monitor the replication&#39;s progress, particularly because this will tell you if errors occur, but also if you want to display a progress indicator to the user. The API for registering as an observer is platform-specific.</p>
+
+<p>Once everything is set, you call start to <code>start</code> the replication. If the replication is continuous, it&#39;ll keep running indefinitely. Otherwise, the replication will eventually stop when it&#39;s transferred everything.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">[[NSNotificationCenter defaultCenter] addObserver: self
+                                         selector: @selector(replicationChanged:)
+                                             name: kCBLReplicationChangeNotification
+                                           object: push];
+[[NSNotificationCenter defaultCenter] addObserver: self
+                                         selector: @selector(replicationChanged:)
+                                             name: kCBLReplicationChangeNotification
+                                           object: pull];
+[push start];
+[pull start];
+// It's important to keep a reference to a running replication,
+// or it is likely to be dealloced!
+self.push = push;
+self.pull = pull;
+// The replications are running now; the -replicationChanged: method will
+// be called with notifications when their status changes.
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">NSNotificationCenter.defaultCenter().addObserver(self,
+    selector: "replicationChanged", name: kCBLReplicationChangeNotification, object: push)
+NSNotificationCenter.defaultCenter().addObserver(self,
+    selector: "replicationChanged", name: kCBLReplicationChangeNotification, object: pull)
+push.start()
+pull.start()
+// It's important to keep a reference to a running replication,
+// or it is likely to be dealloced!
+self.push = push;
+self.pull = pull;
+// The replications are running now; the -replicationChanged: method will
+// be called with notifications when their status changes.
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">push.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // will be called back when the push replication status changes
+    }
+});
+pull.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // will be called back when the pull replication status changes
+    }
+});
+push.start();
+pull.start();
+this.push = push;
+this.pull = pull;
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">push.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // will be called back when the push replication status changes
+    }
+});
+pull.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // will be called back when the pull replication status changes
+    }
+});
+push.start();
+pull.start();
+this.push = push;
+this.pull = pull;
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">push.Changed += (sender, e) =&gt; 
+{
+    // Will be called when the push replication status changes
+};
+pull.Changed += (sender, e) =&gt; 
+{
+    // Will be called when the pull replication status changes
+};
+push.Start();
+pull.Start();
+this.push = push;
+this.pull = pull;
+</code></pre></span></div><h2><a class="anchor instructions" name="filtered-replications"></a>Filtered replications<a class="hash-link instructions" href="#filtered-replications"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>You can restrict a replication to only a subset of the available documents, by writing a filter function. There are several types of filtered replication, based on the direction and the type of server.</p>
+<h3><a class="anchor instructions" name="filtered-push-replications"></a>Filtered push replications<a class="hash-link instructions" href="#filtered-push-replications"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>During a push replication, the candidate documents live in your local database, so the filter function runs locally. You define it as a native function (a block in Objective-C, an inner class method in Java), assign it a name, and register it with the Database object. You then set the filter&#39;s name as the <code>filter</code> property of the Replication object.</p>
+
+<p>The replicator passes your filter function a SavedRevision object. The function can examine the document&#39;s ID and properties, and simply returns true to allow the document to be replicated, or false to prevent it from being replicated.</p>
+
+<p>Caution:The filter function will be called on the replicator&#39;s background thread, so it should be thread-safe. Ideally it shouldn&#39;t reference any external state, but this isn&#39;t strictly required.</p>
+
+<p>The filter function can also be given parameters. The parameter values are specified in the <code>Replication.filterParams</code> property as a dictionary/map, and passed to the filter function. This way you can write a generalized filter that can be used with different replications, and also avoid referencing external state from within the function. For example, a function could filter documents created in any year, accepting the specific year as a parameter.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Define a filter that matches only docs with a given "owner" property.
+// The value to match is given as a parameter named "name":
+[db setFilterNamed: @"byOwner" asBlock: FILTERBLOCK({
+    NSString* nameParam = params[@"name"];
+    return nameParam &amp;&amp; [revision[@"owner"] isEqualToString: nameParam];
+})];
+//
+// Set up a filtered push replication using the above filter block,
+// that will push only docs whose "owner" property equals "Waldo":
+CBLReplication *push = [database createPushReplication: url];
+push.filter = @"byOwner";
+push.filterParams = @{@"name": @"Waldo"};
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">db.setFilterNamed("byOwner", asBlock: { 
+    (revision, params) -&gt; Bool in
+        let nameParam = params["name"] as? String
+        return nameParam != nil &amp;&amp; nameParam! == revision["owner"] as? String
+})
+//
+// Set up a filtered push replication using the above filter block,
+// that will push only docs whose "owner" property equals "Waldo":
+var push = db.createPushReplication(url)
+push.filter = "byOwner"
+push.filterParams = ["name": "Waldo"]
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Define a filter that matches only docs with a given "owner" property.
+// The value to match is given as a parameter named "name":
+db.setFilter("byOwner", new ReplicationFilter() {
+    @Override
+    public boolean filter(SavedRevision revision, Map&lt;String, Object&gt; params) {
+        String nameParam = (String) params.get("name");
+        return nameParam != null &amp;&amp; nameParam.equals(revision.getProperty("owner"));
+    }
+});
+//
+// Set up a filtered push replication using the above filter block,
+// that will push only docs whose "owner" property equals "Waldo":
+Replication push = db.createPushReplication(url);
+push.setFilter("byOwner");
+Map&lt;String, Object&gt; params = new HashMap&lt;String, Object&gt;();
+params.put("name", "Waldo");
+push.setFilterParams(params);
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Define a filter that matches only docs with a given "owner" property.
+// The value to match is given as a parameter named "name":
+db.setFilter("byOwner", new ReplicationFilter() {
+    @Override
+    public boolean filter(SavedRevision revision, Map&lt;String, Object&gt; params) {
+        String nameParam = (String) params.get("name");
+        return nameParam != null &amp;&amp; nameParam.equals(revision.getProperty("owner"));
+    }
+});
+//
+// Set up a filtered push replication using the above filter block,
+// that will push only docs whose "owner" property equals "Waldo":
+Replication push = db.createPushReplication(url);
+push.setFilter("byOwner");
+Map&lt;String, Object&gt; params = new HashMap&lt;String, Object&gt;();
+params.put("name", "Waldo");
+push.setFilterParams(params);
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// Define a filter that matches only docs with a given "owner" property.
+// The value to match is given as a parameter named "name":
+database.SetFilter("byOwner", (revision, filterParams) =&gt;
+{
+    var nameParam = filterParams["name"];
+    var owner = (string)revision.GetProperty("owner");
+    return (nameParam != null) &amp;&amp; nameParam.Equals(owner);
+});
+// Set up a filtered push replication using the above filter block,
+// that will push only docs whose "owner" property equals "Waldo":
+var push = database.CreatePushReplication(url);
+push.Filter = "byOwner";
+push.FilterParams = new Dictionary&lt;string, object&gt; { {"name", "Waldo"} };
+</code></pre></span></div><h3><a class="anchor instructions" name="filtered-pull-from-sync-gateway"></a>Filtered pull from Sync Gateway<a class="hash-link instructions" href="#filtered-pull-from-sync-gateway"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Channels are used to filter documents being pulled from the Sync Gateway. Every document stored in a Sync Gateway database is tagged with a set of named channels by the Gateway&#39;s app-defined sync function. Every pull replication from the Gateway is already implicitly filtered by the set of channels that the user&#39;s account is allowed to access; you can filter it further by creating an array of channel names and setting it as the value of the channels property of a pull Replication. Only documents tagged with those channels will be downloaded.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">// Set up a channel-filtered pull replication that will pull only
+// docs in the "sales" channel from the Sync Gateway:
+CBLReplication *pull = [database createPullReplication: url];
+pull.channels = @[@"sales"];
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">// Set up a channel-filtered pull replication that will pull only
+// docs in the "sales" channel from the Sync Gateway:
+var pull: CBLReplication = database.createPullReplication(url)
+pull.channels = ["sales"]
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">// Set up a channel-filtered pull replication that will pull only
+// docs in the "sales" channel from the Sync Gateway:
+db.createPullReplication(url);
+List&lt;String&gt; channels = new ArrayList&lt;String&gt;();
+channels.add("sales");
+pull.setChannels(channels);
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">// Set up a channel-filtered pull replication that will pull only
+// docs in the "sales" channel from the Sync Gateway:
+db.createPullReplication(url);
+List&lt;String&gt; channels = new ArrayList&lt;String&gt;();
+channels.add("sales");
+pull.setChannels(channels);
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">No code example is currently available.
+</code></pre></span></div>
+<blockquote>
+<p><strong>Note:</strong> Replication properties changed after it has already started won&#39;t have any effect. If you wish to change replication properties such as channels, authentication, etc, you must create a new replication object using the <code>createPushReplication</code> or <code>createPullReplication</code> method.</p>
+</blockquote>
+<h3><a class="anchor instructions" name="filtered-pull-from-couchdb-pouchdb-or-cloudant"></a>Filtered pull from CouchDB, PouchDB or Cloudant<a class="hash-link instructions" href="#filtered-pull-from-couchdb-pouchdb-or-cloudant"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Since Couchbase Lite 1.2, filter functions in pull replications with non-Couchbase databases are no longer available. There is an incompatibility in the way the <code>filter</code> parameter is handled in the <code>POST /{db}/_changes</code> request (see <a href="https://github.com/couchbase/couchbase-lite-ios/issues/1139">#1139</a>).</p>
+<h3><a class="anchor instructions" name="filtering-by-document-ids"></a>Filtering by document IDs<a class="hash-link instructions" href="#filtering-by-document-ids"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>In one-shot <strong>pull</strong> replications with Sync Gateway, it&#39;s possible to specify a list of document IDs (this feature is not available for replications in continuous mode, see <a href="https://github.com/couchbase/sync_gateway/issues/1703">#1703</a>). The code below pulls the documents with ID &quot;123&quot; and &quot;xyz&quot; if they exist and the user has access to them.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">CBLReplication* pull = [database createPullReplication:kSyncGatewayUrl];
+pull.documentIDs = @[@"123", @"xyz"];
+[pull start];
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">let pull = database.createPullReplication(kSyncGatewayUrl)
+pull.documentIDs = ["123", "xyz"]
+pull.start()
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">List&lt;String&gt; docIDs = new ArrayList&lt;&gt;();
+docIDs.add("123");
+docIDs.add("xyz");
+
+Replication pull = database.createPullReplication(mSyncGatewayUrl);
+pull.setDocIds(docIDs);
+pull.start();
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">List&lt;String&gt; docIDs = new ArrayList&lt;&gt;();
+docIDs.add("123");
+docIDs.add("xyz");
+
+Replication pull = database.createPullReplication(mSyncGatewayUrl);
+pull.setDocIds(docIDs);
+pull.start();
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">var pull = database.CreatePullReplication(SyncGatewayUrl);
+pull.DocIds = new string[] {"123", "xyz"};
+pull.Start();
+</code></pre></span></div>
+<p>For <strong>push</strong> replications with Sync Gateway, this functionality is available in one-shot and continuous replications.</p>
+<h2><a class="anchor instructions" name="observing-and-monitoring-replications"></a>Observing and monitoring replications<a class="hash-link instructions" href="#observing-and-monitoring-replications"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Since a replication runs asynchronously, if you want to know when it completes or when it gets an error, you&#39;ll need to register as an observer to get notifications from it. The details of this are platform-specific.</p>
+
+<p>A replication has a number of properties that you can access, especially from a notification callback, to check on its status and progress:</p>
+
+<ul>
+<li><code>status</code>: An enumeration that gives the current state of the replication. The values are Stopped, Offline, Idle and Active.
+
+<ul>
+<li>Stopped: A one-shot replication goes into this state after all documents have been transferred or a fatal error occurs. (Continuous replications never stop.)</li>
+<li><strong>Offline</strong>: The remote server is not reachable. Most often this happens because there&#39;s no network connection, 
+but it can 
+also occur if the server&#39;s inside an intranet or home network but the device isn&#39;t. (The replication will monitor the network state and will try to connect when the server becomes reachable.)</li>
+<li><strong>Idle</strong>: Indicates that a continuous replication has &quot;caught up&quot; and transferred all documents, but is monitoring
+the 
+source database for future changes.</li>
+<li><strong>Active</strong>: The replication is actively working, either transferring documents or determining what needs to be 
+transferred.</li>
+</ul></li>
+<li><code>lastError</code>: The last error encountered by the replicator. (Not all errors are fatal, and a continuous replication will keep running even after a fatal error, by waiting and retrying later.)</li>
+<li><code>completedChangesCount</code>, <code>changesCount</code>: The number of documents that have been transferred so far, and the estimated total number to transfer in order to catch up. The ratio of these can be used to display a progress meter. Just be aware that changesCount may be zero if the number of documents to transfer isn&#39;t known yet, and in a continuous replication both values will reset to zero when the status goes from Idle back to Active.</li>
+</ul>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">[[NSNotificationCenter defaultCenter] addObserver: self
+                     selector: @selector(replicationChanged:)
+                         name: kCBLReplicationChangeNotification
+                       object: push];
+[[NSNotificationCenter defaultCenter] addObserver: self
+                     selector: @selector(replicationChanged:)
+                         name: kCBLReplicationChangeNotification
+                       object: pull];
+- (void) replicationChanged: (NSNotification*)n {
+    // The replication reporting the notification is n.object , but we
+    // want to look at the aggregate of both the push and pull.
+
+    // First check whether replication is currently active:
+    BOOL active = (pull.status == kCBLReplicationActive) || (push.status == kCBLReplicationActive);
+    self.activityIndicator.state = active;
+    // Now show a progress indicator:
+    self.progressBar.hidden = !active;
+    if (active) {
+        double progress = 0.0;
+        double total = push.changesCount + pull.changesCount;
+        if (total &gt; 0.0) {
+            progress = (push.completedChangesCount + pull.completedChangesCount) / total;
+        }
+        self.progressBar.progress = progress;
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">NSNotificationCenter.defaultCenter().addObserver(self,
+    selector: "replicationChanged:",
+    name: kCBLReplicationChangeNotification,
+    object: push)
+NSNotificationCenter.defaultCenter().addObserver(self,
+    selector: "replicationChanged:",
+    name: kCBLReplicationChangeNotification,
+    object: pull)
+func replicationChanged(n: NSNotification) {
+    // The replication reporting the notification is n.object , but we
+    // want to look at the aggregate of both the push and pull.
+
+    // First check whether replication is currently active:
+    let active = pull.status == CBLReplicationStatus.Active || push.status == CBLReplicationStatus.Active
+    self.activityIndicator.state = active
+    // Now show a progress indicator:
+    self.progressBar.hidden = !active;
+    if active {
+        var progress = 0.0
+        let total = push.changesCount + pull.changesCount
+        let completed = push.completedChangesCount + pull.completedChangesCount
+        if total &gt; 0 {
+            progress = Double(completed) / Double(total);
+        }
+        self.progressBar.progress = progress;
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "Please wait ...", "Syncing", false);
+pull.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // The replication reporting the notification is either
+        // the push or the pull, but we want to look at the
+        // aggregate of both the push and pull.
+        // First check whether replication is currently active:
+        boolean active = (pull.getStatus() == Replication.ReplicationStatus.REPLICATION_ACTIVE) ||
+        (push.getStatus() == Replication.ReplicationStatus.REPLICATION_ACTIVE);
+        if (!active) {
+            progressDialog.dismiss();
+        } else {
+            double total = push.getCompletedChangesCount() + pull.getCompletedChangesCount();
+            progressDialog.setMax(total);
+            progressDialog.setProgress(push.getChangesCount() + pull.getChangesCount());
+        }
+    }
+});
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "Please wait ...", "Syncing", false);
+pull.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        // The replication reporting the notification is either
+        // the push or the pull, but we want to look at the
+        // aggregate of both the push and pull.
+        // First check whether replication is currently active:
+        boolean active = (pull.getStatus() == Replication.ReplicationStatus.REPLICATION_ACTIVE) ||
+        (push.getStatus() == Replication.ReplicationStatus.REPLICATION_ACTIVE);
+        if (!active) {
+            progressDialog.dismiss();
+        } else {
+            double total = push.getCompletedChangesCount() + pull.getCompletedChangesCount();
+            progressDialog.setMax(total);
+            progressDialog.setProgress(push.getChangesCount() + pull.getChangesCount());
+        }
+    }
+});
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">// The replication reporting the notification is either
+// the push or the pull, but we want to look at the
+// aggregate of both the push and pull.
+// First check whether replication is currently active:
+var active = push.Status == ReplicationStatus.Active ||
+             pull.Status == ReplicationStatus.Active;
+if (!active)
+{
+    DismissProgressBar();
+}
+else
+{
+    var total = push.CompletedChangesCount + pull.CompletedChangesCount;
+    var progress = push.ChangesCount + pull.ChangesCount;
+    ShowProgressBar(progress, total);
+}
+</code></pre></span></div><h3><a class="anchor instructions" name="detecting-unauthorized-credentials"></a>Detecting unauthorized credentials<a class="hash-link instructions" href="#detecting-unauthorized-credentials"><svg aria-hidden="true" class="octicon octicon-link" height="20" version="1.1" viewBox="0 -3 20 20" width="20"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The replication listener can also be used to detect when credentials are incorrect or access to Sync Gateway requires authentication.</p>
+
+<div class="tabs"></div>
+<div class="highlight"><span class="stripe-display objective-c"><pre><code class="language-c" data-lang="objective-c">    ...
+
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(replicationChanged:)
+                                                 name: kCBLReplicationChangeNotification
+                                               object: push];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(replicationChanged:)
+                                                 name: kCBLReplicationChangeNotification
+                                               object: pull];
+}
+
+- (void) replicationChanged: (NSNotification*)notification {
+    if (pull.status == kCBLReplicationActive || push.status == kCBLReplicationActive) {
+        NSLog(@"Sync in progress");
+    } else {
+        NSError *error = pull.lastError ? pull.lastError : push.lastError;
+        if (error.code == 401) {
+            NSLog(@"Authentication error");
+        }
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display swift"><pre><code class="language-swift" data-lang="swift">    ...
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeListener:", name: kCBLReplicationChangeNotification, object: push)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeListener:", name: kCBLReplicationChangeNotification, object: pull)
+}
+
+func changeListener(notification: NSNotification) {
+    if (push.status == CBLReplicationStatus.Active || pull.status == CBLReplicationStatus.Active) {
+        print("Sync in progress")
+    } else {
+        let error = push.lastError ?? pull.lastError
+        print("Error with code \(error?.code)")
+        if error?.code == 401 {
+            print("Authentication error")
+        }
+    }
+}
+</code></pre></span></div><div class="highlight"><span class="stripe-display android"><pre><code class="language-java" data-lang="java">push = database.createPushReplication(url);
+push.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        if (event.getError() != null) {
+            Throwable lastError = event.getError();
+            if (lastError instanceof RemoteRequestResponseException) {
+                RemoteRequestResponseException exception = (RemoteRequestResponseException) lastError;
+                if (exception.getCode() == 401) {
+                    // Authentication error
+                }
+            }
+        }
+    }
+});
+</code></pre></span><span class="stripe-display java"><pre><code class="language-java" data-lang="java">push = database.createPushReplication(url);
+push.addChangeListener(new Replication.ChangeListener() {
+    @Override
+    public void changed(Replication.ChangeEvent event) {
+        if (event.getError() != null) {
+            Throwable lastError = event.getError();
+            if (lastError instanceof RemoteRequestResponseException) {
+                RemoteRequestResponseException exception = (RemoteRequestResponseException) lastError;
+                if (exception.getCode() == 401) {
+                    // Authentication error
+                }
+            }
+        }
+    }
+});
+</code></pre></span></div><div class="highlight"><span class="stripe-display c"><pre><code class="language-c" data-lang="c">    ...
+    pull.Changed += Changed;
+    push.Changed += Changed;
+}
+
+void Changed(object sender, ReplicationChangeEventArgs e)
+{
+    if (pull.Status == ReplicationStatus.Active || push.Status == ReplicationStatus.Active)
+    {
+        Console.WriteLine("Sync in progress");
+    }
+    else if (e.LastError != null)
+    {
+        Exception error = e.LastError;
+        if (error is HttpResponseException)
+        {
+            HttpResponseException exception = (HttpResponseException)error;
+            if ((int) exception.StatusCode == 401)
+            {
+                Console.WriteLine("Authentication error");
+            }
+        }
+    }
+}
+</code></pre></span></div>
+                <!-- Logic to make all links open in a new tab -->
+                <script>
+                  var links = document.links;
+
+                  for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+                    if (['button-swift', 'button-objc', 'button-csharp', 'button-java', 'button-ios', 'button-android', 'button-wpf'].indexOf(links[i].className) == -1) {
+                      if (links[i].hostname != window.location.hostname) {
+                        links[i].target = '_blank';
+                      }
+                    }
+                  }
+                </script>
+                <!-- Logic for platform tabs -->
+                <script>
+                  // Only show on Develop pages
+                  var blocksv1 = document.getElementsByClassName('ios');
+                  var blocksv2 = document.getElementsByClassName('swift');
+                  if ((blocksv1.length > 0 && blocksv1[0].tagName == 'BLOCK') || (blocksv2.length > 0 && blocksv2[0].tagName == 'BLOCK')) {
+                    var platformTabs = document.getElementById('platform-tabs');
+                    platformTabs.className = "show";
+                  }
+                  // Convert <div>...<span><block /></span>...</div>
+                  // Into <div>...<block />...</div>
+                  var blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      var span = blocks[i].parentNode;
+                      var container = span.parentNode;
+                      container.insertBefore(block, span);
+                      container.removeChild(span);
+                    }
+                  }
+                  // Convert <div>...<block />content<block />...</div>
+                  // Into <div>...<block>content</block><block />...</div>
+                  blocks = document.getElementsByTagName('block');
+                  for (var i = 0; i < blocks.length; ++i) {
+                    // Ignore blocks that have the inline class name.
+                    if (blocks[i].className.indexOf('inline') == -1) {
+                      var block = blocks[i];
+                      while (block.nextSibling && block.nextSibling.tagName !== 'BLOCK') {
+                        block.appendChild(block.nextSibling);
+                      }
+                    }
+                  }
+                  function display(type, value, isFirstPageLoad) {
+                    deleteCookie('mobile-lang');
+                    setCookie('mobile-lang', value, 365);
+                    if (!isFirstPageLoad) {
+                      var newurl = UpdateQueryString('language', value);
+                      window.history.pushState({path: newurl}, '', newurl);
+                    }
+                    // Place the display-platform-* class on div.inner-content
+                    var container = document.getElementsByClassName('inner-content')[0];
+                    container.className = 'inner-content display-' + type + '-' + value;
+                    if (value == 'wpf' || value == 'csharp' || value == 'xam') {
+                      container.className += ' display-platform-net';
+                    }
+                    container.className += ' display-platform-all';
+                    return false;
+                  }
+
+                  // If we are coming to the page with a hash in it (i.e. from a search, for example), try to get
+                  // us as close as possible to the correct platform and dev os using the hashtag and block walk up.
+                  var foundHash = false;
+                  var language = getParameterByName('language');
+                  if (['ios', 'android', 'csharp', 'swift', 'objc', 'wpf', 'java'].indexOf(language) > -1) {
+                    foundHash = true;
+                    display('platform', language, true);
+                  }
+
+                  if (!foundHash) {
+                    var cookie_lang = getCookie('mobile-lang');
+                    if (document.getElementsByClassName(cookie_lang).length > 0) {
+                      display('platform', cookie_lang, true);
+                    } else {
+                      if (document.getElementsByClassName('swift').length > 0) {
+                        display('platform', 'swift', true);
+                      } else if (document.getElementsByClassName('ios').length > 0) {
+                        display('platform', 'ios', true);
+                      }
+                    }
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) {
+                      url = window.location.href;
+                    }
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                  function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                  }
+                  function deleteCookie(cname) {
+                    document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  }
+                  function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                      }
+                    }
+                    return "";
+                  }
+                  function UpdateQueryString(key, value, url) {
+                    if (!url) url = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
+                      hash;
+
+                    if (re.test(url)) {
+                      if (typeof value !== 'undefined' && value !== null)
+                        return url.replace(re, '$1' + key + "=" + value + '$2$3');
+                      else {
+                        hash = url.split('#');
+                        url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                    }
+                    else {
+                      if (typeof value !== 'undefined' && value !== null) {
+                        var separator = url.indexOf('?') !== -1 ? '&' : '?';
+                        hash = url.split('#');
+                        url = hash[0] + separator + key + '=' + value;
+                        if (typeof hash[1] !== 'undefined' && hash[1] !== null)
+                          url += '#' + hash[1];
+                        return url;
+                      }
+                      else
+                        return url;
+                    }
+                  }
+                </script>
+                <!-- Segment.io analytics -->
+                <script type="text/javascript">
+                  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+                    analytics.load("8mPwsJfsKAal6r62qS9ubBQqjWwYly4M");
+                    analytics.page()
+                  }}();
+                </script>
+                <script>
+                  var starterProject = document.getElementById('project');
+                  analytics.trackLink(starterProject, 'Download project', {
+                    category: 'Training',
+                    label: 'Swift'
+                  });
+                </script>
+                <!-- SDK buttons (shown only if show_true=true in the SDK) -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+                <script>
+
+                  if (getParameterByName("show_swagger_libs") || getParameterByName("swagger")) {
+                    var swagger_libs_el = document.getElementById('swagger-libs');
+                    swagger_libs_el.style.display = 'block';
+                  }
+
+                  function getSDK(lang, spec) {
+                    var url = null;
+                    switch(spec) {
+                      case 'public':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-public/spec.json';
+                        break;
+                      case 'admin':
+                        url = 'http://developer.couchbase.com/mobile/swagger/sync-gateway-admin/spec.json';
+                        break;
+                      case 'lite':
+                        url = 'http://developer.couchbase.com/mobile/swagger/couchbase-lite/spec.json';
+                        break;
+                    }
+                    fetch(url)
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        var options = {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({spec: res})
+                        };
+                        return fetch('http://generator.swagger.io/api/gen/clients/' + lang, options)
+                      })
+                      .then(function (res) {
+                        return res.json();
+                      })
+                      .then(function (res) {
+                        window.location = res.link;
+                      });
+                  }
+
+                  function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                      results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                  }
+                </script>
+              </div>
+
+              <script>
+                /**
+                 * HACK: To keep the code tabs while using markdown. Insert <div class="tab"></div> in the markdown and this script
+                 * finds and replaces all instances with a tab bar.
+                 */
+                var tab_bar_html = "</div><a href='javascript:setLanguage(\"swift\")' class=\"tab stripe-active swift\">Swift</a> <a href='javascript:setLanguage(\"objective-c\")' class=\"tab stripe-active objective-c selected\">Objective-C</a> <a href='javascript:setLanguage(\"android\")' class=\"tab stripe-active android\">Android</a> <a href='javascript:setLanguage(\"java\")' class=\"tab stripe-active java\">Java</a> <a href='javascript:setLanguage(\"c\")' class=\"tab stripe-active c\">C#</a>"
+                var tab_bars = document.getElementsByClassName('tabs');
+                var i = tab_bars.length - 1;
+                while (i >= 0) {
+                  var parent = tab_bars.item(i).parentNode;
+                  var element = document.createElement('div');
+                  element.className = 'tab-bar';
+                  element.innerHTML = tab_bar_html;
+                  parent.replaceChild(element, tab_bars.item(i));
+                  i--;
+                }
+
+                /**
+                 * HACK: To keep the markdown tables styles after ingestion we need to wrap the ouput in <div class="table"></div>
+                 */
+                var tables = document.getElementsByTagName("table");
+                var j = tables.length - 1;
+                while (j >= 0) {
+                  var parent = tables.item(j).parentNode;
+                  var table = tables.item(j);
+                  var wrapper = document.createElement('div');
+                  wrapper.className = 'table';
+                  wrapper.style.padding = 0;
+                  parent.insertBefore(wrapper, table);
+                  wrapper.appendChild(table);
+                  j--;
+                }
+              </script>
+              <script>
+                /**
+                 * Hack to not open some list titles
+                 */
+                (function() {
+                  var els = document.getElementsByClassName('static');
+                  for (var i = 0; i < els.length; i++) {
+                    (function() {
+                      var el = els[i];
+                      el.onclick = function () {
+                        var icon = el.previousSibling;
+                        var iconClasses = icon.className;
+                        if (iconClasses == 'icon') {
+                          icon.className = 'icon close';
+                        } else {
+                          icon.className = 'icon';
+                        }
+                        var list = el.nextSibling;
+                        var displayProp = list.style.display;
+                        if (displayProp == 'block') {
+                          list.style.display = 'none';
+                        } else {
+                          list.style.display = 'block';
+                        }
+                      }
+                    })()
+                  }
+                })()
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+</main>
+  </div>
+</div>
+
+<!-- Require_js bootstrap for app-specific JS module support -->
+<!-- data-main attribute tells require.js to load
+scripts/main.js after require.js loads. -->
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/require.js"></script>
+<script type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/thirdparty/vendor/prism.js"></script>
+<script rel="main" type="text/javascript" src="https://developer.couchbase.com/webfiles/1498186094252/js/main.js" ></script>
+<!-- leave the main attribute, it is used to help main.js determine -->
+<!-- the domain-relative path to the base script (main.js) -->
+
+</body>
+
+</html>
